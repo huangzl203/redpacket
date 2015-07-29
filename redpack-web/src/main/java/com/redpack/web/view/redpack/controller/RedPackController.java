@@ -1,4 +1,4 @@
-package com.redpack.web.repPack;
+package com.redpack.web.view.redpack.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
