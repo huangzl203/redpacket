@@ -3,7 +3,7 @@
  * @Package com.hehenian.deposit.common.account
  * @Title: IUserService.java
  * @Description: TODO
- * @author: liuzgmf
+ * @author:  zhangyunhua
  * @date 2015年3月5日 上午10:46:01
  * @Copyright: HEHENIAN Co.,Ltd. All rights reserved.
  * @version V1.0  
@@ -14,7 +14,7 @@ import com.redpack.common.account.model.UserDo;
 
 /**
  * 
- * @author: liuzgmf
+ * @author:  zhangyunhua
  * @date 2015年3月5日 上午10:46:01
  */
 public interface IUserService {
@@ -24,7 +24,7 @@ public interface IUserService {
      * 
      * @param id
      * @return
-     * @author: liuzgmf
+     * @author:  zhangyunhua
      * @date: 2015年3月5日上午10:49:36
      */
     UserDo getById(Long id);
@@ -35,4 +35,11 @@ public interface IUserService {
      * @return
      */
     Long saveUser(UserDo userDo);
+
+    /**
+     * 登录调用
+     * @param loginInfo  登录手机号
+     * @return
+     */
+	UserDo getByLoginInfo(String loginInfo);
 }

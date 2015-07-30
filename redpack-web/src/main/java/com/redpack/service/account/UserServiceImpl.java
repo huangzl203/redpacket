@@ -3,7 +3,7 @@
  * @Package com.hehenian.deposit.service.account
  * @Title: UserServiceImpl.java
  * @Description: TODO
- * @author: liuzgmf
+ * @author:  zhangyunhua
  * @date 2015年3月5日 上午10:58:12
  * @Copyright: HEHENIAN Co.,Ltd. All rights reserved.
  * @version V1.0  
@@ -22,7 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 /**
  * 
- * @author: liuzgmf
+ * @author:  zhangyunhua
  * @date 2015年3月5日 上午10:58:12
  */
 @Service("userService")
@@ -87,5 +87,13 @@ public class UserServiceImpl implements IUserService {
             return 0l;
         }
     }
+
+	@Override
+	public UserDo getByLoginInfo(String loginInfo) {
+		 UserDo u = new UserDo();
+		 u.setUsername(loginInfo);
+		 u.setPassword("123");
+		 return u;
+	}
 
 }

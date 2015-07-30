@@ -3,7 +3,7 @@ package com.redpack.common.base.exception;
 /**
  * 业务异常对象
  * 
- * @author liuzgmf
+ * @author  zhangyunhua
  *
  */
 public class BusinessException extends RuntimeException {

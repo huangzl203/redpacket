@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 /**
  * 工具类 - double类型运算帮助类
  * 
- * @author liuzgmf
+ * @author  zhangyunhua
  *
  */
 public class CalculateUtils {

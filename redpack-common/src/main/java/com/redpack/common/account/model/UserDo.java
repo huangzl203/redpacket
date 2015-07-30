@@ -3,7 +3,7 @@
  * @Package com.hehenian.deposit.common.account.model
  * @Title: UserDo.java
  * @Description: TODO
- * @author: liuzgmf
+ * @author:  zhangyunhua
  * @date 2015年3月5日 上午10:46:58
  * @Copyright: HEHENIAN Co.,Ltd. All rights reserved.
  * @version V1.0  
@@ -17,7 +17,7 @@ import org.apache.ibatis.type.Alias;
 
 /**
  * 
- * @author: liuzgmf
+ * @author:  zhangyunhua
  * @date 2015年3月5日 上午10:46:58
  */
 @Alias("userDo")

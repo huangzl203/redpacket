@@ -3,7 +3,7 @@
  * @Package com.hehenian.biz.common.base.dataobject
  * @Title: NPageDo.java
  * @Description: TODO
- * @author: liuzgmf
+ * @author:  zhangyunhua
  * @date 2014年11月21日 上午10:48:42
  * @Copyright: HEHENIAN Co.,Ltd. All rights reserved.
  * @version V1.0  
@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 分页对象
  * 
- * @author: liuzgmf
+ * @author:  zhangyunhua
  * @date 2014年11月21日 上午10:48:42
  */
 public class PageDo<T> implements Serializable {

@@ -3,7 +3,7 @@
  * @Package com.hehenian.deposit.web.view.account.controller
  * @Title: UserController.java
  * @Description: TODO
- * @author: liuzgmf
+ * @author:  zhangyunhua
  * @date 2015年3月5日 上午11:01:51
  * @Copyright: HEHENIAN Co.,Ltd. All rights reserved.
  * @version V1.0  
@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.redpack.common.account.IUserAccountService;
+import com.redpack.common.account.IUserInfoService;
 import com.redpack.common.account.IUserService;
 import com.redpack.common.account.model.UserDo;
 
 /**
  * 
- * @author: liuzgmf
+ * @author:  zhangyunhua
  * @date 2015年3月5日 上午11:01:51
  */
 @Controller
@@ -32,14 +32,14 @@ public class UserController {
     @Autowired
     private IUserService        userService;
     @Autowired
-    private IUserAccountService userAccountService;
+    private IUserInfoService userAccountService;
 
     @RequestMapping(value = "/showUser", method = RequestMethod.GET)
     public String getById(Long userId, Model model) {
     	System.out.println("userId"+userId);
         UserDo userDo = userService.getById(userId);
         model.addAttribute("userDo", userDo);
-        System.out.println(userAccountService.getById(1l));
+        System.out.println(userAccountService.getById(1));
         return "account/user_detail";
     }
 
