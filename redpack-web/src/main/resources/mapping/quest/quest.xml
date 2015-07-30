@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.redpack.dao.quest.IRedQuestionDao">
+	<resultMap type="questionDo" id="redQuestionResultMap">
+		<result property="id" column="id" />
+		<result property="theme" column="theme" />
+		<result property="content" column="content" />
+		<result property="createTime" column="create_time" />
+	</resultMap>
+
+	<select id="getById" parameterType="Long" resultMap="redQuestionResultMap">
+		SELECT * 
+		  FROM t_red_question WHERE id = #{id}
+	</select>
+
+	<select id="selectRedQuestion" parameterType="Map" resultMap="redQuestionResultMap">
+		SELECT * 
+		  FROM t_red_question
+		  <trim prefix="WHERE" prefixOverrides="AND |OR "> 
+			<if test="id != null">  
+				AND id like #{id}
+			</if>
+			<if test="theme != null">  
+				AND theme like #{theme}
+			</if>
+			<if test="content != null">  
+				AND content like #{content}
+			</if>
+			<if test="createTime != null">  
+				AND create_time like #{createTime}
+			</if>
+         </trim> 
+
+	</select>
+	
+	<update id="updateRedQuestionById" parameterType="questionDo">
+		UPDATE t_red_question 
+		   SET 		<if test="theme != null">  
+				theme = #{theme}
+		</if>		
+		<if test="content != null">  
+				,content = #{content}
+		</if>		
+		<if test="createTime != null">  
+				,create_time = #{createTime}
+		</if>		
+
+		WHERE id = #{id} and version =  #{version}
+	</update>	
+	
+	<insert id="addRedQuestion" parameterType="questionDo" keyProperty="id"
+		useGeneratedKeys="true" >
+		INSERT INTO t_red_question(		theme
+		,content
+		,create_time
+)
+		     VALUES (		#{theme}
+		,#{content}
+		,#{createTime}
+);
+	</insert>
+	
+	<delete id="deleteById" parameterType="Long" >
+		DELETE FROM t_red_question WHERE id = #{id}
+	</delete>
+	
+</mapper>
+
