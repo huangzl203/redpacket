@@ -10,7 +10,7 @@
 	<header class="index-h">
 		<div class="index-logo">
 		</div>
-		<p>您的随身理财管家</p>
+		<p>红包登录</p>
 	</header>
 	<section class="log-area">
 			<div>
@@ -21,7 +21,7 @@
 			</div>
 			<c:if test="${requestScope.loginStrategyInfo }">
 				<div><input type="text" class="lis lis-check" id="code" name="code" placeholder="图片验证码">
-					<span><img src="${loginServerUrl }/common/imageCode.do?pageId=userlogin" title="点击更换验证码" id="codeNum" /></span>
+					<span><img src="${loginServerUrl }/common/imageCode.html?pageId=userlogin" title="点击更换验证码" id="codeNum" /></span>
 				</div>
 			</c:if>
 			<div>
@@ -30,9 +30,9 @@
 	</section>
 	<section class="fnr">
 	<p style="margin-top: .5rem;">
-	<span><a href="${loginServerUrl }/account/resetPwdIndex.do">忘记密码？</a></span>
+	<span><a href="${loginServerUrl }/account/resetPwdIndex.html">忘记密码？</a></span>
 	|
-	<span><a href="${loginServerUrl }/account/regIndex.do">注册理财账号</a></span>
+	<span><a href="${loginServerUrl }/account/regIndex.html">注册账号</a></span>
 	</p>
 	</section>
 	<script>
@@ -44,7 +44,7 @@
 		});
 		//code 
 		$("#codeNum").bind("click",function(){
-			$(this).attr("src", "${loginServerUrl }/common/imageCode.do?pageId=userlogin&d=" + new Date().getTime());
+			$(this).attr("src", "${loginServerUrl }/common/imageCode.html?pageId=userlogin&d=" + new Date().getTime());
 		});
 
 	});
@@ -72,7 +72,7 @@
 				return;
 			}
 		}
-		var options = {type:"POST",url:"${loginServerUrl }/login/login.do",data:{userName:userName,password:password,code:code,fromUrl:'${fromUrl}'}};
+		var options = {type:"POST",url:"${loginServerUrl }/login/login.html",data:{userName:userName,password:password,code:code,fromUrl:'${fromUrl}'}};
 		ajaxRequest(options,function(data){
 		    if(data.result==1){
 				popWindow("登录信息填写不完整");
@@ -81,12 +81,12 @@
 			}else if(data.result==3){
 				if(data.loginStrategy == true) {
 					loginDiv='<div><input type="text" class="lis lis-check" id="code" name="code" placeholder="图片验证码">';
-					loginDiv+='<span><img src="${loginServerUrl }/common/imageCode.do?pageId=userlogin" title="点击更换验证码" id="codeNum" /></span></div>';
+					loginDiv+='<span><img src="${loginServerUrl }/common/imageCode.html?pageId=userlogin" title="点击更换验证码" id="codeNum" /></span></div>';
 					//alert($("#code").val());
 					if($("#code").length == 0 ) {
 						$('.log-area').find("div").eq(1).after(loginDiv);
 						$("#codeNum").bind("click",function(){
-							$(this).attr("src", "${loginServerUrl }/common/imageCode.do?pageId=userlogin&d=" + new Date().getTime());
+							$(this).attr("src", "${loginServerUrl }/common/imageCode.html?pageId=userlogin&d=" + new Date().getTime());
 						});
 					}
 				}

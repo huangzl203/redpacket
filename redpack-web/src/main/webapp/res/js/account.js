@@ -15,12 +15,12 @@
 					popWindow("请输入手机验证码");
 					return;
 				}
-				var options = {type:"GET",url:"${loginServerUrl }/account/verifyPwdStep1.do",data:{mobilePhone:mobilePhone,identifyCode:identifyCode}};
+				var options = {type:"GET",url:"${loginServerUrl }/account/verifyPwdStep1.html",data:{mobilePhone:mobilePhone,identifyCode:identifyCode}};
 				ajaxRequest(options,function(data){
 					if(data.result==1){
 						popWindow("手机验证码不正确");
 					}else{
-						window.location.href="${loginServerUrl }/account/resetJumpPage.do";
+						window.location.href="${loginServerUrl }/account/resetJumpPage.html";
 					}
 				});
 			});
@@ -37,14 +37,14 @@
 					popWindow("请输入身份证号码");
 					return;
 				}
-				var options = {type:"POST",url:"${loginServerUrl }/account/verifyPwdStep2.do",data:{realName:realName,idNo:idNo}};
+				var options = {type:"POST",url:"${loginServerUrl }/account/verifyPwdStep2.html",data:{realName:realName,idNo:idNo}};
 				ajaxRequest(options,function(data){
 					if(data.result==1){
 						popWindow("认证超时，请返回上一步");
 					}else if(data.result==2){
 						popWindow("认证失败");
 					}else{
-						window.location.href="${loginServerUrl }/account/reInputPwd.do?pwdFlag="+pwdFlag;
+						window.location.href="${loginServerUrl }/account/reInputPwd.html?pwdFlag="+pwdFlag;
 					}
 				});
 			});
@@ -70,7 +70,7 @@
 						popWindow("两次密码不一致");
 						return;
 					}
-					var options = {type:"POST",url:"${loginServerUrl }/account/updateLoginPwd.do",data:{pwd:password,confirmPwd:confirmPwd,pwdFlag:pwdFlag}};
+					var options = {type:"POST",url:"${loginServerUrl }/account/updateLoginPwd.html",data:{pwd:password,confirmPwd:confirmPwd,pwdFlag:pwdFlag}};
 					ajaxRequest(options,function(data){
 						if(data.result == 1){
 							popWindow("填写的密码信息格式有误");
@@ -81,7 +81,7 @@
 						} else if (data.result == 4) {
 							popWindow("修改密码失败");
 						} else {//密码修改成功，跳到成功页面
-								window.location.href="${loginServerUrl }/account/resetPaySucc.do";
+								window.location.href="${loginServerUrl }/account/resetPaySucc.html";
 						}
 					});
 				}else{//登陆密码
@@ -95,7 +95,7 @@
 						popWindow("两次密码不一致");
 						return;
 					}
-					var options = {type:"POST",url:"${loginServerUrl }/account/updateLoginPwd.do",data:{pwd:password,confirmPwd:confirmPwd,pwdFlag:pwdFlag}};
+					var options = {type:"POST",url:"${loginServerUrl }/account/updateLoginPwd.html",data:{pwd:password,confirmPwd:confirmPwd,pwdFlag:pwdFlag}};
 					ajaxRequest(options,function(data){
 						if(data.result == 1){
 							popWindow("填写的密码信息格式有误");
@@ -107,7 +107,7 @@
 							popWindow("修改密码失败");
 						} else {//密码修改成功，跳到登录页面
 							popWindowCab("修改密码成功,请重新登录",function(){
-								window.location.href="${loginServerUrl }/login/index.do";
+								window.location.href="${loginServerUrl }/login/index.html";
 							});
 						}
 					});
@@ -175,10 +175,10 @@
 					return;
 				}
 				$(this).attr('disabled',true);
-				var options = {type:"POST",url:"${loginServerUrl }/account/register.do",data:{userName:userName,password:password,mobilePhone:mobilePhone,identifyCode:identifyCode}};
+				var options = {type:"POST",url:"${loginServerUrl }/account/register.html",data:{userName:userName,password:password,mobilePhone:mobilePhone,identifyCode:identifyCode}};
 				ajaxRequest(options,function(data){
 					if(data.result=='注册成功'){
-						window.location.href="${loginServerUrl }/profile/index.do";
+						window.location.href="${loginServerUrl }/profile/index.html";
 					}else{
 						popWindow(data.result);
 						$('#regBtn').removeAttr('disabled');
@@ -188,7 +188,7 @@
 
 			//code 
 			$("#codeNum").bind("click",function(){
-				$(this).attr("src", "${loginServerUrl }/common/imageCode.do?pageId=userlogin&d=" + new Date().getTime());
+				$(this).attr("src", "${loginServerUrl }/common/imageCode.html?pageId=userlogin&d=" + new Date().getTime());
 			});
 
 			//邀请码
@@ -198,7 +198,7 @@
 					popWindow("请输入邀请码");
 					return;
 				}
-				var options = {type:"POST",url:"${loginServerUrl }/account/bindInviteCode.do",data:{code:$("#code").val()}};
+				var options = {type:"POST",url:"${loginServerUrl }/account/bindInviteCode.html",data:{code:$("#code").val()}};
 				ajaxRequest(options,function(data){
 					if(data.result==1){
 						popWindow("邀请码不能为空");
@@ -208,7 +208,7 @@
 						popWindow("该邀请码已被使用");
 					}else{
 						popWindowCab("邀请码使用成功",function(){
-							window.location.href="${loginServerUrl }/product/plist.do?channel=1&subChannel=1";
+							window.location.href="${loginServerUrl }/product/plist.html?channel=1&subChannel=1";
 						});
 					}
 				});
@@ -232,7 +232,7 @@
 			popWindow("登录信息填写不完整");
 			return;
 		}
-		var options = {type:"POST",url:"${loginServerUrl }/login/login.do",data:{userName:userName,password:password,code:code}};
+		var options = {type:"POST",url:"${loginServerUrl }/login/login.html",data:{userName:userName,password:password,code:code}};
 		ajaxRequest(options,function(data){
 		    if(data.result==1){
 				popWindow("登录信息填写不完整");
@@ -241,7 +241,7 @@
 			}else if(data.result==3){
 				popWindow("用户名或密码错误");
 			}else{
-				window.location.href="${loginServerUrl }/product/plist.do";
+				window.location.href="${loginServerUrl }/product/plist.html";
 			}
 		});
 	}
@@ -283,7 +283,7 @@
 				param["mobilePhone"]=mobilePhone.val();
 			}
 			
-			$.post("${loginServerUrl }/common/sendPhoneVirifyCode.do", param, function(data) {
+			$.post("${loginServerUrl }/common/sendPhoneVirifyCode.html", param, function(data) {
 				if(data.ret==1){
 					popWindow("发送验证码失败");
 				}else if(data.ret==2){
