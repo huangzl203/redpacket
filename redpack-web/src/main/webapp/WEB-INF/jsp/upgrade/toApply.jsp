@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/include/top.jsp"%>
+<%@ include file="../include/top.jsp"%>
 	<title>升级申请</title>
 </head>
 	<style>
@@ -81,7 +81,7 @@
 			<a href="javascript:void(0);" id="apply" class="apply">我要升级</a>
 	</section>
 	</form>
-	<%@ include file="/include/foot.jsp"%>
+	<%@ include file="../include/foot.jsp"%>
 	<script>
 	$(function(){
 		$("#apply").bind('touchstart', function(){

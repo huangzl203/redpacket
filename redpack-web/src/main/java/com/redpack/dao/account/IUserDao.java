@@ -10,6 +10,8 @@
  */
 package com.redpack.dao.account;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Repository;
 
 import com.redpack.common.account.model.UserDo;
@@ -37,4 +39,10 @@ public interface IUserDao {
      * @return
      */
     int saveUser(UserDo userDo);
+    /**
+     * 根据条件查询用户对象
+     * @param parameterMap
+     * @return
+     */
+	UserDo getByUserDo(Map<String, Object> parameterMap);
 }

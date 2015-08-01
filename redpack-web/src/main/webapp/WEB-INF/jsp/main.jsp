@@ -9,6 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 <meta name="format-detection" content="telephone=no" />
 <meta charset="utf-8" />
+<%@ include file="include/top.jsp"%>
 <style type="text/css">
     html, body { color:#222; font-family:Microsoft YaHei, Helvitica, Verdana, Tohoma, Arial, san-serif; margin:0; padding: 0; text-decoration: none; }
     img { border:0; }
@@ -53,7 +54,7 @@
 <body>
     <ul class="mainmenu">
         <li><a href="/" ><b><img src="images/tb01.png" /></b><span>个人中心</span></a></li>
-        <li><a href="/" ><b><img src="images/tb02.png" /></b><span>团队建设</span></a></li>
+        <li><a href="/userTree/view.html" ><b><img src="images/tb02.png" /></b><span>团队建设</span></a></li>
         <li><a href="/upgrade/toApply.html" ><b><img src="images/tb03.png" /></b><span>升级申请</span></a></li>
         <li><a href="/upgrade/listAudit.html" ><b><img src="images/tb04.png" /></b><span>审批</span></a></li>
         <li><a href="/upgrade/listApply.html" ><b><img src="images/tb05.png" /></b><span>申请记录</span></a></li>
@@ -63,5 +64,6 @@
         <li><a href="/" ><b><img src="images/tb08.png" /></b><span>在线留言</span></a></li>         
     </ul>
     <!-- 欢迎大家关注我的博客！如有疑问,请加QQ群：135430763共同学习！ -->
+    <%@ include file="include/foot.jsp"%>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/include/top.jsp"%>
+<%@ include file="../include/top.jsp"%>
 	<title>资料修改</title>
 </head>
 	<style>
@@ -54,7 +54,7 @@
 	</section>
 	
 	</form>
-	<%@ include file="/include/foot.jsp"%>
+	<%@ include file="../include/foot.jsp"%>
 	<script>
 	$(function(){
 		$("#apply").bind('touchstart', function(){

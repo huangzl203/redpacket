@@ -10,6 +10,8 @@
  */
 package com.redpack.service.account;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -89,11 +91,13 @@ public class UserServiceImpl implements IUserService {
     }
 
 	@Override
-	public UserDo getByLoginInfo(String loginInfo) {
-		 UserDo u = new UserDo();
-		 u.setUsername(loginInfo);
-		 u.setPassword("123");
-		 return u;
+	public UserDo getByLoginInfo(String id) {
+		 return userDao.getById(Long.valueOf(id));
+	}
+
+	@Override
+	public UserDo getByUserDo(Map<String, Object> parameterMap) {
+		return userDao.getByUserDo(parameterMap);
 	}
 
 }

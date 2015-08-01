@@ -10,7 +10,7 @@
 	<header class="index-h">
 		<div class="index-logo">
 		</div>
-		<p>红包登录</p>
+		<p>登录</p>
 	</header>
 	<section class="log-area">
 			<div>
