@@ -10,8 +10,11 @@
  */
 package com.redpack.service.account;
 
+<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.List;
+=======
+>>>>>>> b9bdccb92fe4149660895b52b5869113ebcfc1f2
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,11 +95,13 @@ public class UserServiceImpl implements IUserService {
     }
 
 	@Override
-	public UserDo getByLoginInfo(String loginInfo) {
-		 UserDo u = new UserDo();
-		 u.setUsername(loginInfo);
-		 u.setPassword("123");
-		 return u;
+	public UserDo getByLoginInfo(String id) {
+		 return userDao.getById(Long.valueOf(id));
+	}
+
+	@Override
+	public UserDo getByUserDo(Map<String, Object> parameterMap) {
+		return userDao.getByUserDo(parameterMap);
 	}
 
 }

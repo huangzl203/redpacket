@@ -21,6 +21,30 @@
 		SELECT * FROM
 		t_user WHERE id = #{id}
 	</select>
+	
+	<select id="getByUserDo" parameterType="Map" resultMap="userResultMap">
+		SELECT * FROM t_user 
+	 	<trim prefix="WHERE" prefixOverrides="AND |OR "> 
+			<if test="id != null">  
+				AND id like #{id}
+			</if>
+			<if test="username != null">  
+				AND user_name like #{username}
+			</if>
+			<if test="email != null">  
+				AND email like #{email}
+			</if>
+			<if test="password != null">  
+				AND password like #{password}
+			</if>
+			<if test="twoLevelpwd != null">  
+				AND password_two like #{twoLevelpwd}
+			</if>
+			<if test="mobilePhone != null">  
+				AND mobile like #{mobilePhone}
+			</if>
+	 	</trim>
+	</select>
 
     <insert id="saveUser" parameterType="userDo">
         insert into t_user (username) values (#{username});

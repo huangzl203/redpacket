@@ -10,7 +10,11 @@
  */
 package com.redpack.common.account;
 
+<<<<<<< HEAD
 import java.util.List;
+=======
+import java.util.Map;
+>>>>>>> b9bdccb92fe4149660895b52b5869113ebcfc1f2
 
 import com.redpack.common.account.model.UserDo;
 
@@ -44,6 +48,15 @@ public interface IUserService {
      * @return
      */
 	UserDo getByLoginInfo(String loginInfo);
+<<<<<<< HEAD
 
 
+=======
+	/**
+	 * 根据条件查询userDo
+	 * @param parameterMap
+	 * @return
+	 */
+	UserDo getByUserDo(Map<String, Object> parameterMap);
+>>>>>>> b9bdccb92fe4149660895b52b5869113ebcfc1f2
 }

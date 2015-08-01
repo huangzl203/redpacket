@@ -107,7 +107,7 @@
 			<a href="javascript:void(0);" id="apply" class="apply">确定修改</a>
 	</section>
 	</form>
-	<%@ include file="include/foot.jsp"%>
+	<%@ include file="../include/foot.jsp"%>
 	<script>
 	$(function(){
 		$("#apply").bind('touchstart', function(){

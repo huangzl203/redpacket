@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<%@ include file="include/top.jsp"%>
+		<%@ include file="../include/top.jsp"%>
 		<title>红包</title>
 	</head>
 
@@ -41,7 +41,7 @@
            </div>
         </div>
         <!--弹出框-->
-        <%@ include file="include/foot.jsp"%>
+        <%@ include file="../include/foot.jsp"%>
 		<script type="text/javascript">
 		function personCenter(){
            var pos_h=$(window).height()-60;
