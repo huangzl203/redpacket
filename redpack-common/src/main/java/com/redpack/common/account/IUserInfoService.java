@@ -27,6 +27,18 @@ public interface IUserInfoService {
 
 	public abstract List<UserInfoDo> selectRedUserInfo(Map<String,Object> parameterMap);
 
-	public abstract UserInfoDo getById(int id);
+	public abstract UserInfoDo getById(long id);
+
+	public abstract UserInfoDo getAllParent(long currentUserId, int levelNum);
+
+	public abstract UserInfoDo getParent(long currentUserId);
+
+	public abstract void getAllChildren(UserInfoDo currentUser);
+
+	public abstract List<UserInfoDo> getChildList(long userId);
+
+	public abstract UserInfoDo getUserAndAllChild(long userId);
+
+	public abstract UserInfoDo getUserAndChild(long userId);
 	
 }

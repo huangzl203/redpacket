@@ -29,7 +29,7 @@
 
 	<select id="selectRedUserInfo" parameterType="Map" resultMap="redUserInfoResultMap">
 		SELECT * 
-		  FROM t_red_user_info
+		  FROM t_user_info
 		  <trim prefix="WHERE" prefixOverrides="AND |OR "> 
 			<if test="userid != null">  
 				AND userid like #{userid}

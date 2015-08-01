@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.redpack.common.account.IUserService;
+import com.redpack.common.enums.TreeNodeDirectionEnum;
 import com.redpack.common.upgrade.IUserUpgradeService;
 import com.redpack.utils.ResponseUtils;
 import com.redpack.web.view.base.controller.BaseController;
@@ -29,6 +31,10 @@ public class LevelController  extends BaseController {
 	@Autowired
 	IUserUpgradeService userUpgradeService;
 	
+	@Autowired
+	IUserService  userService;
+	
+	
 	/**
 	 * 去升级申请页面
 	 * @param request
@@ -38,6 +44,9 @@ public class LevelController  extends BaseController {
 	@RequestMapping("/toApply")
     public String toApply(HttpServletRequest request,HttpServletResponse response) {
 		logger.debug("toApply");
+		
+		long  userId = this.getCurrentUserId();
+		//userService.buildRelationTree(userId, TreeNodeDirectionEnum.UP.toString());
 		
 		return "upgrade/toApply";
     }

@@ -27,7 +27,7 @@ public interface IUserInfoDao {
 	 * 根据ID 查询
 	 * @parameter id
 	 */
-	public UserInfoDo getById(int id);
+	public UserInfoDo getById(long id);
 	
 	/**
 	 *根据条件查询列表

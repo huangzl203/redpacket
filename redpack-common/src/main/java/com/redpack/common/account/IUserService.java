@@ -10,6 +10,8 @@
  */
 package com.redpack.common.account;
 
+import java.util.List;
+
 import com.redpack.common.account.model.UserDo;
 
 /**
@@ -42,4 +44,6 @@ public interface IUserService {
      * @return
      */
 	UserDo getByLoginInfo(String loginInfo);
+
+
 }

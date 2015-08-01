@@ -8,6 +8,8 @@ package com.redpack.common.account.model;
 
 
 
+import java.util.List;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -43,6 +45,17 @@ public class UserInfoDo  implements java.io.Serializable{
 	private java.lang.Integer parentId;
 	private java.lang.String treeNode;
 	//columns END
+	
+	private List<UserInfoDo> childList;
+	
+	public List<UserInfoDo> getChildList() {
+		return childList;
+	}
+
+	public void setChildList(List<UserInfoDo> childList) {
+		this.childList = childList;
+	}
+
 	public java.lang.Integer getUserid() {
 		return this.userid;
 	}
