@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.redpack.dao.account.IUserInfoDao">
+	<resultMap type="userInfoDo" id="redUserInfoResultMap">
+		<result property="userid" column="userid" />
+		<result property="realName" column="real_name" />
+		<result property="idCardno" column="id_cardno" />
+		<result property="mobile" column="mobile" />
+		<result property="qqNumber" column="qq_number" />
+		<result property="zfbNumber" column="zfb_number" />
+		<result property="cftNumber" column="cft_number" />
+		<result property="bankName" column="bank_name" />
+		<result property="province" column="province" />
+		<result property="city" column="city" />
+		<result property="bankSubbranch" column="bank_subbranch" />
+		<result property="bankAccount" column="bank_account" />
+		<result property="openAccount" column="open_account" />
+		<result property="contactAddress" column="contact_address" />
+		<result property="referrerId" column="referrer_id" />
+		<result property="parentId" column="parent_id" />
+		<result property="treeNode" column="tree_node" />
+	</resultMap>
+
+	<select id="getById" parameterType="Long" resultMap="redUserInfoResultMap">
+		SELECT * 
+		  FROM t_red_user_info WHERE userid = #{userid}
+	</select>
+
+	<select id="selectRedUserInfo" parameterType="Map" resultMap="redUserInfoResultMap">
+		SELECT * 
+		  FROM t_red_user_info
+		  <trim prefix="WHERE" prefixOverrides="AND |OR "> 
+			<if test="userid != null">  
+				AND userid like #{userid}
+			</if>
+			<if test="realName != null">  
+				AND real_name like #{realName}
+			</if>
+			<if test="idCardno != null">  
+				AND id_cardno like #{idCardno}
+			</if>
+			<if test="mobile != null">  
+				AND mobile like #{mobile}
+			</if>
+			<if test="qqNumber != null">  
+				AND qq_number like #{qqNumber}
+			</if>
+			<if test="zfbNumber != null">  
+				AND zfb_number like #{zfbNumber}
+			</if>
+			<if test="cftNumber != null">  
+				AND cft_number like #{cftNumber}
+			</if>
+			<if test="bankName != null">  
+				AND bank_name like #{bankName}
+			</if>
+			<if test="province != null">  
+				AND province like #{province}
+			</if>
+			<if test="city != null">  
+				AND city like #{city}
+			</if>
+			<if test="bankSubbranch != null">  
+				AND bank_subbranch like #{bankSubbranch}
+			</if>
+			<if test="bankAccount != null">  
+				AND bank_account like #{bankAccount}
+			</if>
+			<if test="openAccount != null">  
+				AND open_account like #{openAccount}
+			</if>
+			<if test="contactAddress != null">  
+				AND contact_address like #{contactAddress}
+			</if>
+			<if test="referrerId != null">  
+				AND referrer_id like #{referrerId}
+			</if>
+			<if test="parentId != null">  
+				AND parent_id like #{parentId}
+			</if>
+			<if test="treeNode != null">  
+				AND tree_node like #{treeNode}
+			</if>
+         </trim> 
+
+	</select>
+	
+	<update id="updateRedUserInfoById" parameterType="userInfoDo">
+		UPDATE t_red_user_info 
+		   SET 		<if test="realName != null">  
+				real_name = #{realName}
+		</if>		
+		<if test="idCardno != null">  
+				,id_cardno = #{idCardno}
+		</if>		
+		<if test="mobile != null">  
+				,mobile = #{mobile}
+		</if>		
+		<if test="qqNumber != null">  
+				,qq_number = #{qqNumber}
+		</if>		
+		<if test="zfbNumber != null">  
+				,zfb_number = #{zfbNumber}
+		</if>		
+		<if test="cftNumber != null">  
+				,cft_number = #{cftNumber}
+		</if>		
+		<if test="bankName != null">  
+				,bank_name = #{bankName}
+		</if>		
+		<if test="province != null">  
+				,province = #{province}
+		</if>		
+		<if test="city != null">  
+				,city = #{city}
+		</if>		
+		<if test="bankSubbranch != null">  
+				,bank_subbranch = #{bankSubbranch}
+		</if>		
+		<if test="bankAccount != null">  
+				,bank_account = #{bankAccount}
+		</if>		
+		<if test="openAccount != null">  
+				,open_account = #{openAccount}
+		</if>		
+		<if test="contactAddress != null">  
+				,contact_address = #{contactAddress}
+		</if>		
+		<if test="referrerId != null">  
+				,referrer_id = #{referrerId}
+		</if>		
+		<if test="parentId != null">  
+				,parent_id = #{parentId}
+		</if>		
+		<if test="treeNode != null">  
+				,tree_node = #{treeNode}
+		</if>		
+
+		WHERE userid = #{userid} 
+	</update>	
+	
+	<insert id="addRedUserInfo" parameterType="userInfoDo" keyProperty="userid"
+		useGeneratedKeys="true" >
+		INSERT INTO t_red_user_info(		real_name
+		,id_cardno
+		,mobile
+		,qq_number
+		,zfb_number
+		,cft_number
+		,bank_name
+		,province
+		,city
+		,bank_subbranch
+		,bank_account
+		,open_account
+		,contact_address
+		,referrer_id
+		,parent_id
+		,tree_node
+)
+		     VALUES (		#{realName}
+		,#{idCardno}
+		,#{mobile}
+		,#{qqNumber}
+		,#{zfbNumber}
+		,#{cftNumber}
+		,#{bankName}
+		,#{province}
+		,#{city}
+		,#{bankSubbranch}
+		,#{bankAccount}
+		,#{openAccount}
+		,#{contactAddress}
+		,#{referrerId}
+		,#{parentId}
+		,#{treeNode}
+);
+	</insert>
+	
+	<delete id="deleteById" parameterType="Long" >
+		DELETE FROM t_red_user_info WHERE userid = #{userid}
+	</delete>
+	
+</mapper>
+

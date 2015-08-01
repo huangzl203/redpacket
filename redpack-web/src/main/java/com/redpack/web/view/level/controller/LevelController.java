@@ -6,10 +6,12 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONObject;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.redpack.common.upgrade.IUserUpgradeService;
 import com.redpack.utils.ResponseUtils;
 import com.redpack.web.view.base.controller.BaseController;
 
@@ -24,6 +26,8 @@ import com.redpack.web.view.base.controller.BaseController;
 public class LevelController  extends BaseController {
 	
 	private static transient Logger logger = Logger.getLogger(LevelController.class);
+	@Autowired
+	IUserUpgradeService userUpgradeService;
 	
 	/**
 	 * 去升级申请页面
@@ -34,6 +38,7 @@ public class LevelController  extends BaseController {
 	@RequestMapping("/toApply")
     public String toApply(HttpServletRequest request,HttpServletResponse response) {
 		logger.debug("toApply");
+		
 		return "upgrade/toApply";
     }
 	

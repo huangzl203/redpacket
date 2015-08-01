@@ -53,8 +53,8 @@ public class BaseController {
 		return CommonUtils.getLoginId() != null ? CommonUtils.getLoginId() : -1;
 	}
 	
-	protected Integer getCurrentUserId(){
-		return CommonUtils.getLoginId() != null ? CommonUtils.getLoginId().intValue() : -1;
+	protected Long getCurrentUserId(){
+		return CommonUtils.getLoginId() != null ? CommonUtils.getLoginId().longValue() : -1;
 	}
 	
 	protected String getSessionStrAttr(String attrName) {
