@@ -13,7 +13,7 @@
 		<span class="icon-back">
 			</span>
 		</a>
-		<p>注册理财账号</p>
+		<p>注册账号</p>
 	</header>
 	<section class="sign-area">
 		<form action="${loginServerUrl }/account/register.do" id="regForm" method="post">
@@ -25,24 +25,23 @@
 			<span class="sign-lable">登录密码</span>
 				<input type="password" name="password" id="password" placeholder="6-20个字符">
 			</div>
-			<div class="sign-style br-1 bb-1">
+			<div class="sign-style br-3 ">
 				<span class="sign-lable">确认密码</span>
 				<input type="password" id="confirmPassword" name="confirmPassword" placeholder="6-20个字符">
 			</div>
-			<div class="sign-style br-5">
-				<span class="sign-lable">手机号码</span>
+			<div class="sign-style br-2">
+				<span class="sign-lable ">手机号码</span>
 				<input type="text" id="mobilePhone" name="mobilePhone" placeholder="请输入注册手机号码">
 			</div>
-			<div class="sign-style br-4 bb-1">
-				<input type="text" id="identifyCode" name="identifyCode" placeholder="请输入短信验证码" class="ml-15">
-				<!-- <span class="sign-get-ck" id="aaaaaaa">获取验证码</span> -->
-				<a id="ida" class="sign-get-ck" href="javascript:;">获取验证码</a>
+			<div class="sign-style br-5">
+				<span class="sign-lable">推荐人</span>
+				<input type="text" id="mobilePhone" name="mobilePhone" placeholder="请输入注册手机号码">
 			</div>
 			<div class="sign-sub">
-			<input type="button" id="regBtn" value="立即注册">
+				<input type="button" id="regBtn" value="立即注册">
 			</div>
 		</form>
-		<p><span></span>点击“立即注册”，即表示您同意并愿意遵守<a href="${loginServerUrl }/account/zcxy.do">《合和在线注册协议》</a></p>
+	<%-- 	<p><span></span>点击“立即注册”，即表示您同意并愿意遵守<a href="${loginServerUrl }/account/zcxy.do">《合和在线注册协议》</a></p> --%>
 	</section>
 	<script>
 		$(function(){
@@ -98,15 +97,15 @@
                      return;
                 }
 				var identifyCode = $("#identifyCode").val();
-				if(identifyCode==null || identifyCode.length==0){
+				/* if(identifyCode==null || identifyCode.length==0){
 					popWindow("请输入验证码");
 					return;
-				}
+				} */
 				$(this).attr('disabled',true);
-				var options = {type:"POST",url:"${loginServerUrl }/account/register.do",data:{userName:userName,password:password,mobilePhone:mobilePhone,identifyCode:identifyCode}};
+				var options = {type:"POST",url:"${loginServerUrl }/account/register.html",data:{userName:userName,password:password,mobilePhone:mobilePhone,identifyCode:identifyCode}};
 				ajaxRequest(options,function(data){
 					if(data.result=='注册成功'){
-						window.location.href="${loginServerUrl }/login/index.do";
+						window.location.href="${loginServerUrl }/redPack/modifyInfo.html";
 					}else{
 						popWindow(data.result);
 						$('#regBtn').removeAttr('disabled');
@@ -114,12 +113,12 @@
 				});
 			});
 			//获取手机验证码
-			$('#ida').bind("click",function(){
+		/* 	$('#ida').bind("click",function(){
 				if ($(this).attr("disable") == null) {
 				   var param = {checkPhone:true};
 				   sendPhoneVirifyCode(param);
 				}
-			});
+			}); */
 		})
 		function sendPhoneVirifyCode(param) {
 			var mobilePhone = $("#mobilePhone");

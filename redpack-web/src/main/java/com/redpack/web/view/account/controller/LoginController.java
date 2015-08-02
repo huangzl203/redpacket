@@ -87,6 +87,7 @@ public class LoginController extends BaseController {
 		JSONObject jsonObject = new JSONObject();
 		Map<String, Object> parameterMap = new HashMap<String, Object>();
 		String loginInfo = request.getParameter("userName");
+		loginInfo = loginInfo.replaceAll(" ", "");
 		parameterMap.put("username", loginInfo);
 		String password = request.getParameter("password");
 		String code = request.getParameter("code");
@@ -110,7 +111,7 @@ public class LoginController extends BaseController {
 			}
 		}
 		
-		loginInfo = loginInfo.replaceAll(" ", "");
+		
 		//获取登录用户userId
 		UserDo loginUser = userService.getByUserDo(parameterMap);
 		//存储登录渠道

@@ -367,9 +367,9 @@ b{font-weight: normal;}
 	width:100%;
 	margin-top:1.2rem
 }
-.sign-area .sign-style:nth-last-child(2) input,.tips-p {
+/* .sign-area .sign-style:nth-last-child(2) input,.tips-p {
 	text-align:left!important
-}
+} */
 
 .res-sub input {
 	width:12.45rem;

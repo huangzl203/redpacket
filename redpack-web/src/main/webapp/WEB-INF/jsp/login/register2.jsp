@@ -1,9 +1,8 @@
 ﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@include file="/include/taglib.jsp"%>
 <!DOCTYPE HTML>
 <html>
 <head>
-<jsp:include page="/include/mobile/head.jsp"></jsp:include>
+<%@ include file="../common/head.jsp" %>
 <title>用户注册</title>
     <style type="text/css">
         .sendBtn{margin-top: 4px;float: right;font-family:Arial;line-height: 34px;color: #333;cursor: pointer;background: url(/images/sprit.png) no-repeat -111px -100px;text-align: center;height: 31px;width: 88px;border: none;display: inline-block;font-size: 13px;}
@@ -11,7 +10,7 @@
     </style>
 </head>
 <body>
-<jsp:include page="/include/mobile/loading.jsp"></jsp:include>
+<%-- <jsp:include page="/include/mobile/loading.jsp"></jsp:include> --%>
 <h1 class="t-a title register-title"><strong>用户注册</strong></h1>
 <div class="wrap" id="wrap" style="display:none;">
   <div class="pd register hr clearfix">
@@ -214,8 +213,6 @@
    </div>
 </div>
 
-<jsp:include page="/include/mobile/bottom.jsp"></jsp:include>
-<jsp:include page="/include/mobile/common-js.jsp"></jsp:include>
 <script src="/wap/mobile/scripts/module/register.js?t=1" ></script>
 <script src="/script/phone_verify.js" ></script>
 <script>
