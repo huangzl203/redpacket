@@ -4,7 +4,7 @@
 <html>
 <head>
 <%@ include file="../common/head.jsp" %>
-		<title>${channel_name}</title>
+		<title>登录</title>
 </head>
 <body class="bg-1">
 	<header class="index-h">
@@ -25,30 +25,19 @@
 				</div>
 			</c:if>
 			<div>
-		<a class="lis bg-s" id="login_btn" style="display: block;margin: auto;">立即登录</a>
+				<a class="lis bg-s" id="login_btn" style="display: block;margin: auto;">立即登录</a>
 			</div>
 	</section>
-	<section class="fnr">
-	<p style="margin-top: .5rem;">
-	<span><a href="${loginServerUrl }/account/resetPwdIndex.html">忘记密码？</a></span>
-	|
-	<span><a href="${loginServerUrl }/account/regIndex.html">注册账号</a></span>
-	</p>
-	</section>
 	<script>
-
 	$(function(){
 		sbh();
 		$("#login_btn").bind("click",function(){
 			login();
 		});
-		//code 
 		$("#codeNum").bind("click",function(){
 			$(this).attr("src", "${loginServerUrl }/common/imageCode.html?pageId=userlogin&d=" + new Date().getTime());
 		});
-
 	});
-	
 	document.onkeydown = function(e) {
 		if (!e)
 			e = window.event;
@@ -56,7 +45,6 @@
 			login();
 		}
 	};
-		
 	function login(){
 		var userName = $("#userName").val();
 		var password = $("#password").val();
@@ -72,7 +60,7 @@
 				return;
 			}
 		}
-		var options = {type:"POST",url:"${loginServerUrl }/login/login.html",data:{userName:userName,password:password,code:code,fromUrl:'${fromUrl}'}};
+		var options = {type:"POST",url:"${loginServerUrl }/login/login.html",data:{userName:userName,password:password,code:code}};
 		ajaxRequest(options,function(data){
 		    if(data.result==1){
 				popWindow("登录信息填写不完整");
@@ -82,7 +70,6 @@
 				if(data.loginStrategy == true) {
 					loginDiv='<div><input type="text" class="lis lis-check" id="code" name="code" placeholder="图片验证码">';
 					loginDiv+='<span><img src="${loginServerUrl }/common/imageCode.html?pageId=userlogin" title="点击更换验证码" id="codeNum" /></span></div>';
-					//alert($("#code").val());
 					if($("#code").length == 0 ) {
 						$('.log-area').find("div").eq(1).after(loginDiv);
 						$("#codeNum").bind("click",function(){
@@ -92,8 +79,7 @@
 				}
 				popWindow("用户名或密码错误");
 			}else{
-				//window.location.href="${fromUrl}";
-				window.location.href="/login/main.html";
+				window.location.href=data.fromUrl;
 			}
 		});
 	}

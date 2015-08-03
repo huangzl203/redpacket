@@ -21,8 +21,6 @@
 </style>
 <body>
     <form action="modifyUpdata" method="post" >
-    <input type="hidden" name="loanId" value="${loanDo.loanPersonDo.loanId}"/>
-    <input type="hidden" name="loanPersonId" value="${loanDo.loanPersonDo.loanPersonId}"/>
 	<section class="p1">
 		<article class="loan_inf">
 			<h3 class="inf_tip"><i class="t1"></i>基础信息</h3>
@@ -81,12 +79,7 @@
 				<label for="" class="lab">开户银行点：</label>
 				<input type="text" id="addr" placeholder="请输入开户银行点"  name="propertyDo.houseAddress" class="txt bf1 db" value="${loanDo.loanPersonDo.propertyDo.houseAddress}">
 			</div>
-			
 		</article>
-		
-		
-		
-		
 		<article class="loan_inf">
 			<h3 class="inf_tip">
 				<i class="t3"></i>其他支付方式				

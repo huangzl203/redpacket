@@ -92,5 +92,18 @@ public class RedPackController {
 	public String upgradeInfo(Model model, HttpSession session, HttpServletRequest request) {
 		return "redPack/redPack_upgrade";
 	}
+	/**
+	 * 个人中心
+	 * @author huangzl QQ: 272950754
+	 * @date 2015年8月3日 下午4:36:03
+	 * @param model
+	 * @param session
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/personalCenter")
+	public String personalCenter(Model model, HttpSession session, HttpServletRequest request) {
+		return "redPack/redPack_personal_center";
+	}
 
 }

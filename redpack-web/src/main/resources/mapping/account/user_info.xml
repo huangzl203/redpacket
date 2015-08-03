@@ -3,111 +3,131 @@
  
 <mapper namespace="com.redpack.dao.account.IUserInfoDao">
 	<resultMap type="userInfoDo" id="redUserInfoResultMap">
-		<result property="userid" column="userid" />
-		<result property="realName" column="real_name" />
-		<result property="idCardno" column="id_cardno" />
+		<result property="id" column="id" />
+		<result property="userId" column="userId" />
+		<result property="realName" column="realName" />
+		<result property="idCardNo" column="idCardNo" />
+		<result property="sex" column="sex" />
+		<result property="contactAddress" column="contactAddress" />
 		<result property="mobile" column="mobile" />
-		<result property="qqNumber" column="qq_number" />
-		<result property="zfbNumber" column="zfb_number" />
-		<result property="cftNumber" column="cft_number" />
-		<result property="bankName" column="bank_name" />
+		<result property="eMail" column="eMail" />
+		<result property="weixiNumber" column="weixiNumber" />
+		<result property="qqNumber" column="qqNumber" />
+		<result property="zfbNumber" column="zfbNumber" />
+		<result property="cftNumber" column="cftNumber" />
+		<result property="bankName" column="bankName" />
 		<result property="province" column="province" />
 		<result property="city" column="city" />
-		<result property="bankSubbranch" column="bank_subbranch" />
-		<result property="bankAccount" column="bank_account" />
-		<result property="openAccount" column="open_account" />
-		<result property="contactAddress" column="contact_address" />
-		<result property="referrerId" column="referrer_id" />
-		<result property="parentId" column="parent_id" />
-		<result property="treeNode" column="tree_node" />
+		<result property="bankSubbranch" column="bankSubbranch" />
+		<result property="bankAccount" column="bankAccount" />
+		<result property="openAccount" column="openAccount" />
 	</resultMap>
 
 	<select id="getById" parameterType="Long" resultMap="redUserInfoResultMap">
 		SELECT * 
-		  FROM t_red_user_info WHERE userid = #{userid}
+		  FROM t_user_info WHERE id = #{id}
+	</select>
+	<select id="getByUserId" parameterType="Long" resultMap="redUserInfoResultMap">
+		SELECT * 
+		  FROM t_user_info WHERE userId = #{userId}
 	</select>
 
-	<select id="selectRedUserInfo" parameterType="Map" resultMap="redUserInfoResultMap">
+	<select id="getByUserInfoDo" parameterType="Map" resultMap="redUserInfoResultMap">
 		SELECT * 
 		  FROM t_user_info
 		  <trim prefix="WHERE" prefixOverrides="AND |OR "> 
-			<if test="userid != null">  
-				AND userid like #{userid}
+			<if test="id != null">  
+				AND id = #{id}
+			</if>
+			<if test="userId != null">  
+				AND userId = #{userId}
 			</if>
 			<if test="realName != null">  
-				AND real_name like #{realName}
+				AND realName = #{realName}
 			</if>
-			<if test="idCardno != null">  
-				AND id_cardno like #{idCardno}
+			<if test="idCardNo != null">  
+				AND idCardNo = #{idCardNo}
 			</if>
-			<if test="mobile != null">  
-				AND mobile like #{mobile}
-			</if>
-			<if test="qqNumber != null">  
-				AND qq_number like #{qqNumber}
-			</if>
-			<if test="zfbNumber != null">  
-				AND zfb_number like #{zfbNumber}
-			</if>
-			<if test="cftNumber != null">  
-				AND cft_number like #{cftNumber}
-			</if>
-			<if test="bankName != null">  
-				AND bank_name like #{bankName}
-			</if>
-			<if test="province != null">  
-				AND province like #{province}
-			</if>
-			<if test="city != null">  
-				AND city like #{city}
-			</if>
-			<if test="bankSubbranch != null">  
-				AND bank_subbranch like #{bankSubbranch}
-			</if>
-			<if test="bankAccount != null">  
-				AND bank_account like #{bankAccount}
-			</if>
-			<if test="openAccount != null">  
-				AND open_account like #{openAccount}
+			<if test="sex != null">  
+				AND sex = #{sex}
 			</if>
 			<if test="contactAddress != null">  
-				AND contact_address like #{contactAddress}
+				AND contactAddress = #{contactAddress}
 			</if>
-			<if test="referrerId != null">  
-				AND referrer_id like #{referrerId}
+			<if test="mobile != null">  
+				AND mobile = #{mobile}
 			</if>
-			<if test="parentId != null">  
-				AND parent_id like #{parentId}
+			<if test="eMail != null">  
+				AND eMail = #{eMail}
 			</if>
-			<if test="treeNode != null">  
-				AND tree_node like #{treeNode}
+			<if test="weixiNumber != null">  
+				AND weixiNumber = #{weixiNumber}
+			</if>
+			<if test="qqNumber != null">  
+				AND qqNumber = #{qqNumber}
+			</if>
+			<if test="zfbNumber != null">  
+				AND zfbNumber = #{zfbNumber}
+			</if>
+			<if test="cftNumber != null">  
+				AND cftNumber = #{cftNumber}
+			</if>
+			<if test="bankName != null">  
+				AND bankName = #{bankName}
+			</if>
+			<if test="province != null">  
+				AND province = #{province}
+			</if>
+			<if test="city != null">  
+				AND city = #{city}
+			</if>
+			<if test="bankSubbranch != null">  
+				AND bankSubbranch = #{bankSubbranch}
+			</if>
+			<if test="bankAccount != null">  
+				AND bankAccount = #{bankAccount}
+			</if>
+			<if test="openAccount != null">  
+				AND openAccount = #{openAccount}
 			</if>
          </trim> 
-
 	</select>
 	
-	<update id="updateRedUserInfoById" parameterType="userInfoDo">
-		UPDATE t_red_user_info 
-		   SET 		<if test="realName != null">  
-				real_name = #{realName}
+	<update id="updataUserInfo" parameterType="userInfoDo">
+		UPDATE t_user_info 
+		   SET 		
+		<if test="realName != null">  
+				realName = #{realName}
 		</if>		
-		<if test="idCardno != null">  
-				,id_cardno = #{idCardno}
+		<if test="idCardNo != null">  
+				,idCardNo = #{idCardNo}
+		</if>		
+		<if test="sex != null">  
+				,sex = #{sex}
+		</if>		
+		<if test="contactAddress != null">  
+				,contactAddress = #{contactAddress}
 		</if>		
 		<if test="mobile != null">  
 				,mobile = #{mobile}
 		</if>		
+		<if test="eMail != null">  
+				,eMail = #{eMail}
+		</if>		
+		<if test="weixiNumber != null">  
+				,weixiNumber = #{weixiNumber}
+		</if>		
 		<if test="qqNumber != null">  
-				,qq_number = #{qqNumber}
+				,qqNumber = #{qqNumber}
 		</if>		
 		<if test="zfbNumber != null">  
-				,zfb_number = #{zfbNumber}
+				,zfbNumber = #{zfbNumber}
 		</if>		
 		<if test="cftNumber != null">  
-				,cft_number = #{cftNumber}
+				,cftNumber = #{cftNumber}
 		</if>		
 		<if test="bankName != null">  
-				,bank_name = #{bankName}
+				,bankName = #{bankName}
 		</if>		
 		<if test="province != null">  
 				,province = #{province}
@@ -116,71 +136,42 @@
 				,city = #{city}
 		</if>		
 		<if test="bankSubbranch != null">  
-				,bank_subbranch = #{bankSubbranch}
+				,bankSubbranch = #{bankSubbranch}
 		</if>		
 		<if test="bankAccount != null">  
-				,bank_account = #{bankAccount}
+				,bankAccount = #{bankAccount}
 		</if>		
 		<if test="openAccount != null">  
-				,open_account = #{openAccount}
+				,openAccount = #{openAccount}
 		</if>		
-		<if test="contactAddress != null">  
-				,contact_address = #{contactAddress}
-		</if>		
-		<if test="referrerId != null">  
-				,referrer_id = #{referrerId}
-		</if>		
-		<if test="parentId != null">  
-				,parent_id = #{parentId}
-		</if>		
-		<if test="treeNode != null">  
-				,tree_node = #{treeNode}
-		</if>		
-
 		WHERE userid = #{userid} 
 	</update>	
 	
-	<insert id="addRedUserInfo" parameterType="userInfoDo" keyProperty="userid"
-		useGeneratedKeys="true" >
-		INSERT INTO t_red_user_info(		real_name
-		,id_cardno
-		,mobile
-		,qq_number
-		,zfb_number
-		,cft_number
-		,bank_name
-		,province
-		,city
-		,bank_subbranch
-		,bank_account
-		,open_account
-		,contact_address
-		,referrer_id
-		,parent_id
-		,tree_node
-)
-		     VALUES (		#{realName}
-		,#{idCardno}
-		,#{mobile}
-		,#{qqNumber}
-		,#{zfbNumber}
-		,#{cftNumber}
-		,#{bankName}
-		,#{province}
-		,#{city}
-		,#{bankSubbranch}
-		,#{bankAccount}
-		,#{openAccount}
-		,#{contactAddress}
-		,#{referrerId}
-		,#{parentId}
-		,#{treeNode}
-);
+	<insert id="saveUserInfo" parameterType="userInfoDo" keyProperty="id" useGeneratedKeys="true" >
+		INSERT INTO
+    	t_user_info
+    	(
+        userId, realName, idCardNo,
+        sex, contactAddress, mobile,
+        eMail, weixiNumber, qqNumber,
+        zfbNumber, cftNumber, bankName,
+        province, city, bankSubbranch,
+        bankAccount, openAccount
+    	)
+    	VALUES
+    	(
+       	#{userId},#{realName},#{idCardNo},
+       	#{sex},#{contactAddress},#{mobile},
+        #{eMail},#{weixiNumber},#{qqNumber},
+        #{zfbNumber},#{cftNumber},#{bankName},
+        #{province},#{city},#{bankSubbranch},
+        #{bankAccount},#{openAccount}
+    	)
 	</insert>
 	
-	<delete id="deleteById" parameterType="Long" >
+<!-- 	<delete id="deleteById" parameterType="Long" >
 		DELETE FROM t_red_user_info WHERE userid = #{userid}
-	</delete>
+	</delete> -->
 	
 </mapper>
 

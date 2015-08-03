@@ -23,7 +23,6 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -31,9 +30,7 @@ import com.redpack.common.account.IUserInfoService;
 import com.redpack.common.account.IUserService;
 import com.redpack.common.account.model.UserDo;
 import com.redpack.common.account.model.UserInfoDo;
-import com.redpack.common.base.result.IResult;
 import com.redpack.utils.ResponseUtils;
-
 import comredpack.common.constant.WebConstants;
 
 /**
@@ -73,7 +70,7 @@ public class UserController {
 	@RequestMapping("regIndex")
 	public String regIndex() {
 		logger.info("----注册用户跳转页面----");
-		return "login/register";
+		return "redPack/register";
 	}
 
 	/**
@@ -112,9 +109,8 @@ public class UserController {
 		 ResponseUtils.renderText(response, "UTF-8",JSONObject.fromObject(jsonObject).toString());
 		 return;
 		 }
-		 userDo.setUsername(mobilePhone);
+		 userDo.setUserName(mobilePhone);
 		 userDo.setPassword(DigestUtils.md5Hex(pwd + WebConstants.PASS_KEY));
-		 userDo.setMobilePhone(mobilePhone);
 		 userDo.getUserInfoDo().setRealName(loginInfo);
 		 userDo.getUserInfoDo().setMobile(mobilePhone);
 		 userDo.setCreateTime(new Date());

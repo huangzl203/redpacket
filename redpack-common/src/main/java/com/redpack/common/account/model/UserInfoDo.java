@@ -16,201 +16,145 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.apache.ibatis.type.Alias;
 
+
 /**
- * @author zhangyunhua
- * @version 1.0
- * @since 1.0
- */
-
-
+ * @Description 用户基础信息表
+ * @author huangzl QQ: 272950754
+ * @date 2015年8月3日 下午7:40:01
+ * @Project redpack-common
+ * @Package com.redpack.common.account.model 
+ * @File UserInfoDo.java
+*/
 @Alias("userInfoDo")
 public class UserInfoDo  implements java.io.Serializable{	
 	
-	//columns START
-	private java.lang.Integer userid;
-	private java.lang.String realName;
-	private java.lang.String idCardno;
-	private java.lang.String mobile;
-	private java.lang.String qqNumber;
-	private java.lang.String zfbNumber;
-	private java.lang.String cftNumber;
-	private java.lang.String bankName;
-	private java.lang.String province;
-	private java.lang.String city;
-	private java.lang.String bankSubbranch;
-	private java.lang.String bankAccount;
-	private java.lang.String openAccount;
-	private java.lang.String contactAddress;
-	private java.lang.Integer referrerId;
-	private java.lang.Integer parentId;
-	private java.lang.String treeNode;
-	//columns END
+	private static final long serialVersionUID = 1L;
 	
-	private List<UserInfoDo> childList;
+	private Long 	id;                        // id
+	private Long 	userId;                    // 用户id
+	private String 	realName;                  // 真实姓名
+	private String 	idCardNo;                  // 身份证号
+	private String 	sex;                  	   // 性别
+	private String 	contactAddress;            // 联系地址
+	private String 	mobile;                    // 手机号码
+	private String 	eMail;                     // 用户邮箱
+	private String 	weixiNumber;               // 微信号
+	private String 	qqNumber;                  // QQ号
+	private String 	zfbNumber;                 // 支付宝
+	private String 	cftNumber;                 // 财付通
+	private String 	bankName;                  // 开户银行
+	private String 	province;                  // 开户省份
+	private String 	city;                      // 开户市区
+	private String 	bankSubbranch;             // 银行支行
+	private String 	bankAccount;               // 银行账号
+	private String 	openAccount;               // 开户姓名
 	
-	public List<UserInfoDo> getChildList() {
-		return childList;
+	public Long getId() {
+		return id;
 	}
-
-	public void setChildList(List<UserInfoDo> childList) {
-		this.childList = childList;
+	public void setId(Long id) {
+		this.id = id;
 	}
-
-	public java.lang.Integer getUserid() {
-		return this.userid;
+	public Long getUserId() {
+		return userId;
 	}
-	
-	public void setUserid(java.lang.Integer value) {
-		this.userid = value;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
-	public java.lang.String getRealName() {
-		return this.realName;
+	public String getRealName() {
+		return realName;
 	}
-	
-	public void setRealName(java.lang.String value) {
-		this.realName = value;
+	public void setRealName(String realName) {
+		this.realName = realName;
 	}
-	public java.lang.String getIdCardno() {
-		return this.idCardno;
+	public String getIdCardNo() {
+		return idCardNo;
 	}
-	
-	public void setIdCardno(java.lang.String value) {
-		this.idCardno = value;
+	public void setIdCardNo(String idCardNo) {
+		this.idCardNo = idCardNo;
 	}
-	public java.lang.String getMobile() {
-		return this.mobile;
+	public String getSex() {
+		return sex;
 	}
-	
-	public void setMobile(java.lang.String value) {
-		this.mobile = value;
+	public void setSex(String sex) {
+		this.sex = sex;
 	}
-	public java.lang.String getQqNumber() {
-		return this.qqNumber;
+	public String getContactAddress() {
+		return contactAddress;
 	}
-	
-	public void setQqNumber(java.lang.String value) {
-		this.qqNumber = value;
+	public void setContactAddress(String contactAddress) {
+		this.contactAddress = contactAddress;
 	}
-	public java.lang.String getZfbNumber() {
-		return this.zfbNumber;
+	public String getMobile() {
+		return mobile;
 	}
-	
-	public void setZfbNumber(java.lang.String value) {
-		this.zfbNumber = value;
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
-	public java.lang.String getCftNumber() {
-		return this.cftNumber;
+	public String geteMail() {
+		return eMail;
 	}
-	
-	public void setCftNumber(java.lang.String value) {
-		this.cftNumber = value;
+	public void seteMail(String eMail) {
+		this.eMail = eMail;
 	}
-	public java.lang.String getBankName() {
-		return this.bankName;
+	public String getWeixiNumber() {
+		return weixiNumber;
 	}
-	
-	public void setBankName(java.lang.String value) {
-		this.bankName = value;
+	public void setWeixiNumber(String weixiNumber) {
+		this.weixiNumber = weixiNumber;
 	}
-	public java.lang.String getProvince() {
-		return this.province;
+	public String getQqNumber() {
+		return qqNumber;
 	}
-	
-	public void setProvince(java.lang.String value) {
-		this.province = value;
+	public void setQqNumber(String qqNumber) {
+		this.qqNumber = qqNumber;
 	}
-	public java.lang.String getCity() {
-		return this.city;
+	public String getZfbNumber() {
+		return zfbNumber;
 	}
-	
-	public void setCity(java.lang.String value) {
-		this.city = value;
+	public void setZfbNumber(String zfbNumber) {
+		this.zfbNumber = zfbNumber;
 	}
-	public java.lang.String getBankSubbranch() {
-		return this.bankSubbranch;
+	public String getCftNumber() {
+		return cftNumber;
 	}
-	
-	public void setBankSubbranch(java.lang.String value) {
-		this.bankSubbranch = value;
+	public void setCftNumber(String cftNumber) {
+		this.cftNumber = cftNumber;
 	}
-	public java.lang.String getBankAccount() {
-		return this.bankAccount;
+	public String getBankName() {
+		return bankName;
 	}
-	
-	public void setBankAccount(java.lang.String value) {
-		this.bankAccount = value;
+	public void setBankName(String bankName) {
+		this.bankName = bankName;
 	}
-	public java.lang.String getOpenAccount() {
-		return this.openAccount;
+	public String getProvince() {
+		return province;
 	}
-	
-	public void setOpenAccount(java.lang.String value) {
-		this.openAccount = value;
+	public void setProvince(String province) {
+		this.province = province;
 	}
-	public java.lang.String getContactAddress() {
-		return this.contactAddress;
+	public String getCity() {
+		return city;
 	}
-	
-	public void setContactAddress(java.lang.String value) {
-		this.contactAddress = value;
+	public void setCity(String city) {
+		this.city = city;
 	}
-	public java.lang.Integer getReferrerId() {
-		return this.referrerId;
+	public String getBankSubbranch() {
+		return bankSubbranch;
 	}
-	
-	public void setReferrerId(java.lang.Integer value) {
-		this.referrerId = value;
+	public void setBankSubbranch(String bankSubbranch) {
+		this.bankSubbranch = bankSubbranch;
 	}
-	public java.lang.Integer getParentId() {
-		return this.parentId;
+	public String getBankAccount() {
+		return bankAccount;
 	}
-	
-	public void setParentId(java.lang.Integer value) {
-		this.parentId = value;
+	public void setBankAccount(String bankAccount) {
+		this.bankAccount = bankAccount;
 	}
-	public java.lang.String getTreeNode() {
-		return this.treeNode;
+	public String getOpenAccount() {
+		return openAccount;
 	}
-	
-	public void setTreeNode(java.lang.String value) {
-		this.treeNode = value;
-	}
-
-	public String toString() {
-		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-			.append("Userid",getUserid())
-			.append("RealName",getRealName())
-			.append("IdCardno",getIdCardno())
-			.append("Mobile",getMobile())
-			.append("QqNumber",getQqNumber())
-			.append("ZfbNumber",getZfbNumber())
-			.append("CftNumber",getCftNumber())
-			.append("BankName",getBankName())
-			.append("Province",getProvince())
-			.append("City",getCity())
-			.append("BankSubbranch",getBankSubbranch())
-			.append("BankAccount",getBankAccount())
-			.append("OpenAccount",getOpenAccount())
-			.append("ContactAddress",getContactAddress())
-			.append("ReferrerId",getReferrerId())
-			.append("ParentId",getParentId())
-			.append("TreeNode",getTreeNode())
-			.toString();
-	}
-	
-	public int hashCode() {
-		return new HashCodeBuilder()
-			.append(getUserid())
-			.toHashCode();
-	}
-	
-	public boolean equals(Object obj) {
-		if(obj instanceof UserInfoDo == false) return false;
-		if(this == obj) return true;
-		UserInfoDo other = (UserInfoDo)obj;
-		return new EqualsBuilder()
-			.append(getUserid(),other.getUserid())
-			.isEquals();
+	public void setOpenAccount(String openAccount) {
+		this.openAccount = openAccount;
 	}
 }
-

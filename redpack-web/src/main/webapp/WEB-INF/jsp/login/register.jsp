@@ -30,7 +30,7 @@
 				<input type="password" id="confirmPassword" name="confirmPassword" placeholder="6-20个字符">
 			</div>
 			<div class="sign-style br-2">
-				<span class="sign-lable ">手机号码</span>
+				<span class="sign-lable">手机号码</span>
 				<input type="text" id="mobilePhone" name="mobilePhone" placeholder="请输入注册手机号码">
 			</div>
 			<div class="sign-style br-5">
@@ -41,7 +41,6 @@
 				<input type="button" id="regBtn" value="立即注册">
 			</div>
 		</form>
-	<%-- 	<p><span></span>点击“立即注册”，即表示您同意并愿意遵守<a href="${loginServerUrl }/account/zcxy.do">《合和在线注册协议》</a></p> --%>
 	</section>
 	<script>
 		$(function(){

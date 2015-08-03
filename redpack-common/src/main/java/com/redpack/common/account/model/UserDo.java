@@ -16,46 +16,47 @@ import java.util.Date;
 import org.apache.ibatis.type.Alias;
 
 /**
- * 
- * @author:  zhangyunhua
- * @date 2015年3月5日 上午10:46:58
- */
+ * @Description 用户表
+ * @author huangzl QQ: 272950754
+ * @date 2015年8月3日 下午6:09:33
+ * @Project redpack-common
+ * @Package com.redpack.common.account.model 
+ * @File UserDo.java
+*/
 @Alias("userDo")
 public class UserDo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private Long id; // 用户ID
-	private String username; // 帐号
-	private String email; // 用户email
-	private String password; // 用户密码
-
-	private String twoLevelpwd; // 二级密码(初始密码为用户密码)
-	private String mobilePhone; // 用户移动电话
-	private Long refUser; // 推荐人ID
-	private Long reciverUser; // 接受人ID
-	private Integer vipStatus; // VIP会员状态(1 非VIP 2 VIP(默认)
-								// 3 待续费VIP)
-	private Date vipCreateTime; // VIP创建时间
-	private Integer enable; // 是否禁用 1、启用 2、禁用 3.黑名单 默认1
-	private Date createTime; // 帐号创建时间
-	private UserInfoDo userInfoDo;//用户信息表
+	
+	private Long 	id; 				// 用户ID
+	private String 	userName; 			// 用户名
+	private String 	password; 			// 用户密码
+	private String 	twoLevelPwd; 		// 二级密码(初始密码为用户密码)
+	private Long 	grade; 				// 当前等级
+	private String 	organ; 				// 组织机构
+	private String 	remark; 			// 备注
+	private String 	enabled; 			// 状态
+	private Long 	referrerId; 		// 推荐人ID
+	private Long 	parentId; 			// 接受人ID
+	private String 	treeNode; 			// 业务方向
+	private Date 	createTime; 		// 帐号创建时间
+	private Date 	updateTime; 		// 帐号修改时间
+	
+	private UserInfoDo userInfoDo;		// 用户基础信息表
+	private UserDo 	referrerDo; 		// 推荐人userDo
+	private UserDo 	parentDo; 			// 接受人userDo
+	
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getUsername() {
-		return username;
+	public String getUserName() {
+		return userName;
 	}
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public String getPassword() {
 		return password;
@@ -63,47 +64,53 @@ public class UserDo implements Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getTwoLevelpwd() {
-		return twoLevelpwd;
+	public String getTwoLevelPwd() {
+		return twoLevelPwd;
 	}
-	public void setTwoLevelpwd(String twoLevelpwd) {
-		this.twoLevelpwd = twoLevelpwd;
+	public void setTwoLevelPwd(String twoLevelPwd) {
+		this.twoLevelPwd = twoLevelPwd;
 	}
-	public String getMobilePhone() {
-		return mobilePhone;
+	public Long getGrade() {
+		return grade;
 	}
-	public void setMobilePhone(String mobilePhone) {
-		this.mobilePhone = mobilePhone;
+	public void setGrade(Long grade) {
+		this.grade = grade;
 	}
-	public Long getRefUser() {
-		return refUser;
+	public String getOrgan() {
+		return organ;
 	}
-	public void setRefUser(Long refUser) {
-		this.refUser = refUser;
+	public void setOrgan(String organ) {
+		this.organ = organ;
 	}
-	public Long getReciverUser() {
-		return reciverUser;
+	public String getRemark() {
+		return remark;
 	}
-	public void setReciverUser(Long reciverUser) {
-		this.reciverUser = reciverUser;
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
-	public Integer getVipStatus() {
-		return vipStatus;
+	public String getEnabled() {
+		return enabled;
 	}
-	public void setVipStatus(Integer vipStatus) {
-		this.vipStatus = vipStatus;
+	public void setEnabled(String enabled) {
+		this.enabled = enabled;
 	}
-	public Date getVipCreateTime() {
-		return vipCreateTime;
+	public Long getReferrerId() {
+		return referrerId;
 	}
-	public void setVipCreateTime(Date vipCreateTime) {
-		this.vipCreateTime = vipCreateTime;
+	public void setReferrerId(Long referrerId) {
+		this.referrerId = referrerId;
 	}
-	public Integer getEnable() {
-		return enable;
+	public Long getParentId() {
+		return parentId;
 	}
-	public void setEnable(Integer enable) {
-		this.enable = enable;
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
+	}
+	public String getTreeNode() {
+		return treeNode;
+	}
+	public void setTreeNode(String treeNode) {
+		this.treeNode = treeNode;
 	}
 	public Date getCreateTime() {
 		return createTime;
@@ -111,24 +118,29 @@ public class UserDo implements Serializable {
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
 	}
-	
-	
 	public UserInfoDo getUserInfoDo() {
 		return userInfoDo;
 	}
 	public void setUserInfoDo(UserInfoDo userInfoDo) {
 		this.userInfoDo = userInfoDo;
 	}
-	@Override
-	public String toString() {
-		return "UserDo [id=" + id + ", username=" + username + ", email="
-				+ email + ", password=" + password + ", twoLevelpwd="
-				+ twoLevelpwd + ", mobilePhone=" + mobilePhone + ", refUser="
-				+ refUser + ", reciverUser=" + reciverUser + ", vipStatus="
-				+ vipStatus + ", vipCreateTime=" + vipCreateTime + ", enable="
-				+ enable + ", createTime=" + createTime + "]";
+	public UserDo getReferrerDo() {
+		return referrerDo;
 	}
-
-	
+	public void setReferrerDo(UserDo referrerDo) {
+		this.referrerDo = referrerDo;
+	}
+	public UserDo getParentDo() {
+		return parentDo;
+	}
+	public void setParentDo(UserDo parentDo) {
+		this.parentDo = parentDo;
+	}
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
 	
 }

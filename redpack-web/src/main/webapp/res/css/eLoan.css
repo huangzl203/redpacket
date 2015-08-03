@@ -49,7 +49,7 @@ img{border:0 none; display:block; margin:0; padding:0;width:100%;}
 .moneybox .txtinput{width:170px; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px; border:1px solid #b5b5b5;}
 input.write{color:#000;}
 .moneybox label.ddline_label{display:inline-block; width:80px; height:25px; background:#fff; line-height:25px; border:1px solid #b5b5b5; margin-right:10px; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px; cursor:pointer;}
-.moneybox label.dl_checked{border:1px solid #e7832e; background:#fff url(../../img/elend/check.png) right 2px no-repeat;}
+.moneybox label.dl_checked{border:1px solid #e7832e; background:#fff url(../img/check.png) right 2px no-repeat;}
 .way{border:1px solid #e7832e; height:25px; line-height:25px; width:80px; padding:0; margin:0; vertical-align:middle; text-align:center; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;}
 .submit_btn{padding:20px 10px 0;}
 .submit_btn>div:first-child{margin:0 10px 0 0; width: 50%;}
@@ -58,7 +58,7 @@ input.write{color:#000;}
 .submit_btn .look{background: #fff; border:1px solid #894c8d; color: #894c8d; }
 
 .opacity{width:100%; height:100%; position:fixed; left:0; top:0; z-index:200; text-align:center; background:url(../img/blackopacity.png) repeat;}
-.alertcontairn{width:278px;padding:10px 0; background:#fff url(../../img/elend/alertBack.jpg) center bottom no-repeat; 
+.alertcontairn{width:278px;padding:10px 0; background:#fff url(../img/alertBack.jpg) center bottom no-repeat; 
 border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px; -o-border-radius:8px; color:#000; position:relative;
   left: 50%;
   top: 50%;
@@ -182,7 +182,7 @@ p.tag_txt{ font-size:14px;}
 .r_head  label{
 	padding-left:30px;
 	color:#444;
-	background: url(../../img/elend/ck.png) 0 -35px  no-repeat;
+	background: url(../img/ck.png) 0 -35px  no-repeat;
 	background-size: 20px;
 }
 .r_head.check label{
@@ -345,14 +345,14 @@ p.tag_txt{ font-size:14px;}
   height: 100%;
 }
 .xin1{
-  background: #894c8d url(../../img/elend/xin1.jpg) center center no-repeat;
+  background: #894c8d url(../img/xin1.jpg) center center no-repeat;
   background-size: 85%;
 }
 .xin2{
   background: #894c8d;
 }
 .xin3{
-  background: #894c8d url(../../img/elend/xin3.jpg) center center no-repeat;
+  background: #894c8d url(../img/xin3.jpg) center center no-repeat;
   background-size: 100%;
 }
 .xin-tip{
@@ -371,11 +371,11 @@ p.tag_txt{ font-size:14px;}
   left: 50%;
   margin-left: -50px;
   -webkit-user-select: none;
-  background: url(../../img/elend/next.jpg) 0 0 no-repeat;
+  background: url(../img/next.jpg) 0 0 no-repeat;
   background-size: 100%;
 }
 .xinbtn1{
-  background: url(../../img/elend/next.jpg) 0 0 no-repeat;
+  background: url(../img/next.jpg) 0 0 no-repeat;
   background-size: 100%;
 }
 .xinbtn1:active,.xinbtn1:hover{
@@ -385,7 +385,7 @@ p.tag_txt{ font-size:14px;}
   width: 200px;
   height: 64px;
   margin-left: -100px;
-  background: url(../../img/elend/next2.jpg) 0 0 no-repeat;
+  background: url(../img/next2.jpg) 0 0 no-repeat;
   background-size: 100%;
 }
 .xinbtn2:active,.xinbtn2:hover{
@@ -414,7 +414,7 @@ p.tag_txt{ font-size:14px;}
 .selbox{
 	width: 320px;
 	height: 400px;
-  background: #894c8d url(../../img/elend/xin2.jpg) center center no-repeat;
+  background: #894c8d url(../img/xin2.jpg) center center no-repeat;
   background-size: 85%;
   padding: 25px 70px;
   display: block;
@@ -422,7 +422,7 @@ p.tag_txt{ font-size:14px;}
 }
 .selbox p{
 	padding: 5px 10px;
-  background: url(../../img/elend/sel.png) right 14px no-repeat;
+  background: url(../img/sel.png) right 14px no-repeat;
   background-size: 16px;
 }
 .selbox select{
@@ -443,7 +443,7 @@ p.tag_txt{ font-size:14px;}
 .selbox span{
 	width: 24px;
 	height: 24px;
-	background: url(../../img/elend/sel.png) 0 0 no-repeat;
+	background: url(../img/sel.png) 0 0 no-repeat;
 }
 .footer_nav{
 	position: fixed;
@@ -475,6 +475,9 @@ p.tag_txt{ font-size:14px;}
 }
 .footer_nav li:nth-child(3){
   background-position: center -63px;
+}
+.footer_nav li:nth-child(3).current{
+  background-position: center -199px;
 }
 .footer_nav li:last-child{
   background-position: center -98px;
@@ -576,7 +579,7 @@ p.tag_txt{ font-size:14px;}
   content: '';
   width: 80px;
   height: 80px;
-  background: #fff url(../../img/elend/upload.png) 0 0 no-repeat;
+  background: #fff url(../img/upload.png) 0 0 no-repeat;
   background-size: 80px 80px;
   position: absolute;
   margin: 0px 0 0 -64px;
@@ -643,7 +646,7 @@ p.tag_txt{ font-size:14px;}
 	width: 24px;
 	height: 24px;
 	display: inline-block;
-    background: url(../../img/elend/connect-icon.png) 0 0 no-repeat;
+    background: url(../img/connect-icon.png) 0 0 no-repeat;
   background-size: 24px;
   vertical-align: middle;
   padding-right: 10px;
@@ -693,7 +696,7 @@ p.tag_txt{ font-size:14px;}
 	position: fixed;
 	top: 0;
 	right:0px;
-    background: url(../../img/elend/close.png) 0 0 no-repeat;
+    background: url(../img/close.png) 0 0 no-repeat;
     background-size: cover;
     
 }
@@ -755,13 +758,13 @@ p.tag_txt{ font-size:14px;}
   height: 30px;
   display: block;
   /* margin-top: 20%; */
-  background: url(../../img/elend/s.png) 0 -5px no-repeat;
+  background: url(../img/s.png) 0 -5px no-repeat;
   background-size: 100%;
   position: absolute;
   right: 10px;
 }
 .tong-sel span.checked{
-  background: url(../../img/elend/s.png) 0 -42px no-repeat;
+  background: url(../img/s.png) 0 -42px no-repeat;
   background-size: 100%;
 }
 .tong-btn{
@@ -793,7 +796,7 @@ p.tag_txt{ font-size:14px;}
 .center_head{
 	width: 100%;
 	height: auto;
-	background: url(../../img/elend/head-bg.jpg) 0 0 no-repeat;
+	background: url(../img/head-bg.jpg) 0 0 no-repeat;
 	background-size: cover;
 	color: #fff;
 }
@@ -815,10 +818,10 @@ p.tag_txt{ font-size:14px;}
 	font-size: 14px;
 }
 /*.head-inf span:nth-child(1){
-	background: url(../../img/elend/hp.png) 0 0 no-repeat;
+	background: url(../img/hp.png) 0 0 no-repeat;
 }
 .head-inf span:nth-child(2){
-	background: url(../../img/elend/hc.png) 0 0 no-repeat;
+	background: url(../img/hc.png) 0 0 no-repeat;
 }*/
 .head-lend {
 	height: 40px;
@@ -866,18 +869,18 @@ p.tag_txt{ font-size:14px;}
 	display: block;
 }
 .hj{
-	background: url(../../img/elend/hj.png) 15px 10px no-repeat;
+	background: url(../img/hj.png) 15px 10px no-repeat;
 	background-size: 30px;
 }
 .ld{
-	background: url(../../img/elend/ld.png) 15px 10px no-repeat;
+	background: url(../img/ld.png) 15px 10px no-repeat;
 	background-size: 30px;
 }
 .center-list em{
   width: 40px;
   height: 50px;
   display: block;
-  background: url(../../img/elend/arrow.png) 10px 10px no-repeat;
+  background: url(../img/arrow.png) 10px 10px no-repeat;
   position: absolute;
   right: 0;
   margin-top: -50px;
@@ -910,61 +913,14 @@ p.tag_txt{ font-size:14px;}
 	text-align: center;
 	color: #fff;
 }
-.pl{
-	background: url(../../img/elend/l1.png) center center no-repeat;
-	background-size: 100%;
-}
-.pl2{
-	background: url(../../img/elend/l2.png) center center no-repeat;
-	background-size: 100%;
-}
-.pl22{
-	background: url(../../img/elend/l22.png) center center no-repeat;
-	background-size: 100%;
-}
-.pl3{
-	background: url(../../img/elend/l3.png) center center no-repeat;
-	background-size: 100%;
-}
-.pl32{
-	background: url(../../img/elend/l32.png) center center no-repeat;
-	background-size: 100%;
-}
-.pm{
-	background: url(../../img/elend/m1.png) center center no-repeat;
-	background-size: 100%;
-}
-.pm2{
-	background: url(../../img/elend/m2.png) center center no-repeat;
-	background-size: 100%;
-}
-.pm22{
-	background: url(../../img/elend/m22.png) center center no-repeat;
-	background-size: 100%;
-}
-.pm3{
-	background: url(../../img/elend/m3.png) center center no-repeat;
-	background-size: 100%;
-}
-.pm32{
-	background: url(../../img/elend/m32.png) center center no-repeat;
-	background-size: 100%;
-}
-.pr{
-	background: url(../../img/elend/r1.png) center center no-repeat;
-	background-size: 100%;
-}
-.pr2{
-	background: url(../../img/elend/r2.png) center center no-repeat;
-	background-size: 100%;
-}
+
 .upload-state-done:after{
 	content: '';
 	width: 30px;
 	height: 30px;
 	display: block;
 	position: absolute;
-	background: url(../../img/elend/success1.png) 0 0 no-repeat;
+	background: url(../img/success1.png) 0 0 no-repeat;
 	background-size: 100%;
 	margin: -30px 0 0 60px;
 }
@@ -972,7 +928,7 @@ p.tag_txt{ font-size:14px;}
 	width: 30px;
 	height: 30px;
 	display: block;
-	background: rgba(0,0,0,.5) url(../../img/elend/ht.png) 50% 50% no-repeat;
+	background: rgba(0,0,0,.5) url(../img/ht.png) 50% 50% no-repeat;
 	background-size: 80%;
 	-webkit-border-radius: 15px;
 	border-radius: 15px;
@@ -997,7 +953,7 @@ p.tag_txt{ font-size:14px;}
 }
 
 .uploader{
-    background: url(../../img/elend/upload.png) no-repeat;
+    background: url(../img/upload.png) no-repeat;
 	background-size:100%;
     width:90px;
     height: auto;

@@ -31,7 +31,7 @@ public class WebConstants {
     public static final String MESSAGE_KEY  = "message";
     
     /** session用户信息KEY */
-    public static final String SESSION_USER  = "user";
+    public static final String SESSION_USER  = "userDo";
     /**
      * session内容：admin管理员
      */

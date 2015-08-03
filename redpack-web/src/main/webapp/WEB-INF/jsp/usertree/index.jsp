@@ -32,5 +32,9 @@
 		<script>alert(${message})</script>
 	</c:if>
 </body>
-
+    <script  type="text/javascript">
+		$(function(){
+			$("nav ul li").eq(3).addClass("current");
+		})
+	</script>
 </html>

@@ -3,18 +3,18 @@
 <mapper namespace="com.redpack.dao.account.IUserDao">
 	<resultMap type="userDo" id="userResultMap">
 		<result property="id" column="id" />
-		<result property="username" column="username" />
-		<result property="email" column="email" />
+		<result property="userName" column="userName" />
 		<result property="password" column="password" />
-		<result property="twoLevelpwd" column="twoLevelpwd" />
-		<result property="mobilePhone" column="mobilePhone" />
-		<result property="refUser" column="refUser" />
-		<result property="reciverUser" column="reciverUser" />
-		
-		<result property="vipStatus" column="vipStatus" />
-		<result property="vipCreateTime" column="vipCreateTime" />		
-		<result property="enable" column="enable" />
-		<result property="createTime" column="createTime" />
+		<result property="twoLevelPwd" column="passwordTwo" />
+		<result property="grade" column="grade" />
+		<result property="organ" column="organ" />
+		<result property="remark" column="remark" />
+		<result property="enabled" column="enabled" />
+		<result property="referrerId" column="referrerId" />
+		<result property="parentId" column="parentId" />		
+		<result property="treeNode" column="treeNode" />
+		<result property="createTime" column="creatorTime" />
+		<result property="updateTime" column="updateTime" />
 	</resultMap>
 
 	<select id="getById" parameterType="long" resultMap="userResultMap">
@@ -26,28 +26,96 @@
 		SELECT * FROM t_user 
 	 	<trim prefix="WHERE" prefixOverrides="AND |OR "> 
 			<if test="id != null">  
-				AND id like #{id}
+				AND id = #{id}
 			</if>
-			<if test="username != null">  
-				AND user_name like #{username}
-			</if>
-			<if test="email != null">  
-				AND email like #{email}
+			<if test="userName != null">  
+				AND userName = #{userName}
 			</if>
 			<if test="password != null">  
-				AND password like #{password}
+				AND password = #{password}
 			</if>
-			<if test="twoLevelpwd != null">  
-				AND password_two like #{twoLevelpwd}
+			<if test="twoLevelPwd != null">  
+				AND passwordTwo = #{twoLevelPwd}
 			</if>
-			<if test="mobilePhone != null">  
-				AND mobile like #{mobilePhone}
+			<if test="grade != null">  
+				AND grade = #{grade}
+			</if>
+			<if test="organ != null">  
+				AND organ = #{organ}
+			</if>
+			<if test="remark != null">  
+				AND remark = #{remark}
+			</if>
+			<if test="enabled != null">  
+				AND enabled = #{enabled}
+			</if>
+			<if test="referrerId != null">  
+				AND referrerId = #{referrerId}
+			</if>
+			<if test="parentId != null">  
+				AND parentId = #{parentId}
+			</if>
+			<if test="treeNode != null">  
+				AND treeNode = #{treeNode}
+			</if>
+			<if test="creatorTime != null">  
+				AND creatorTime = #{creatorTime}
+			</if>
+			<if test="updateTime != null">  
+				AND updateTime = #{updateTime}
 			</if>
 	 	</trim>
 	</select>
 
-    <insert id="saveUser" parameterType="userDo">
-        insert into t_user (username) values (#{username});
+	<insert id="saveUser" parameterType="userDo" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO 
+        t_user ( 
+        userName , password , passwordTwo ,
+        grade , organ , remark , enabled ,
+        referrerId , parentId , treeNode ,
+        creatorTime , updateTime )
+        VALUES ( 
+        #{userName},#{password},#{passwordTwo},
+        #{grade},#{organ},#{remark},#{enabled},
+        #{referrerId},#{parentId},#{treeNode},
+        NOW(),NOW() ) 
     </insert>
-
+    
+	<update id="updateUser" parameterType="userDo">
+		UPDATE t_user
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="userName != null">
+				userName = #{userName},
+			</if>
+			<if test="password != null">
+				password = #{password},
+			</if>
+			<if test="twoLevelPwd != null">
+				passwordTwo = #{twoLevelPwd},
+			</if>
+			<if test="grade != null">
+				grade = #{grade},
+			</if>
+			<if test="organ != null">
+				organ = #{organ},
+			</if>
+			<if test="remark != null">
+				remark = #{remark},
+			</if>
+			<if test="enabled != null">
+				enabled = #{enabled},
+			</if>
+			<if test="referrerId != null">
+				referrerId = #{referrerId},
+			</if>
+			<if test="parentId != null">
+				parentId = #{parentId},
+			</if>
+			<if test="treeNode != null">
+				treeNode = #{treeNode},
+			</if>
+			updateTime = NOW(),
+		</trim>
+		WHERE id = #{id};
+	</update>
 </mapper>

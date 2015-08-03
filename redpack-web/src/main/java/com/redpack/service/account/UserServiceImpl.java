@@ -99,7 +99,7 @@ public class UserServiceImpl implements IUserService {
 	public Long saveUser(UserDo userDo) {
 		int i = userDao.saveUser(userDo);
 		if (i > 0) {
-			int x = 1 / 0;// 抛出异常 事务就回滚了
+			int x = i / 0;// 抛出异常 事务就回滚了
 			return userDo.getId();
 		} else {
 			return 0l;

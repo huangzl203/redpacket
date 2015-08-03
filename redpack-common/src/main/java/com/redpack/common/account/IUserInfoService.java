@@ -9,6 +9,7 @@ package com.redpack.common.account;
 import java.util.List;
 import java.util.Map;
 
+import com.redpack.common.account.model.UserDo;
 import com.redpack.common.account.model.UserInfoDo;
 
 /**
@@ -18,27 +19,45 @@ import com.redpack.common.account.model.UserInfoDo;
  */
 
 public interface IUserInfoService {
+	/**
+	 * 根据ID查询
+	 * @author huangzl QQ: 272950754
+	 * @date 2015年8月3日 下午7:52:44
+	 * @param id
+	 * @return
+	 */
+	public UserInfoDo getById(Long id);
+	
+	/**
+	 * 根据用户ID查询
+	 * @author huangzl QQ: 272950754
+	 * @date 2015年8月3日 下午7:52:44
+	 * @param id
+	 * @return
+	 */
+	public UserInfoDo getByUserId(Long userId);
+	/**
+	 * 根据条件查询userDo
+	 * @param parameterMap
+	 * @return
+	 */
+	public UserInfoDo getByUserInfoDo(Map<String, Object> parameterMap);
+	/**
+	 * 保存
+	 * @author huangzl QQ: 272950754
+	 * @date 2015年8月3日 下午7:52:44
+	 * @param id
+	 * @return
+	 */
+	public Long saveUserInfo(UserInfoDo userInfoDo);
+	/**
+	 * 更新
+	 * @author huangzl QQ: 272950754
+	 * @date 2015年8月3日 下午7:52:44
+	 * @param id
+	 * @return
+	 */
+	public UserInfoDo updataUserInfo(UserInfoDo userInfoDo);
 
-	public abstract int deleteById(int id);
-
-	public abstract int addRedUserInfo(UserInfoDo newUserInfoDo);
-
-	public abstract int updateRedUserInfoById(UserInfoDo newUserInfoDo);
-
-	public abstract List<UserInfoDo> selectRedUserInfo(Map<String,Object> parameterMap);
-
-	public abstract UserInfoDo getById(long id);
-
-	public abstract UserInfoDo getAllParent(long currentUserId, int levelNum);
-
-	public abstract UserInfoDo getParent(long currentUserId);
-
-	public abstract void getAllChildren(UserInfoDo currentUser);
-
-	public abstract List<UserInfoDo> getChildList(long userId);
-
-	public abstract UserInfoDo getUserAndAllChild(long userId);
-
-	public abstract UserInfoDo getUserAndChild(long userId);
 	
 }

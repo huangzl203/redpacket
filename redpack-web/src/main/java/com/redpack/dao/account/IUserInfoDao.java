@@ -24,29 +24,43 @@ import com.redpack.common.account.model.UserInfoDo;
 public interface IUserInfoDao {
 
 	/**
-	 * 根据ID 查询
-	 * @parameter id
+	 * 根据ID查询
+	 * @author huangzl QQ: 272950754
+	 * @date 2015年8月3日 下午7:52:44
+	 * @param id
+	 * @return
 	 */
-	public UserInfoDo getById(long id);
+	public UserInfoDo getById(Long id);
 	
 	/**
-	 *根据条件查询列表
+	 * 根据用户ID查询
+	 * @author huangzl QQ: 272950754
+	 * @date 2015年8月3日 下午7:52:44
+	 * @param id
+	 * @return
 	 */
-	public List<UserInfoDo> selectRedUserInfo(Map<String,Object> parameterMap);
-	
+	public UserInfoDo getByUserId(Long userId);
+	/**
+	 * 根据条件查询userDo
+	 * @param parameterMap
+	 * @return
+	 */
+	public UserInfoDo getByUserInfoDo(Map<String, Object> parameterMap);
+	/**
+	 * 保存
+	 * @author huangzl QQ: 272950754
+	 * @date 2015年8月3日 下午7:52:44
+	 * @param id
+	 * @return
+	 */
+	public int saveUserInfo(UserInfoDo userInfoDo);
 	/**
 	 * 更新
+	 * @author huangzl QQ: 272950754
+	 * @date 2015年8月3日 下午7:52:44
+	 * @param id
+	 * @return
 	 */
-	public int  updateRedUserInfoById(UserInfoDo newUserInfoDo);
-	
-	/**
-	 * 新增
-	 */
-	public int addRedUserInfo(UserInfoDo newUserInfoDo);
-	
-	/**
-	 * 删除
-	 */
-	public int deleteById(int id);
+	public UserInfoDo updataUserInfo(UserInfoDo userInfoDo);
 
 }

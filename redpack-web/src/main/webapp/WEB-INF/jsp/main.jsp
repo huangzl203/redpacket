@@ -65,5 +65,10 @@
     </ul>
     <!-- 欢迎大家关注我的博客！如有疑问,请加QQ群：135430763共同学习！ -->
     <%@ include file="include/foot.jsp"%>
+    <script  type="text/javascript">
+		$(function(){
+			$("nav ul li").eq(0).addClass("current");
+		})
+	</script>
 </body>
 </html>
