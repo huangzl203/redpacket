@@ -18,14 +18,14 @@
 	<section class="sign-area">
 		<form action="${loginServerUrl }/account/register.do" id="regForm" method="post">
 			<div class="sign-style br-3">
-				<span class="sign-lable pr75">用户名</span>
-				<input type="text" name="userName" id="userName" placeholder="由数字和字母组成，5-25个字符">
+				<span class="sign-lable pr75">真实姓名</span>
+				<input type="text" name="userName" id="userName" placeholder="请输入您的真实姓名">
 			</div>
 			<div class="sign-style br-2">
 			<span class="sign-lable">登录密码</span>
 				<input type="password" name="password" id="password" placeholder="6-20个字符">
 			</div>
-			<div class="sign-style br-3 ">
+			<div class="sign-style br-3">
 				<span class="sign-lable">确认密码</span>
 				<input type="password" id="confirmPassword" name="confirmPassword" placeholder="6-20个字符">
 			</div>
@@ -35,7 +35,7 @@
 			</div>
 			<div class="sign-style br-5">
 				<span class="sign-lable">推荐人</span>
-				<input type="text" id="mobilePhone" name="mobilePhone" placeholder="请输入注册手机号码">
+				<input type="text" id="referenceMobile" name="referenceMobile" placeholder="请输入推荐人手机号码">
 			</div>
 			<div class="sign-sub">
 				<input type="button" id="regBtn" value="立即注册">
@@ -50,18 +50,14 @@
 			$("#regBtn").bind("click",function(){
 				var userName = $("#userName").val();
 				if(userName==null || userName.length==0){
-					popWindow("请输入登录用户名");
+					popWindow("请输入真实姓名");
 					return;
 				}
-				if (userName.length < 5 || userName.length > 25) {
-					popWindow("用户名长度为5-25个字符");
-					return;
-				}
-				if (!/^[A-Za-z0-9_]+$/.test(userName)) {
-					popWindow("用户名由字母数字下划线组成");
-					return;
-				} 
-				//password
+			 	if (!/^[\u4E00-\u9FA5]{2,5}$/ig.test(userName)) {
+				 	popWindow("请输入2-5字的中文");
+					return ;
+				}  
+				
 				var password = $('#password').val();
 				if (password == "" || password.length==0) {
 					popWindow("请设置您的密码");
@@ -96,13 +92,17 @@
                      popWindow("输入手机号的格式有误");
                      return;
                 }
-				var identifyCode = $("#identifyCode").val();
-				/* if(identifyCode==null || identifyCode.length==0){
-					popWindow("请输入验证码");
+				var referenceMobile = $('#referenceMobile').val();
+				if (referenceMobile == "" || referenceMobile.length==0) {
+					popWindow("请输入手机号");
 					return;
-				} */
+				}
+                if (!/^0{0,1}(13[0-9]|15[0-9]|18[0-9]|14[0-9]|17[0-9])[0-9]{8}$/.test(referenceMobile)){
+                     popWindow("输入手机号的格式有误");
+                     return;
+                }
 				$(this).attr('disabled',true);
-				var options = {type:"POST",url:"${loginServerUrl }/account/register.html",data:{userName:userName,password:password,mobilePhone:mobilePhone,identifyCode:identifyCode}};
+				var options = {type:"POST",url:"${loginServerUrl }/account/register.html",data:{userName:userName,password:password,mobilePhone:mobilePhone,referenceMobile:referenceMobile}};
 				ajaxRequest(options,function(data){
 					if(data.result=='注册成功'){
 						window.location.href="${loginServerUrl }/redPack/modifyInfo.html";

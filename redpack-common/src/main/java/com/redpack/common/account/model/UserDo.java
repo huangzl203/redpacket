@@ -38,6 +38,7 @@ public class UserDo implements Serializable {
 	private Date vipCreateTime; // VIP创建时间
 	private Integer enable; // 是否禁用 1、启用 2、禁用 3.黑名单 默认1
 	private Date createTime; // 帐号创建时间
+	private UserInfoDo userInfoDo;//用户信息表
 	public Long getId() {
 		return id;
 	}
@@ -112,6 +113,12 @@ public class UserDo implements Serializable {
 	}
 	
 	
+	public UserInfoDo getUserInfoDo() {
+		return userInfoDo;
+	}
+	public void setUserInfoDo(UserInfoDo userInfoDo) {
+		this.userInfoDo = userInfoDo;
+	}
 	@Override
 	public String toString() {
 		return "UserDo [id=" + id + ", username=" + username + ", email="

@@ -10,12 +10,16 @@
  */
 package com.redpack.web.view.account.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import net.sf.json.JSONObject;
 
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,7 +29,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.redpack.common.account.IUserInfoService;
 import com.redpack.common.account.IUserService;
+import com.redpack.common.account.model.UserDo;
+import com.redpack.common.account.model.UserInfoDo;
+import com.redpack.common.base.result.IResult;
 import com.redpack.utils.ResponseUtils;
+
+import comredpack.common.constant.WebConstants;
 
 /**
  * 
@@ -49,7 +58,7 @@ public class UserController {
 	 * @date 2015年8月2日 22:45:08
 	 */
 	@RequestMapping("resetPwdIndex")
-	public String resetPwdIndex(ModelMap map, HttpSession sessionS) {
+	public String resetPwdIndex() {
 		logger.info("----重置密码跳转页面----");
 		return "login/reInputPwd";
 	}
@@ -62,7 +71,7 @@ public class UserController {
 	 * @date 2015年8月2日 22:45:08
 	 */
 	@RequestMapping("regIndex")
-	public String regIndex(ModelMap map, HttpSession sessionS) {
+	public String regIndex() {
 		logger.info("----注册用户跳转页面----");
 		return "login/register";
 	}
@@ -78,91 +87,46 @@ public class UserController {
 	 * @date 2015-3-29 上午5:06:48
 	 */
 	@RequestMapping(value = "register", method = RequestMethod.POST)
-	public void register(HttpServletRequest request, HttpServletResponse response) {
+	public void register(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		session.removeAttribute("userDo");
+		UserDo userDo =new UserDo();
+		UserInfoDo userInfoDo =new UserInfoDo();
+		userDo.setUserInfoDo(userInfoDo);
 		String loginInfo = request.getParameter("userName");
 		String mobilePhone = request.getParameter("mobilePhone");
 		String pwd = request.getParameter("password");
-
+		
 		JSONObject jsonObject = new JSONObject();
-		// if(StringUtils.isBlank(loginInfo)){
-		// jsonObject.put("result", "请输入登录用户名");
-		// ResponseUtils.renderText(response, "UTF-8",
-		// JSONObject.fromObject(jsonObject).toString());
-		// return;
-		// }
-		// if(StringUtils.isBlank(pwd)){
-		// jsonObject.put("result", "请设置您的密码");
-		// ResponseUtils.renderText(response, "UTF-8",
-		// JSONObject.fromObject(jsonObject).toString());
-		// return;
-		// }
-		// if(StringUtils.isBlank(mobilePhone)){
-		// jsonObject.put("result", "请输入手机号");
-		// ResponseUtils.renderText(response, "UTF-8",
-		// JSONObject.fromObject(jsonObject).toString());
-		// return;
-		// }
-		// //手机验证码校验
-		// String identifyCode = request.getParameter("identifyCode");
-		// boolean flag = identifyCodeService.checkIdentifyCode(mobilePhone,
-		// identifyCode);
-		// if (!flag){
-		// //手机验证码校验不通过
-		// jsonObject.put("result", "手机验证码不正确");
-		// ResponseUtils.renderText(response, "UTF-8",
-		// JSONObject.fromObject(jsonObject).toString());
-		// return;
-		// }
-		//
-		// AccountUserDo aud = new AccountUserDo();
-		// aud.setUsername(loginInfo.trim());
-		// aud.setMobilePhone(mobilePhone.trim());
-		// String pwdMd5 = DigestUtils.md5Hex(pwd + WebConstants.PASS_KEY);
-		// aud.setPassword(pwdMd5);
-		// Date now = new Date();
-		// aud.setCreateTime(now);
-		// aud.setSource(100); //贷款代码100
-		// IResult result = userService.registerUser(aud);
-		// if (result.isSuccess()) {
-		// Long userId = (Long)result.getModel();
-		// //获取登录用户userId
-		// LoginInfoRelate loginir = userInfoService.getByLoginInfo(loginInfo,
-		// LoginInfoRelate.class, true);
-		// if(loginir == null) {
-		// //如果没有处理老数据，兼容老版本，取一次t_user信息
-		// aud = userService.loginWithPwd(loginInfo, pwdMd5);
-		// }else {
-		// aud = userService.getById(userId);
-		// }
-		// request.getSession().setAttribute("user", aud);
-		// // 取缓存登录信息
-		// String root = session.getSessionId(request, response);
-		// sessionCache.setAttribute(root, HHNConstants.SESSION_INFO, aud,
-		// HHNConstants.SESSION_CACHE_TIME);
-		// try {
-		// int partnerId = getSessionIntAttr("partnerId",0);
-		// String partnerUserId = getSessionStrAttr("partnerUserId");
-		// if (partnerId>0&&StringUtils.isNotBlank(partnerUserId)){
-		// UserBindDo userBindDo = new UserBindDo();
-		// userBindDo.setPartnerId(partnerId);
-		// userBindDo.setPartnerUserId(partnerUserId);
-		// userBindDo.setCreateTime(new Date());
-		// userBindDo.setUserId(aud.getId());
-		// userService.saveUserBind(userBindDo);
-		// }
-		// }catch (Exception e){
-		// logger.error(e.getMessage());
-		// // ResponseUtils.renderText(response, null, JSONObject.fromObject(new
-		// BaseReturn(1,"系统正忙请稍后重试")).toString());
-		// return;
-		// }
-		jsonObject.put("result", "注册成功");
-		ResponseUtils.renderText(response, null, JSONObject.fromObject(jsonObject).toString());
-		// } else {
-		// jsonObject.put("result", result.getErrorMessage());
-		// ResponseUtils.renderText(response, null,
-		// JSONObject.fromObject(jsonObject).toString());
-		// }
+		 if(StringUtils.isBlank(loginInfo)){
+		 jsonObject.put("result", "请输入登录用户名");
+		 ResponseUtils.renderText(response, "UTF-8",JSONObject.fromObject(jsonObject).toString());
+		 return;
+		 }
+		 if(StringUtils.isBlank(pwd)){
+		 jsonObject.put("result", "请设置您的密码");
+		 ResponseUtils.renderText(response, "UTF-8",JSONObject.fromObject(jsonObject).toString());
+		 return;
+		 }
+		 if(StringUtils.isBlank(mobilePhone)){
+		 jsonObject.put("result", "请输入手机号");
+		 ResponseUtils.renderText(response, "UTF-8",JSONObject.fromObject(jsonObject).toString());
+		 return;
+		 }
+		 userDo.setUsername(mobilePhone);
+		 userDo.setPassword(DigestUtils.md5Hex(pwd + WebConstants.PASS_KEY));
+		 userDo.setMobilePhone(mobilePhone);
+		 userDo.getUserInfoDo().setRealName(loginInfo);
+		 userDo.getUserInfoDo().setMobile(mobilePhone);
+		 userDo.setCreateTime(new Date());
+//		 long result = userService.saveUser(userDo);
+//		 if (result>=0) {
+			session.setAttribute("userDo",userDo );
+			jsonObject.put("result", "注册成功");
+			ResponseUtils.renderText(response, null, JSONObject.fromObject(jsonObject).toString());
+//		 } else {
+//			 jsonObject.put("result", "注册失败");
+//			 ResponseUtils.renderText(response, null,JSONObject.fromObject(jsonObject).toString());
+//		 }
 	}
 
 }

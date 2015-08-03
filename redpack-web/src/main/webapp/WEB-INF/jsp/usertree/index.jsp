@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="../common/top.jsp"%>
+<%@ include file="../include/top.jsp"%>
 <link type="text/css" href="${fileServerUrl}/res/css/base.css" rel="stylesheet" />
 <link type="text/css" href="${fileServerUrl}/res/css/Spacetree.css" rel="stylesheet" />
 
@@ -26,7 +26,7 @@
 </div>
 </div>
 	<!--弹出框-->
-	<%@ include file="../common/foot.jsp"%>
+	<%@ include file="../include/foot.jsp"%>
 
 	<c:if test="${message!= null}">
 		<script>alert(${message})</script>

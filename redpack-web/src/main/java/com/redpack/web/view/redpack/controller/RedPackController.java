@@ -75,9 +75,7 @@ public class RedPackController {
 	 */
 	@RequestMapping("/modifyUpdata")
 	public String modifyUpdata(Model model, HttpSession session, HttpServletRequest request) {
-		
-		
-		return "redirect:/redPack/welcome";
+		return "redirect:/login/main";
 	}
 
 	/**

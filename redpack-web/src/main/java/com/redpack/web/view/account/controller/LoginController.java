@@ -113,22 +113,22 @@ public class LoginController extends BaseController {
 		
 		
 		//获取登录用户userId
-		UserDo loginUser = userService.getByUserDo(parameterMap);
+//		UserDo loginUser = userService.getByUserDo(parameterMap);
 		//存储登录渠道
 		String pwdMd5 = DigestUtils.md5Hex(password + WebConstants.PASS_KEY);
 		
 		
-		if(loginUser == null || !loginUser.getPassword().equals(pwdMd5)) {
+		/*if(loginUser == null || !loginUser.getPassword().equals(pwdMd5)) {
 			// 用户名密码错误
 			jsonObject.put("result", 3);
 			request.getSession().setAttribute("loginStrategy", ++loginStrategy);
 			jsonObject.put("loginStrategy", loginStrategy >= 5);
 			ResponseUtils.renderText(response, null,jsonObject.toString());
 			return;
-		}
+		}*/
 		
-		request.getSession().setAttribute(WebConstants.SESSION_USER, loginUser);
-		WebThreadVariable.setUserDo(loginUser);
+//		request.getSession().setAttribute(WebConstants.SESSION_USER, loginUser);
+//		WebThreadVariable.setUserDo(loginUser);
 		
 		// 取缓存登录信息
 		String fromUrl = request.getHeader("referer");

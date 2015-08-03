@@ -28,7 +28,7 @@
 			<h3 class="inf_tip"><i class="t1"></i>基础信息</h3>
 			<div class="form-group db_f">
 				<label for="" class="lab">真实姓名：</label>
-				<input type="text" id="realName" placeholder="请输入真实姓名"  class="txt bf1 db" name="propertyDo.coveredArea"  value="${loanDo.loanPersonDo.propertyDo.coveredArea}" >
+				<input type="text" id="realName" placeholder="请输入真实姓名"  class="txt bf1 db" name="propertyDo.coveredArea"  value="${userDo.userInfoDo.realName}" >
 			</div>
 			<div class="form-group db_f">
 				<label for="" class="lab">手机号码：</label>
