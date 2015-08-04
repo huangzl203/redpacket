@@ -57,9 +57,8 @@ public class UserInfoServiceImpl implements IUserInfoService {
 	@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
 	@Override
 	public Long saveUserInfo(UserInfoDo userInfoDo) {
-		int i = userInfoDao.saveUserInfo(userInfoDo);
+		long i = userInfoDao.saveUserInfo(userInfoDo);
 		if (i > 0) {
-			int x = i / 0;// 抛出异常 事务就回滚了
 			return userInfoDo.getId();
 		} else {
 			return 0l;

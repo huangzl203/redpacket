@@ -75,7 +75,7 @@
         referrerId , parentId , treeNode ,
         creatorTime , updateTime )
         VALUES ( 
-        #{userName},#{password},#{passwordTwo},
+        #{userName},#{password},#{twoLevelPwd},
         #{grade},#{organ},#{remark},#{enabled},
         #{referrerId},#{parentId},#{treeNode},
         NOW(),NOW() ) 

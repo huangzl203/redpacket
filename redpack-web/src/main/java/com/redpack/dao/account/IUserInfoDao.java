@@ -53,7 +53,7 @@ public interface IUserInfoDao {
 	 * @param id
 	 * @return
 	 */
-	public int saveUserInfo(UserInfoDo userInfoDo);
+	public Long saveUserInfo(UserInfoDo userInfoDo);
 	/**
 	 * 更新
 	 * @author huangzl QQ: 272950754

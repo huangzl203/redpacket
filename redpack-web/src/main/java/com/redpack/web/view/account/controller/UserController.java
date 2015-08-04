@@ -11,6 +11,8 @@
 package com.redpack.web.view.account.controller;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,6 +33,7 @@ import com.redpack.common.account.IUserService;
 import com.redpack.common.account.model.UserDo;
 import com.redpack.common.account.model.UserInfoDo;
 import com.redpack.utils.ResponseUtils;
+
 import comredpack.common.constant.WebConstants;
 
 /**
@@ -45,7 +48,7 @@ public class UserController {
 	@Autowired
 	private IUserService userService;
 	@Autowired
-	private IUserInfoService userAccountService;
+	private IUserInfoService userInfoService;
 
 	/**
 	 * 重置密码跳转页面
@@ -74,9 +77,7 @@ public class UserController {
 	}
 
 	/**
-	 * 用户注册
-	 * 
-	 * @Description: TODO
+	 * @Description: 用户注册
 	 * @param request
 	 * @param response
 	 * @return
@@ -85,44 +86,63 @@ public class UserController {
 	 */
 	@RequestMapping(value = "register", method = RequestMethod.POST)
 	public void register(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		session.removeAttribute("userDo");
-		UserDo userDo =new UserDo();
-		UserInfoDo userInfoDo =new UserInfoDo();
-		userDo.setUserInfoDo(userInfoDo);
-		String loginInfo = request.getParameter("userName");
-		String mobilePhone = request.getParameter("mobilePhone");
-		String pwd = request.getParameter("password");
-		
+		UserDo user = (UserDo) session.getAttribute(WebConstants.SESSION_USER);
+		long userId=user.getId();
 		JSONObject jsonObject = new JSONObject();
-		 if(StringUtils.isBlank(loginInfo)){
-		 jsonObject.put("result", "请输入登录用户名");
-		 ResponseUtils.renderText(response, "UTF-8",JSONObject.fromObject(jsonObject).toString());
-		 return;
-		 }
-		 if(StringUtils.isBlank(pwd)){
-		 jsonObject.put("result", "请设置您的密码");
-		 ResponseUtils.renderText(response, "UTF-8",JSONObject.fromObject(jsonObject).toString());
-		 return;
-		 }
-		 if(StringUtils.isBlank(mobilePhone)){
-		 jsonObject.put("result", "请输入手机号");
-		 ResponseUtils.renderText(response, "UTF-8",JSONObject.fromObject(jsonObject).toString());
-		 return;
-		 }
-		 userDo.setUserName(mobilePhone);
-		 userDo.setPassword(DigestUtils.md5Hex(pwd + WebConstants.PASS_KEY));
-		 userDo.getUserInfoDo().setRealName(loginInfo);
-		 userDo.getUserInfoDo().setMobile(mobilePhone);
-		 userDo.setCreateTime(new Date());
-//		 long result = userService.saveUser(userDo);
-//		 if (result>=0) {
-			session.setAttribute("userDo",userDo );
-			jsonObject.put("result", "注册成功");
-			ResponseUtils.renderText(response, null, JSONObject.fromObject(jsonObject).toString());
-//		 } else {
-//			 jsonObject.put("result", "注册失败");
-//			 ResponseUtils.renderText(response, null,JSONObject.fromObject(jsonObject).toString());
-//		 }
+		if(user!=null&&user.getId()!=null&&user.getId()>0){
+			String loginInfo = request.getParameter("userName");
+			String mobilePhone = request.getParameter("mobilePhone");
+			String pwd =  request.getParameter("mobilePhone");
+			Map<String, Object> parameterMap = new HashMap<String, Object>();
+			parameterMap.put("mobile", mobilePhone);
+			UserInfoDo temp =userInfoService.getByUserInfoDo(parameterMap);
+			if(temp!=null&&temp.getUserId()!=null){
+				jsonObject.put("result", "输入的手机号已存在");
+				ResponseUtils.renderText(response, "UTF-8", JSONObject.fromObject(jsonObject).toString());
+				return;
+			}
+			if (StringUtils.isBlank(loginInfo)) {
+				jsonObject.put("result", "请输入登录用户名");
+				ResponseUtils.renderText(response, "UTF-8", JSONObject.fromObject(jsonObject).toString());
+				return;
+			}
+			if (StringUtils.isBlank(mobilePhone)) {
+				jsonObject.put("result", "请输入手机号");
+				ResponseUtils.renderText(response, "UTF-8", JSONObject.fromObject(jsonObject).toString());
+				return;
+			}
+			String pwdMd5 =DigestUtils.md5Hex(pwd + WebConstants.PASS_KEY);
+			UserDo userDo =new UserDo();
+			userDo.setUserName(mobilePhone);
+			userDo.setPassword(pwdMd5);
+			userDo.setTwoLevelPwd(pwdMd5);
+			userDo.setGrade(0L);								//当前等级
+			userDo.setOrgan("");								//组织机构
+			userDo.setEnabled("");								//状态
+			userDo.setReferrerId(userId);				//推荐人ID
+			userDo.setParentId(userId);					//接点人ID
+			userDo.setTreeNode("");								//业务方向
+			UserInfoDo userInfoDo = new UserInfoDo();
+			userInfoDo.setRealName(loginInfo);
+			userInfoDo.setMobile(mobilePhone);
+			userDo.setCreateTime(new Date());
+			userDo.setUserInfoDo(userInfoDo);
+			long result = userService.saveUser(userDo);
+			if (result>=0) {
+				jsonObject.put("result", "注册成功");
+				ResponseUtils.renderText(response, null, JSONObject.fromObject(jsonObject).toString());
+			} else {
+				jsonObject.put("result", "注册失败");
+				ResponseUtils.renderText(response,
+				null,JSONObject.fromObject(jsonObject).toString());
+			}
+		}else{
+			jsonObject.put("result", "登录超时");
+			ResponseUtils.renderText(response, "UTF-8", JSONObject.fromObject(jsonObject).toString());
+			return;
+		}
 	}
+	
+	
 
 }

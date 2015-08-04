@@ -38,7 +38,7 @@ public interface IUserDao {
      * @param userDo
      * @return
      */
-    int saveUser(UserDo userDo);
+    Long saveUser(UserDo userDo);
     /**
      * 根据条件查询用户对象
      * @param parameterMap

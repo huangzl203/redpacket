@@ -83,7 +83,8 @@ public class LoginController extends BaseController {
 	 * @return 1用户名或密码未输入|2验证码输入错误
 	 */
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public void login(HttpServletRequest request, HttpServletResponse response) {
+	public void login(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		session.removeAttribute("userDo");
 		JSONObject jsonObject = new JSONObject();
 		Map<String, Object> parameterMap = new HashMap<String, Object>();
 		String loginInfo = request.getParameter("userName");
@@ -119,14 +120,14 @@ public class LoginController extends BaseController {
 		if (loginUser == null || !loginUser.getPassword().equals(pwdMd5)) {
 			// 用户名密码错误
 			jsonObject.put("result", 3);
-			request.getSession().setAttribute("loginStrategy", ++loginStrategy);
+			session.setAttribute("loginStrategy", ++loginStrategy);
 			jsonObject.put("loginStrategy", loginStrategy >= 5);
 			ResponseUtils.renderText(response, null, jsonObject.toString());
 			return;
 		}
 		UserInfoDo userInfoDo = userInfoService.getByUserId(loginUser.getId());
 		loginUser.setUserInfoDo(userInfoDo);
-		request.getSession().setAttribute(WebConstants.SESSION_USER, loginUser);
+		session.setAttribute(WebConstants.SESSION_USER, loginUser);
 		WebThreadVariable.setUserDo(loginUser);
 
 		// 取缓存登录信息

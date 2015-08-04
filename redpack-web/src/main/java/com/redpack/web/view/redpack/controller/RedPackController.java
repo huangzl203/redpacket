@@ -35,48 +35,7 @@ public class RedPackController {
 		return "redPack/index";
 	}
 	
-	/**
-	 * 跳转首页
-	 * @author  huangzl QQ:272950754
-	 * @version 创建时间：2015-7-26 下午09:53:32 
-	 * @param model
-	 * @param session
-	 * @param request
-	 * @return
-	 */
-	@RequestMapping("/welcome")
-	public String welcome(Model model, HttpSession session, HttpServletRequest request) {
-		return "redPack/index";
-	}
-
-	/**
-	 * 修改资料跳转方法
-	 * 
-	 * @author huangzl QQ:272950754
-	 * @version 创建时间：2015-7-26 下午09:05:57
-	 * @param model
-	 * @param session
-	 * @param request
-	 * @return
-	 */
-	@RequestMapping("/modifyInfo")
-	public String modifyInfo(Model model, HttpSession session, HttpServletRequest request) {
-		return "redPack/redPack_modify";
-	}
-	/**
-	 * 修改资料保存方法
-	 * 
-	 * @author huangzl QQ:272950754
-	 * @version 创建时间：2015-7-26 下午09:50:57
-	 * @param model
-	 * @param session
-	 * @param request
-	 * @return
-	 */
-	@RequestMapping("/modifyUpdata")
-	public String modifyUpdata(Model model, HttpSession session, HttpServletRequest request) {
-		return "redirect:/login/main";
-	}
+	
 
 	/**
 	 * 我要升级

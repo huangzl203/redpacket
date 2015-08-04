@@ -19,7 +19,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.redpack.common.account.IUserService;
 import com.redpack.common.account.model.UserDo;
+import com.redpack.common.account.model.UserInfoDo;
 import com.redpack.dao.account.IUserDao;
+import com.redpack.dao.account.IUserInfoDao;
 
 /**
  * 
@@ -30,12 +32,15 @@ import com.redpack.dao.account.IUserDao;
 public class UserServiceImpl implements IUserService {
 	@Autowired
 	private IUserDao userDao;
+	@Autowired	
+    private IUserInfoDao  userInfoDao;
+	
+
 
 	@Override
 	public UserDo getById(Long id) {
 		return userDao.getById(id);
 	}
-
 	/**
 	 * 参 数 名 称 功 能 描 述 readOnly
 	 * 该属性用于设置当前事务是否为只读事务，设置为true表示只读，false则表示可读写，默认值为false
@@ -97,9 +102,22 @@ public class UserServiceImpl implements IUserService {
 	@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
 	@Override
 	public Long saveUser(UserDo userDo) {
-		int i = userDao.saveUser(userDo);
+		long i = userDao.saveUser(userDo);
 		if (i > 0) {
-			int x = i / 0;// 抛出异常 事务就回滚了
+			if(userDo.getUserInfoDo()!=null){
+				UserInfoDo userInfoDo =userInfoDao.getByUserId(userDo.getId());
+				if(userInfoDo!=null){
+					userDo.getUserInfoDo().setUserId(userDo.getId());
+					userInfoDao.updataUserInfo(userDo.getUserInfoDo());
+				}else{
+					userInfoDo =userDo.getUserInfoDo();
+					userInfoDo.setUserId(userDo.getId());
+					long a =userInfoDao.saveUserInfo(userInfoDo);
+					if(a <= 0){
+						return 0l;
+					}
+				}
+			}
 			return userDo.getId();
 		} else {
 			return 0l;

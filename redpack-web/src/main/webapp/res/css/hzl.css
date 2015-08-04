@@ -1,0 +1,83 @@
+* {
+	font-style: normal;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 20px;
+	font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial,
+		sans-serif
+}
+
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td
+	{
+	margin: 0;
+	padding: 0;
+	font: 12px/1.5 Microsoft YaHei, Helvitica, Verdana, Arial, san-serif;
+	border: 0 none;
+}
+
+body {
+	background: #eee;
+}
+
+input {
+	font-family: "Microsoft Yahei" !important;
+	outline: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+	-webkit-tap-highlight-color: transparent
+}
+
+ul,ol,li {
+	list-style: none outside none;
+}
+
+input,button {
+	font-size: 12px;
+	margin: 0;
+	vertical-align: middle;
+}
+
+img {
+	border: 0 none;
+	display: block;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.tongzhi {
+	width: 30px;
+	height: 30px;
+	display: block;
+	background: rgba(0, 0, 0, .5) url(../img/ht.png) 50% 50% no-repeat;
+	background-size: 80%;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	position: absolute;
+	right: 20px;
+}
+
+.tongzhi em {
+	background: #f35e46;
+	color: #fff;
+	width: auto;
+	min-width: 16px;
+	height: 16px;
+	line-height: 16px;
+	display: block;
+	text-align: center;
+	-webkit-border-radius: 15px;
+	border-radius: 15px;
+	font-size: .3rem;
+	position: absolute;
+	margin-left: 20px;
+	padding: 2px;
+}
