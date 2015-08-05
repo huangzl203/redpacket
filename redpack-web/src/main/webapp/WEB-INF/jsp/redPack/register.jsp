@@ -9,7 +9,7 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" />
 		<meta name="format-detection" content="telephone=no" />
 		<meta name="MobileOptimized" content="320" />
-		 <%@ include file="../include/top.jsp"%>
+		<%@ include file="../include/top.jsp"%>
 		<link href="${fileServerUrl }/res/css/main.min.css?v=${jsversion}" type="text/css" rel="stylesheet">
 		<style>
 			.personinf_radio div{
@@ -82,6 +82,7 @@
 		</section>
 	</article>
 	<%@ include file="../include/foot.jsp"%>
+	<script src="${fileServerUrl }/res/js/main.min.js?v=${jsversion}"></script>
 	<script>
 		$(function(){
 			$("nav ul li").eq(2).addClass("current");

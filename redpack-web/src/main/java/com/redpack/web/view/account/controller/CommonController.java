@@ -22,12 +22,16 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.redpack.common.account.IUserInfoService;
 import com.redpack.common.account.IUserService;
+import com.redpack.common.account.model.UserDo;
+import com.redpack.common.account.model.UserInfoDo;
 import com.redpack.utils.IDCardUtil;
+import com.redpack.utils.IdCardUtils;
 import com.redpack.utils.ResponseUtils;
 import com.redpack.web.view.base.controller.BaseController;
 
@@ -130,11 +134,11 @@ public class CommonController extends BaseController{
 	 * @author: chenzhpmf
 	 * @date 2015-4-1 下午11:38:05
 	 */
-	@RequestMapping(value = "sendPhoneVirifyCode")
-    public void sendPhoneVirifyCode(HttpServletRequest request,HttpServletResponse response) {
-		JSONObject jsonObject = new JSONObject();
-		String mobilePhone = request.getParameter("mobilePhone");
-		boolean checkPhone = Boolean.valueOf(request.getParameter("checkPhone"));
+//	@RequestMapping(value = "sendPhoneVirifyCode")
+//    public void sendPhoneVirifyCode(HttpServletRequest request,HttpServletResponse response) {
+//		JSONObject jsonObject = new JSONObject();
+//		String mobilePhone = request.getParameter("mobilePhone");
+//		boolean checkPhone = Boolean.valueOf(request.getParameter("checkPhone"));
 
 //		if(StringUtils.isBlank(mobilePhone)){
 //			Integer userId = getCurrentUserId();
@@ -177,7 +181,7 @@ public class CommonController extends BaseController{
 //            jsonObject.put("ret","1");
 //        }
 //        ResponseUtils.renderText(response, null,jsonObject.toString());
-    }
+//    }
 	
 	
 	/**
@@ -278,9 +282,11 @@ public class CommonController extends BaseController{
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("/modifyUpdata")
-	public String modifyUpdata(Model model, HttpSession session, HttpServletRequest request) {
-		return "redirect:/login/main";
+	@RequestMapping(value = "/modifyUpdata", method = RequestMethod.POST)
+	public String modifyUpdata(@ModelAttribute UserInfoDo userInfoDo,Model model, HttpSession session, HttpServletRequest request) {
+		String idNo=userInfoDo.getIdCardNo();
+		userInfoDo.setSex(IdCardUtils.getGenderByIdCard(idNo).equals("M") ? "男" : "女");
+		return "redirect:/redPack/personalCenter";
 	}
 	
 }
