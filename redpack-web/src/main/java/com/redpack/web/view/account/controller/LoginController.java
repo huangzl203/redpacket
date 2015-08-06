@@ -128,7 +128,7 @@ public class LoginController extends BaseController {
 		UserInfoDo userInfoDo = userInfoService.getByUserId(loginUser.getId());
 		loginUser.setUserInfoDo(userInfoDo);
 		session.setAttribute(WebConstants.SESSION_USER, loginUser);
-		WebThreadVariable.setUserDo(loginUser);
+//		WebThreadVariable.setUserDo(loginUser);
 
 		// 取缓存登录信息
 		// String fromUrl = request.getHeader("referer");
