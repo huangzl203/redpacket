@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8" ?>  
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.redpack.dao.account.IUserDao">
@@ -129,4 +130,132 @@
 		</trim>
 		WHERE id = #{id};
 	</update>
+=======
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.redpack.dao.account.IUserDao">
+	<resultMap type="userDo" id="userResultMap">
+		<result property="id" column="id" />
+		<result property="userName" column="userName" />
+		<result property="password" column="password" />
+		<result property="twoLevelPwd" column="passwordTwo" />
+		<result property="grade" column="grade" />
+		<result property="organ" column="organ" />
+		<result property="remark" column="remark" />
+		<result property="enabled" column="enabled" />
+		<result property="referrerId" column="referrerId" />
+		<result property="parentId" column="parentId" />		
+		<result property="treeNode" column="treeNode" />
+		<result property="createTime" column="creatorTime" />
+		<result property="updateTime" column="updateTime" />
+	</resultMap>
+
+	<select id="getById" parameterType="long" resultMap="userResultMap">
+		SELECT * FROM
+		t_user WHERE id = #{id}
+	</select>
+	
+	<select id="selectChildByParentId" parameterType="long" resultMap="userResultMap">
+		SELECT * FROM
+		t_user WHERE parentId = #{parentId}
+	</select>
+	
+	
+	<select id="getByUserDo" parameterType="Map" resultMap="userResultMap">
+		SELECT * FROM t_user 
+	 	<trim prefix="WHERE" prefixOverrides="AND |OR "> 
+			<if test="id != null">  
+				AND id = #{id}
+			</if>
+			<if test="userName != null">  
+				AND userName = #{userName}
+			</if>
+			<if test="password != null">  
+				AND password = #{password}
+			</if>
+			<if test="twoLevelPwd != null">  
+				AND passwordTwo = #{twoLevelPwd}
+			</if>
+			<if test="grade != null">  
+				AND grade = #{grade}
+			</if>
+			<if test="organ != null">  
+				AND organ = #{organ}
+			</if>
+			<if test="remark != null">  
+				AND remark = #{remark}
+			</if>
+			<if test="enabled != null">  
+				AND enabled = #{enabled}
+			</if>
+			<if test="referrerId != null">  
+				AND referrerId = #{referrerId}
+			</if>
+			<if test="parentId != null">  
+				AND parentId = #{parentId}
+			</if>
+			<if test="treeNode != null">  
+				AND treeNode = #{treeNode}
+			</if>
+			<if test="creatorTime != null">  
+				AND creatorTime = #{creatorTime}
+			</if>
+			<if test="updateTime != null">  
+				AND updateTime = #{updateTime}
+			</if>
+	 	</trim>
+	</select>
+
+	<insert id="saveUser" parameterType="userDo" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO 
+        t_user ( 
+        userName , password , passwordTwo ,
+        grade , organ , remark , enabled ,
+        referrerId , parentId , treeNode ,
+        creatorTime , updateTime )
+        VALUES ( 
+        #{userName},#{password},#{twoLevelPwd},
+        #{grade},#{organ},#{remark},#{enabled},
+        #{referrerId},#{parentId},#{treeNode},
+        NOW(),NOW() ) 
+    </insert>
+    
+	<update id="updateUser" parameterType="userDo">
+		UPDATE t_user
+		<trim prefix="SET" suffixOverrides=",">
+			<if test="userName != null">
+				userName = #{userName},
+			</if>
+			<if test="password != null">
+				password = #{password},
+			</if>
+			<if test="twoLevelPwd != null">
+				passwordTwo = #{twoLevelPwd},
+			</if>
+			<if test="grade != null">
+				grade = #{grade},
+			</if>
+			<if test="organ != null">
+				organ = #{organ},
+			</if>
+			<if test="remark != null">
+				remark = #{remark},
+			</if>
+			<if test="enabled != null">
+				enabled = #{enabled},
+			</if>
+			<if test="referrerId != null">
+				referrerId = #{referrerId},
+			</if>
+			<if test="parentId != null">
+				parentId = #{parentId},
+			</if>
+			<if test="treeNode != null">
+				treeNode = #{treeNode},
+			</if>
+			updateTime = NOW(),
+		</trim>
+		WHERE id = #{id};
+	</update>
+>>>>>>> fe002e6a1f8651228f1e642370d2fede53dafc9d
 </mapper>
