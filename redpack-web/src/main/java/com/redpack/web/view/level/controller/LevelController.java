@@ -25,6 +25,7 @@ import com.redpack.common.grade.model.GradeFeeDo;
 import com.redpack.common.upgrade.IUserUpgradeService;
 import com.redpack.utils.ResponseUtils;
 import com.redpack.web.view.base.controller.BaseController;
+import comredpack.common.constant.WebConstants;
 
 
 /**
@@ -60,7 +61,8 @@ public class LevelController  extends BaseController {
     public String toApply(HttpServletRequest request,ModelMap map,HttpServletResponse response) {
 		logger.debug("toApply");
 		
-		long  userId = this.getCurrentUserId();
+		UserDo currentUser = (UserDo)  request.getSession().getAttribute(WebConstants.SESSION_USER);
+		long  userId = currentUser.getId();
 		
 		//获取当前用户所有的PARENT
 		UserDo userInfo = userService.getAllParent(userId, 8);
