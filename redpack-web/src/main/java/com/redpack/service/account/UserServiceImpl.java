@@ -10,6 +10,8 @@
  */
 package com.redpack.service.account;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,13 +36,8 @@ public class UserServiceImpl implements IUserService {
 	private IUserDao userDao;
 	@Autowired	
     private IUserInfoDao  userInfoDao;
+
 	
-
-
-	@Override
-	public UserDo getById(Long id) {
-		return userDao.getById(id);
-	}
 	/**
 	 * 参 数 名 称 功 能 描 述 readOnly
 	 * 该属性用于设置当前事务是否为只读事务，设置为true表示只读，false则表示可读写，默认值为false
@@ -123,6 +120,12 @@ public class UserServiceImpl implements IUserService {
 			return 0l;
 		}
 	}
+	
+	
+	@Override
+	public UserDo getById(Long id) {
+		return userDao.getById(id);
+	}
 
 	@Override
 	public UserDo getByLoginInfo(String id) {
@@ -132,6 +135,139 @@ public class UserServiceImpl implements IUserService {
 	@Override
 	public UserDo getByUserDo(Map<String, Object> parameterMap) {
 		return userDao.getByUserDo(parameterMap);
+	}
+	
+	
+	
+	/**
+	 * 根据当前用户ID ,查询他的第一层下级， 放到当前对象的 childList属性里，
+	 * @param userId
+	 * @return
+	 */
+	@Override
+	public UserDo getUserAndChild(long userId) {
+		UserDo  currentUser = this.getById(userId);
+		if(null != currentUser){
+			List<UserDo> child = this.getChildList(userId);
+			currentUser.setChildList(child);
+		}
+		return currentUser;
+	}
+	
+	/**
+	 * 据当前用户ID ,查询他的下级的下级， 直到没有下级， 放到当前对象的 childList属性里，
+	 * @param userId
+	 * @return
+	 */
+	@Override
+	public UserDo getUserAndAllChild(long userId) {
+		UserDo  currentUser = this.getById(userId);
+		if(null != currentUser){
+			getAllChildren(currentUser);
+		}
+		return currentUser;
+	}
+	
+	/**
+	 * 获取第一层下级
+	 */
+	@Override
+	public List<UserDo> getChildList(long userId) {
+		List<UserDo> child = this.selectChildByParentId(userId);
+		return child;
+	}
+	
+	
+	/**
+	 * 根据当前用户ID ,查询他的所有下级， 放到当前对象的 childList属性里， 递归查询到最后一级
+	 * @param userId
+	 * @return
+	 */
+	@Override
+	public void getAllChildren(UserDo currentUser) {
+		
+		List<UserDo> child = this.getChildList(currentUser.getId());
+		currentUser.setChildList(child);
+		if(null == child){
+			return;
+		}
+		
+		for(UserDo user : child){
+			getAllChildren(user);				
+		}
+		return;
+	}
+	
+	/**
+	 * 获取上级
+	 */
+	@Override
+	public UserDo getParent(long currentUserId ){
+		UserDo currentUser = this.getById(currentUserId);
+		if(currentUser != null && currentUser.getParentId() != null){
+			return this.getById(currentUser.getParentId());
+		}
+		return null;
+	}
+	
+	/**
+	 * 获取指定层数的上级
+	 * @param currentUserId
+	 * @param levelNum
+	 * @return
+	 */
+	@Override
+	public void getAllParent(UserDo currentUser, int levelNum ){
+		if(levelNum <= 0){
+			return;
+		}
+		
+		--levelNum;
+		
+		if(currentUser != null && currentUser.getParentId() != null){
+			UserDo parent = this.getById(currentUser.getParentId());
+			if(null == parent){
+				return;
+			}else{
+				currentUser.setParentDo(parent);
+				this.getAllParent(parent, levelNum);
+			}
+		}
+		return;
+	}
+	
+	
+	/**
+	 *根据条件查询列表
+	 */
+	@Override
+	public List<UserDo> selectChildByParentId(Long parentId){
+		return this.userDao.selectChildByParentId(parentId);
+	}
+	
+	/**
+	 * 递归查询所有上级
+	 */
+	@Override
+	public void  getAllParent(UserDo currentUser) {
+		if(currentUser != null && currentUser.getParentId() != null){
+			UserDo parent = this.getById(currentUser.getParentId());
+			if(null == parent){
+				return;
+			}else{
+				currentUser.setParentDo(parent);
+				this.getAllParent(parent);
+			}
+		}
+		return;
+	}
+
+	@Override
+	public UserDo getAllParent(long userId, int levelNum) {
+		UserDo user = this.getById(userId);
+		if(user == null){return null;}
+		this.getAllParent(user, levelNum);
+		return user;		
 	}
 
 }

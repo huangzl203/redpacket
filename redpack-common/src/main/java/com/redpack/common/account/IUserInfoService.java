@@ -6,10 +6,8 @@
 
 package com.redpack.common.account;
 
-import java.util.List;
 import java.util.Map;
 
-import com.redpack.common.account.model.UserDo;
 import com.redpack.common.account.model.UserInfoDo;
 
 /**
@@ -58,6 +56,5 @@ public interface IUserInfoService {
 	 * @return
 	 */
 	public UserInfoDo updataUserInfo(UserInfoDo userInfoDo);
-
 	
 }

@@ -12,6 +12,7 @@ package com.redpack.common.account.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.ibatis.type.Alias;
 
@@ -45,7 +46,16 @@ public class UserDo implements Serializable {
 	private UserInfoDo userInfoDo;		// 用户基础信息表
 	private UserDo 	referrerDo; 		// 推荐人userDo
 	private UserDo 	parentDo; 			// 接受人userDo
+
+	private List<UserDo> childList;     //所有下级
 	
+	
+	public List<UserDo> getChildList() {
+		return childList;
+	}
+	public void setChildList(List<UserDo> childList) {
+		this.childList = childList;
+	}
 	public Long getId() {
 		return id;
 	}

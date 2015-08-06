@@ -82,6 +82,13 @@
 	<welcome-file-list>
 		<welcome-file>/index.jsp</welcome-file>
 	</welcome-file-list>
+	
+	<jsp-config>
+        <taglib>
+            <taglib-uri>http://www.redpacket.com/parent</taglib-uri>
+            <taglib-location>/WEB-INF/parent.tld</taglib-location>
+        </taglib>
+    </jsp-config>
 
 	<!-- 错误处理 -->
 	<!-- 

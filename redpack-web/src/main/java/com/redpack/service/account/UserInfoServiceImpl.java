@@ -6,8 +6,6 @@
 
 package com.redpack.service.account;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -17,7 +15,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.redpack.common.account.IUserInfoService;
-import com.redpack.common.account.model.UserDo;
 import com.redpack.common.account.model.UserInfoDo;
 import com.redpack.dao.account.IUserInfoDao;
 
@@ -36,9 +33,7 @@ public class UserInfoServiceImpl implements IUserInfoService {
 	@Autowired	
     private IUserInfoDao  userInfoDao;
 	
-	public IUserInfoDao getUserInfoDao() {
-		return userInfoDao;
-	}
+
 
 	@Override
 	public UserInfoDo getById(Long id) {
@@ -69,8 +64,5 @@ public class UserInfoServiceImpl implements IUserInfoService {
 	public UserInfoDo updataUserInfo(UserInfoDo userInfoDo) {
 		return userInfoDao.updataUserInfo(userInfoDo);
 	}
-
-
-
 
 }

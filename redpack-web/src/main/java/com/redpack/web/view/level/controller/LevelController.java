@@ -1,5 +1,9 @@
 package com.redpack.web.view.level.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -8,11 +12,16 @@ import net.sf.json.JSONObject;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.redpack.common.account.IUserInfoService;
 import com.redpack.common.account.IUserService;
-import com.redpack.common.enums.TreeNodeDirectionEnum;
+import com.redpack.common.account.model.UserDo;
+import com.redpack.common.account.model.UserInfoDo;
+import com.redpack.common.grade.IGradeFeeService;
+import com.redpack.common.grade.model.GradeFeeDo;
 import com.redpack.common.upgrade.IUserUpgradeService;
 import com.redpack.utils.ResponseUtils;
 import com.redpack.web.view.base.controller.BaseController;
@@ -34,6 +43,12 @@ public class LevelController  extends BaseController {
 	@Autowired
 	IUserService  userService;
 	
+	//@Autowired
+	//IUserInfoService userInfoService;
+	
+	@Autowired
+	IGradeFeeService gradeFeeService;
+	
 	
 	/**
 	 * 去升级申请页面
@@ -42,12 +57,27 @@ public class LevelController  extends BaseController {
 	 * @return
 	 */
 	@RequestMapping("/toApply")
-    public String toApply(HttpServletRequest request,HttpServletResponse response) {
+    public String toApply(HttpServletRequest request,ModelMap map,HttpServletResponse response) {
 		logger.debug("toApply");
 		
 		long  userId = this.getCurrentUserId();
-		//userService.buildRelationTree(userId, TreeNodeDirectionEnum.UP.toString());
 		
+		//获取当前用户所有的PARENT
+		UserDo userInfo = userService.getAllParent(userId, 8);
+		map.put("currentUser", userInfo);
+		
+		//获取当前用户
+		UserDo user = userService.getById(userId);
+		map.put("currentUserAccount", user);
+		
+		
+		//查询升级规则
+		Map<String,Object> parameterMap = new HashMap<String,Object>();
+		parameterMap.put("beforeUpgrade", user.getGrade());
+		List<GradeFeeDo> gradeFeeList = gradeFeeService.selectGradeFee(parameterMap);
+		if(gradeFeeList != null && gradeFeeList.size()>0){
+			map.put("gradeFee", gradeFeeList.get(0));
+		}
 		return "upgrade/toApply";
     }
 	

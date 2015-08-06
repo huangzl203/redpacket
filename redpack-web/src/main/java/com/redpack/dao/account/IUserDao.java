@@ -10,6 +10,7 @@
  */
 package com.redpack.dao.account;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
@@ -45,4 +46,11 @@ public interface IUserDao {
      * @return
      */
 	UserDo getByUserDo(Map<String, Object> parameterMap);
+
+	/**
+	 * 根据parentid找出所有下级
+	 * @param parentId
+	 * @return
+	 */
+	List<UserDo> selectChildByParentId(Long parentId);
 }
