@@ -33,7 +33,7 @@ public class UserDo implements Serializable {
 	private String 	userName; 			// 用户名
 	private String 	password; 			// 用户密码
 	private String 	twoLevelPwd; 		// 二级密码(初始密码为用户密码)
-	private Long 	grade; 				// 当前等级
+	private Integer	grade; 				// 当前等级
 	private String 	organ; 				// 组织机构
 	private String 	remark; 			// 备注
 	private String 	enabled; 			// 状态
@@ -80,10 +80,10 @@ public class UserDo implements Serializable {
 	public void setTwoLevelPwd(String twoLevelPwd) {
 		this.twoLevelPwd = twoLevelPwd;
 	}
-	public Long getGrade() {
+	public Integer getGrade() {
 		return grade;
 	}
-	public void setGrade(Long grade) {
+	public void setGrade(Integer grade) {
 		this.grade = grade;
 	}
 	public String getOrgan() {

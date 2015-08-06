@@ -87,6 +87,11 @@
         NOW(),NOW() ) 
     </insert>
     
+    
+    <update id="updateUserGradeById" parameterType="userDo">
+    	update t_user set grade=#{grade},updateTime = NOW() where id = #{userId}
+    </update>
+    
 	<update id="updateUser" parameterType="userDo">
 		UPDATE t_user
 		<trim prefix="SET" suffixOverrides=",">

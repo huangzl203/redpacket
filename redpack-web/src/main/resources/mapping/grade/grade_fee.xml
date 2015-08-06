@@ -19,16 +19,16 @@
 		  FROM t_grade_fee
 		  <trim prefix="WHERE" prefixOverrides="AND |OR "> 
 			<if test="id != null">  
-				AND id like #{id}
+				AND id = #{id}
 			</if>
 			<if test="gradeAmount != null">  
-				AND grade_amount like #{gradeAmount}
+				AND grade_amount = #{gradeAmount}
 			</if>
 			<if test="beforeUpgrade != null">  
-				AND before_upgrade like #{beforeUpgrade}
+				AND before_upgrade = #{beforeUpgrade}
 			</if>
 			<if test="afterUpgrade != null">  
-				AND after_upgrade like #{afterUpgrade}
+				AND after_upgrade = #{afterUpgrade}
 			</if>
          </trim> 
 

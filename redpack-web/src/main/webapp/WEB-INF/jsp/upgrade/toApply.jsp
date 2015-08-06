@@ -22,7 +22,7 @@
 </style>
 <body>
     <form action="/upgrade/apply" method="post" >
-    <input type="hidden" name="userId" value="${currentUser.userid}"/>
+    <input type="hidden" name="userId" value="${currentUser.id}"/>
     <input type="hidden" name="id" value="${gradeFee.id}"/>
 	<section class="p1">
 		<article class="loan_inf">

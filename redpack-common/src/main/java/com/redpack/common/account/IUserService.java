@@ -113,5 +113,12 @@ public interface IUserService {
 	 * @return
 	 */
 	public  List<UserDo> selectChildByParentId(Long parentId);
+
+	/**
+	 * 更新当前等级
+	 * @param userid
+	 * @param afterUpgrade
+	 */
+	int updateUserGradeById(Long userid, Integer afterUpgrade);
 	
 }

@@ -14,6 +14,8 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.apache.ibatis.type.Alias;
 
+import com.redpack.common.account.model.UserInfoDo;
+
 /**
  * @author zhangyunhua
  * @version 1.0
@@ -25,27 +27,73 @@ import org.apache.ibatis.type.Alias;
 public class UserUpgradeDo  implements java.io.Serializable{	
 	
 	//columns START
-	private java.lang.Integer userid;
+	private Long id;   //主键
+	private Long userid;
 	private java.lang.Integer beforeUpgrade;
 	private java.util.Date upgradeDate;
 	private java.lang.Double upgradeAmount;
-	private java.lang.Integer receiveUser;
+	private Long receiveUser;
 	private java.lang.String paymentMethod;
 	private java.lang.String accountReceive;
 	private java.lang.String accountExpend;
 	private java.lang.Integer afterUpgrade;
+	private String status;    //状态  未审批:0 , 审批通过 :1, 拒绝 :2,撤回 : 3
+	private String statusName;
 	//columns END
-	public java.lang.Integer getUserid() {
-		return this.userid;
+	
+	private UserInfoDo reciver;  //接受者的个人信息
+	public UserInfoDo getReciver() {
+		return reciver;
+	}
+
+	public void setReciver(UserInfoDo reciver) {
+		this.reciver = reciver;
+	}
+
+	public String getStatusName() {
+		if("0".equals(status)){
+			return "未审批";
+		}
+		if("1".equals(status)){
+			return "审批通过";
+		}
+		if("2".equals(status)){
+			return "拒绝";
+		}
+		if("3".equals(status)){
+			return "撤回";
+		}
+		return "";
 	}
 	
-	public void setUserid(java.lang.Integer value) {
-		this.userid = value;
-	}
 	public java.lang.Integer getBeforeUpgrade() {
 		return this.beforeUpgrade;
 	}
 	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public Long getUserid() {
+		return userid;
+	}
+
+	public void setUserid(Long userid) {
+		this.userid = userid;
+	}
+
 	public void setBeforeUpgrade(java.lang.Integer value) {
 		this.beforeUpgrade = value;
 	}
@@ -63,13 +111,15 @@ public class UserUpgradeDo  implements java.io.Serializable{
 	public void setUpgradeAmount(java.lang.Double value) {
 		this.upgradeAmount = value;
 	}
-	public java.lang.Integer getReceiveUser() {
-		return this.receiveUser;
-	}
 	
-	public void setReceiveUser(java.lang.Integer value) {
-		this.receiveUser = value;
+	public Long getReceiveUser() {
+		return receiveUser;
 	}
+
+	public void setReceiveUser(Long receiveUser) {
+		this.receiveUser = receiveUser;
+	}
+
 	public java.lang.String getPaymentMethod() {
 		return this.paymentMethod;
 	}

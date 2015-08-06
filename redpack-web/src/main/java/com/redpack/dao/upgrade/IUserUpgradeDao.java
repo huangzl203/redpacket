@@ -27,7 +27,7 @@ public interface IUserUpgradeDao {
 	 * 根据ID 查询
 	 * @parameter id
 	 */
-	public UserUpgradeDo getById(int id);
+	public UserUpgradeDo getById(Long id);
 	
 	/**
 	 *根据条件查询列表

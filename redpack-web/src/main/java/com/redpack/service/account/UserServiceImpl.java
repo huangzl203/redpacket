@@ -270,4 +270,11 @@ public class UserServiceImpl implements IUserService {
 		return user;		
 	}
 
+
+	@Override
+	public int updateUserGradeById(Long userid, Integer afterUpgrade) {
+		return userDao.updateUserGradeById(userid,afterUpgrade);
+		
+	}
+
 }

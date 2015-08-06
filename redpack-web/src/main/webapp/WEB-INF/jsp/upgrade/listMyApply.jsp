@@ -6,7 +6,7 @@
 <html>
 <head>
 <%@ include file="../include/top.jsp"%>
-	<title>资料修改</title>
+	<title>申请记录</title>
 </head>
 	<style>
 .err{
@@ -21,36 +21,14 @@
 </style>
 <body>
     <form action="modifyUpdata" method="post" >
-    <input type="hidden" name="loanId" value="${loanDo.loanPersonDo.loanId}"/>
-    <input type="hidden" name="loanPersonId" value="${loanDo.loanPersonDo.loanPersonId}"/>
 	<section class="p1">
+		<c:forEach items="${upgradeList}" var="upgradeDo">
 		<article class="loan_inf">
-			收款人编号： XXXX   收款人姓名：XXXXX 手机号：1336922222   金额 ：80  等级 ： 1级  
+			收款人编号： ${upgradeDo.reciver.userId}   收款人姓名：${upgradeDo.reciver.realName} 手机号：${upgradeDo.reciver.mobile} 金额 ：${upgradeDo.upgradeAmount}   等级 ： ${upgradeDo.afterUpgrade}级  
 			    
-			    未审核
+			    ${upgradeDo.statusName}
 		</article>
-		
-		<article class="loan_inf">
-				收款人编号： XXXX   收款人姓名：XXXXX 手机号：1336922222   金额 ：80  等级 ： 1级  
-			    
-			    未审核
-		</article>
-		<article class="loan_inf">
-				收款人编号： XXXX   收款人姓名：XXXXX 手机号：1336922222   金额 ：160  等级 ： 2级  
-			    
-			    未审核
-		</article>
-		<article class="loan_inf">
-				收款人编号： XXXX   收款人姓名：XXXXX 手机号：1336922222   金额 ：240  等级 ： 3级  
-			    
-			    未审核
-		</article>
-		<article class="loan_inf">
-				收款人编号： XXXX   收款人姓名：XXXXX 手机号：1336922222   金额 ：320  等级 ： 4级  
-			    
-			    未审核
-		</article>
-		
+		</c:forEach>
 	</section>
 	
 	</form>

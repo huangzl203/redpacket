@@ -23,6 +23,7 @@ import com.redpack.common.account.model.UserInfoDo;
 import com.redpack.common.grade.IGradeFeeService;
 import com.redpack.common.grade.model.GradeFeeDo;
 import com.redpack.common.upgrade.IUserUpgradeService;
+import com.redpack.common.upgrade.model.UserUpgradeDo;
 import com.redpack.utils.ResponseUtils;
 import com.redpack.web.view.base.controller.BaseController;
 import comredpack.common.constant.WebConstants;
@@ -44,8 +45,8 @@ public class LevelController  extends BaseController {
 	@Autowired
 	IUserService  userService;
 	
-	//@Autowired
-	//IUserInfoService userInfoService;
+	@Autowired
+	IUserInfoService  userInfoService;
 	
 	@Autowired
 	IGradeFeeService gradeFeeService;
@@ -91,25 +92,18 @@ public class LevelController  extends BaseController {
 	 * @return
 	 */
 	@RequestMapping("/apply")
-    public String apply(HttpServletRequest request,HttpServletResponse response) {
+    public String apply(HttpServletRequest request,ModelMap map,HttpServletResponse response) {
 		logger.debug("apply");
+		UserUpgradeDo newUpgradeDo = userUpgradeService.applyUpgrade(this.getUserId());
+		UserInfoDo recieverUserInfo = userInfoService.getByUserId(newUpgradeDo.getReceiveUser());
+		UserDo recieverUser = userService.getById(recieverUserInfo.getUserId());
+		map.put("upgradeDo", newUpgradeDo);
+		map.put("recieverUserInfo", recieverUserInfo);
+		map.put("recieverUser", recieverUser);
         return "upgrade/applyDetail";
     }
 	
-	/**
-	 * 申请确认
-	 * @param userDo
-	 * @param model
-	 * @return
-	 */
-	@RequestMapping("/confirm")
-    public void upgradeConfirm(HttpServletRequest request,HttpServletResponse response) {
-		logger.debug("confirm");
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("result", 1);
-		ResponseUtils.renderText(response, null, jsonObject.toString());
-		return;
-    }
+
 	
 	/**
 	 * 申请列表
@@ -118,8 +112,12 @@ public class LevelController  extends BaseController {
 	 * @return
 	 */
 	@RequestMapping("/listApply")
-    public String listApply(HttpServletRequest request,HttpServletResponse response) {
+    public String listApply(HttpServletRequest request,ModelMap map,HttpServletResponse response) {
 		logger.debug("listApply");
+		Map<String,Object> parameterMap = new HashMap<String,Object>();
+		parameterMap.put("userid", this.getUserId());
+		List<UserUpgradeDo> upgradeList = userUpgradeService.selectUserUpgrade(parameterMap);
+		map.put("upgradeList", upgradeList);
         return "upgrade/listMyApply";
     }
 	
@@ -130,8 +128,13 @@ public class LevelController  extends BaseController {
 	 * @return
 	 */
 	@RequestMapping("/listAudit")
-    public String listAudit(HttpServletRequest request,HttpServletResponse response) {
+    public String listAudit(HttpServletRequest request,ModelMap map,HttpServletResponse response) {
 		logger.debug("listAudit");
+		Map<String,Object> parameterMap = new HashMap<String,Object>();
+		parameterMap.put("receiveUser", this.getUserId());
+		parameterMap.put("status", 0);
+		List<UserUpgradeDo> upgradeList = userUpgradeService.selectUserUpgrade(parameterMap);
+		map.put("upgradeList", upgradeList);
         return "upgrade/listAudit";
     }
 	
@@ -143,8 +146,11 @@ public class LevelController  extends BaseController {
 	@RequestMapping(value = "audit", method = RequestMethod.GET)
 	public void audit(HttpServletRequest request,HttpServletResponse response) {
 		logger.debug("audit");
-		JSONObject jsonObject = new JSONObject();
+		JSONObject jsonObject = new JSONObject();		
 		jsonObject.put("result", 1);
+		String upgradeId = request.getParameter("id");
+		String newStatus = "1";
+		userUpgradeService.updateUpgradeStatusById(upgradeId,newStatus);
 		ResponseUtils.renderText(response, null, jsonObject.toString());
 		return;
 	}
@@ -159,6 +165,9 @@ public class LevelController  extends BaseController {
 		logger.debug("tookBack");
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", 1);
+		String upgradeId = request.getParameter("id");
+		String newStatus = "3";
+		userUpgradeService.updateUpgradeStatusById(upgradeId,newStatus);
 		ResponseUtils.renderText(response, null, jsonObject.toString());
 		return;
 	}
@@ -173,6 +182,9 @@ public class LevelController  extends BaseController {
 		logger.debug("refused");
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", 1);
+		String upgradeId = request.getParameter("id");
+		String newStatus = "2";
+		userUpgradeService.updateUpgradeStatusById(upgradeId,newStatus);
 		ResponseUtils.renderText(response, null, jsonObject.toString());
 		return;
 	}
