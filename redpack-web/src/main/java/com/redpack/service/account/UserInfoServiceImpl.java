@@ -61,7 +61,7 @@ public class UserInfoServiceImpl implements IUserInfoService {
 	}
 
 	@Override
-	public UserInfoDo updataUserInfo(UserInfoDo userInfoDo) {
+	public int updataUserInfo(UserInfoDo userInfoDo) {
 		return userInfoDao.updataUserInfo(userInfoDo);
 	}
 
