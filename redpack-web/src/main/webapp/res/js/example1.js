@@ -30,11 +30,11 @@ function init(){
     //init data
     var json = {
         id: "node02",
-        name: "0.2",
+        name: "小陈",
         data: {},
         children: [{
             id: "node13",
-            name: "1.3",
+            name: "王二",
             data: {},
             children: [{
                 id: "node24",
@@ -42,7 +42,7 @@ function init(){
                 data: {},
                 children: [{
                     id: "node35",
-                    name: "3.5",
+                    name: "赵晨",
                     data: {},
                     children: [{
                         id: "node46",
@@ -780,8 +780,8 @@ function init(){
         //set overridable=true for styling individual
         //nodes or edges
         Node: {
-            height: 20,
-            width: 60,
+            height: 30,
+            width: 70,
             type: 'rectangle',
             color: '#aaa',
             overridable: true
@@ -875,25 +875,21 @@ function init(){
     st.onClick(st.root);
     //end
     //Add event handlers to switch spacetree orientation.
-    var top = $jit.id('r-top'), 
-        left = $jit.id('r-left'), 
-        bottom = $jit.id('r-bottom'), 
-        right = $jit.id('r-right'),
-        normal = $jit.id('s-normal');
+    var top = $jit.id('r-top')
         
     
     function changeHandler() {
         if(this.checked) {
-            top.disabled = bottom.disabled = right.disabled = left.disabled = true;
+            top.disabled = true;
             st.switchPosition(this.value, "animate", {
                 onComplete: function(){
-                    top.disabled = bottom.disabled = right.disabled = left.disabled = false;
+                    top.disabled  = false;
                 }
             });
         }
     };
     
-    top.onchange = left.onchange = bottom.onchange = right.onchange = changeHandler;
+    top.onchange  = changeHandler;
     //end
 
 }
