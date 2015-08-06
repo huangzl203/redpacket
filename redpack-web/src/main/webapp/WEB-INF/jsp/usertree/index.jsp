@@ -27,10 +27,6 @@
 </div>
 	<!--弹出框-->
 	<%@ include file="../include/foot.jsp"%>
-
-	<c:if test="${message!= null}">
-		<script>alert(${message})</script>
-	</c:if>
 </body>
     <script  type="text/javascript">
 		$(function(){
