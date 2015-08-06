@@ -1,1 +1,5 @@
-redpack-web/.settings/org.eclipse.jdt.core.prefs
+*.classpath
+*.settings
+*.class
+*target
+*.project
