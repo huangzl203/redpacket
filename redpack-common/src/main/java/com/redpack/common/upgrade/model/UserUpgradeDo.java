@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 /*
  * Powered By zhangyunhua
  * Web Site: http://www.hehenian.com
@@ -28,7 +28,7 @@ import com.redpack.common.account.model.UserInfoDo;
 public class UserUpgradeDo  implements java.io.Serializable{	
 	
 	//columns START
-	private Long id;   //ä¸»é”®
+	private Long id;   //Ö÷¼ü
 	private Long userid;
 	private java.lang.Integer beforeUpgrade;
 	private java.util.Date upgradeDate;
@@ -38,11 +38,11 @@ public class UserUpgradeDo  implements java.io.Serializable{
 	private java.lang.String accountReceive;
 	private java.lang.String accountExpend;
 	private java.lang.Integer afterUpgrade;
-	private String status;    //çŠ¶æ€  æœªå®¡æ‰¹:0 , å®¡æ‰¹é€šè¿‡ :1, æ‹’ç» :2,æ’¤å› : 3
+	private String status;    //×´Ì¬  Î´ÉóÅú:0 , ÉóÅúÍ¨¹ı :1, ¾Ü¾ø :2,³·»Ø : 3
 	private String statusName;
 	//columns END
 	
-	private UserInfoDo reciver;  //æ¥å—è€…çš„ä¸ªäººä¿¡æ¯
+	private UserInfoDo reciver;  //½ÓÊÜÕßµÄ¸öÈËĞÅÏ¢
 	public UserInfoDo getReciver() {
 		return reciver;
 	}
@@ -53,16 +53,16 @@ public class UserUpgradeDo  implements java.io.Serializable{
 
 	public String getStatusName() {
 		if("0".equals(status)){
-			return "æœªå®¡æ‰¹";
+			return "Î´ÉóÅú";
 		}
 		if("1".equals(status)){
-			return "å®¡æ‰¹é€šè¿‡";
+			return "ÉóÅúÍ¨¹ı";
 		}
 		if("2".equals(status)){
-			return "æ‹’ç»";
+			return "¾Ü¾ø";
 		}
 		if("3".equals(status)){
-			return "æ’¤å›";
+			return "³·»Ø";
 		}
 		return "";
 	}
@@ -179,137 +179,3 @@ public class UserUpgradeDo  implements java.io.Serializable{
 			.isEquals();
 	}
 }
-
-=======
-/*
- * Powered By zhangyunhua
- * Web Site: http://www.hehenian.com
- * Since 2008 - 2015
- */
-
-package com.redpack.common.upgrade.model;
-
-
-
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
-import org.apache.commons.lang.builder.ToStringStyle;
-import org.apache.ibatis.type.Alias;
-
-/**
- * @author zhangyunhua
- * @version 1.0
- * @since 1.0
- */
-
-
-@Alias("userUpgradeDo")
-public class UserUpgradeDo  implements java.io.Serializable{	
-	
-	//columns START
-	private java.lang.Integer userid;
-	private java.lang.Integer beforeUpgrade;
-	private java.util.Date upgradeDate;
-	private java.lang.Double upgradeAmount;
-	private java.lang.Integer receiveUser;
-	private java.lang.String paymentMethod;
-	private java.lang.String accountReceive;
-	private java.lang.String accountExpend;
-	private java.lang.Integer afterUpgrade;
-	//columns END
-	public java.lang.Integer getUserid() {
-		return this.userid;
-	}
-	
-	public void setUserid(java.lang.Integer value) {
-		this.userid = value;
-	}
-	public java.lang.Integer getBeforeUpgrade() {
-		return this.beforeUpgrade;
-	}
-	
-	public void setBeforeUpgrade(java.lang.Integer value) {
-		this.beforeUpgrade = value;
-	}
-	public java.util.Date getUpgradeDate() {
-		return this.upgradeDate;
-	}
-	
-	public void setUpgradeDate(java.util.Date value) {
-		this.upgradeDate = value;
-	}
-	public java.lang.Double getUpgradeAmount() {
-		return this.upgradeAmount;
-	}
-	
-	public void setUpgradeAmount(java.lang.Double value) {
-		this.upgradeAmount = value;
-	}
-	public java.lang.Integer getReceiveUser() {
-		return this.receiveUser;
-	}
-	
-	public void setReceiveUser(java.lang.Integer value) {
-		this.receiveUser = value;
-	}
-	public java.lang.String getPaymentMethod() {
-		return this.paymentMethod;
-	}
-	
-	public void setPaymentMethod(java.lang.String value) {
-		this.paymentMethod = value;
-	}
-	public java.lang.String getAccountReceive() {
-		return this.accountReceive;
-	}
-	
-	public void setAccountReceive(java.lang.String value) {
-		this.accountReceive = value;
-	}
-	public java.lang.String getAccountExpend() {
-		return this.accountExpend;
-	}
-	
-	public void setAccountExpend(java.lang.String value) {
-		this.accountExpend = value;
-	}
-	public java.lang.Integer getAfterUpgrade() {
-		return this.afterUpgrade;
-	}
-	
-	public void setAfterUpgrade(java.lang.Integer value) {
-		this.afterUpgrade = value;
-	}
-
-	public String toString() {
-		return new ToStringBuilder(this,ToStringStyle.MULTI_LINE_STYLE)
-			.append("Userid",getUserid())
-			.append("BeforeUpgrade",getBeforeUpgrade())
-			.append("UpgradeDate",getUpgradeDate())
-			.append("UpgradeAmount",getUpgradeAmount())
-			.append("ReceiveUser",getReceiveUser())
-			.append("PaymentMethod",getPaymentMethod())
-			.append("AccountReceive",getAccountReceive())
-			.append("AccountExpend",getAccountExpend())
-			.append("AfterUpgrade",getAfterUpgrade())
-			.toString();
-	}
-	
-	public int hashCode() {
-		return new HashCodeBuilder()
-			.append(getUserid())
-			.toHashCode();
-	}
-	
-	public boolean equals(Object obj) {
-		if(obj instanceof UserUpgradeDo == false) return false;
-		if(this == obj) return true;
-		UserUpgradeDo other = (UserUpgradeDo)obj;
-		return new EqualsBuilder()
-			.append(getUserid(),other.getUserid())
-			.isEquals();
-	}
-}
-
->>>>>>> fe002e6a1f8651228f1e642370d2fede53dafc9d

@@ -55,6 +55,6 @@ public interface IUserInfoService {
 	 * @param id
 	 * @return
 	 */
-	public UserInfoDo updataUserInfo(UserInfoDo userInfoDo);
+	public int updataUserInfo(UserInfoDo userInfoDo);
 	
 }

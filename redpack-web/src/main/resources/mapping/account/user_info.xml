@@ -144,7 +144,7 @@
 		<if test="openAccount != null">  
 				,openAccount = #{openAccount}
 		</if>		
-		WHERE userid = #{userid} 
+		WHERE userId = #{userId} 
 	</update>	
 	
 	<insert id="saveUserInfo" parameterType="userInfoDo" keyProperty="id" useGeneratedKeys="true" >
@@ -170,7 +170,7 @@
 	</insert>
 	
 <!-- 	<delete id="deleteById" parameterType="Long" >
-		DELETE FROM t_red_user_info WHERE userid = #{userid}
+		DELETE FROM t_red_user_info WHERE userId = #{userId}
 	</delete> -->
 	
 </mapper>
