@@ -5,7 +5,7 @@
 <%@ include file="../common/head.jsp" %>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>${channel_name}-重置密码成功</title>
+		<title>重置密码成功</title>
 	</head>
 	
 <body class="bg-3">
@@ -14,23 +14,20 @@
 		<span class="icon-back2">
 			</span>
 		</a>
-		<p>重置支付密码</p>
+		<p>重置支付密码成功</p>
 	</header>
 	
 	<section class="succ-area">
 	<div class="succ-logo">
 	</div>
 	
-	<div class="anch-launch">
-		<a href="http://m.hehenian.com/product/plist.do?channel=${param.channel}&subChannel=${param.subChannel}">
-			立即投资
-		</a>
-	</div>
 	</section>
 	<script>
 	$(function(){
-		sbh();
-	})
+		$("body").css('height', window.innerHeight);
+		var url ="<c:url value='/login/main.html'/>";
+		setTimeout("window.location.href='"+url+"'", 1000)
+	}); 
 	</script>
 </body>
 </html>

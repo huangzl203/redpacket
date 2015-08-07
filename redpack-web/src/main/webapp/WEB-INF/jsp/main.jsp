@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,15 +54,17 @@
  
 <body>
     <ul class="mainmenu">
-        <li><a href="/" ><b><img src="images/tb01.png" /></b><span>个人中心</span></a></li>
-        <li><a href="/userTree/view.html" ><b><img src="images/tb02.png" /></b><span>团队建设</span></a></li>
-        <li><a href="/upgrade/toApply.html" ><b><img src="images/tb03.png" /></b><span>升级申请</span></a></li>
-        <li><a href="/upgrade/listAudit.html" ><b><img src="images/tb04.png" /></b><span>审批</span></a></li>
-        <li><a href="/upgrade/listApply.html" ><b><img src="images/tb05.png" /></b><span>申请记录</span></a></li>
-        <li><a href="/" ><b><img src="images/tb06.png" /></b><span>私人记录</span></a></li>
-        <li><a href="/" ><b><img src="images/tb06.png" /></b><span>规则</span></a></li>
-        <li><a href="/" ><b><img src="images/tb07.png" /></b><span>公告</span></a></li>
-        <li><a href="/" ><b><img src="images/tb08.png" /></b><span>在线留言</span></a></li>         
+        <li><a href="/" ><b><img src="${fileServerUrl }/res/img/tb01.png" /></b><span>个人中心</span></a></li>
+        <li><a href="<c:url value='/userTree/view.html'/>" ><b><img src="${fileServerUrl }/res/img/tb02.png" /></b><span>团队建设</span></a></li>
+        <li><a href="/upgrade/toApply.html'/>" ><b><img src="${fileServerUrl }/res/img/tb03.png" /></b><span>升级申请</span></a></li>
+        <li><a href="/upgrade/listAudit.html'/>" ><b><img src="${fileServerUrl }/res/img/tb04.png" /></b><span>审批</span></a></li>
+        <li><a href="/upgrade/listApply.html'/>" ><b><img src="${fileServerUrl }/res/img/tb05.png" /></b><span>申请记录</span></a></li>
+        <li><a href="<c:url value=''/>" ><b><img src="${fileServerUrl }/res/img/tb06.png" /></b><span>私人记录</span></a></li>
+        <li><a href="<c:url value=''/>" ><b><img src="${fileServerUrl }/res/img/tb06.png" /></b><span>规则</span></a></li>
+        <li><a href="<c:url value=''/>" ><b><img src="${fileServerUrl }/res/img/tb07.png" /></b><span>公告</span></a></li>
+        <li><a href="<c:url value=''/>" ><b><img src="${fileServerUrl }/res/img/tb08.png" /></b><span>在线留言</span></a></li>         
+        <li><a href="<c:url value='/account/resetPwdIndex.html?pwdFlag=login'/>" ><b><img src="${fileServerUrl }/res/img/tb08.png" /></b><span>修改登录密码</span></a></li>         
+        <li><a href="<c:url value='/account/resetPwdIndex.html?pwdFlag=pay'/>" ><b><img src="${fileServerUrl }/res/img/tb08.png" /></b><span>修改二级密码</span></a></li>         
     </ul>
     <!-- 欢迎大家关注我的博客！如有疑问,请加QQ群：135430763共同学习！ -->
     <%@ include file="include/foot.jsp"%>

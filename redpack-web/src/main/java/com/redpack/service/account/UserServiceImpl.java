@@ -125,7 +125,10 @@ public class UserServiceImpl implements IUserService {
 	
 	@Override
 	public UserDo getById(Long id) {
-		return userDao.getById(id);
+		UserDo userDo= userDao.getById(id);
+		UserInfoDo userInfoDo =userInfoDao.getByUserId(id);
+		userDo.setUserInfoDo(userInfoDo);
+		return userDo;
 	}
 
 	@Override
@@ -271,11 +274,15 @@ public class UserServiceImpl implements IUserService {
 		return user;		
 	}
 
-
 	@Override
 	public int updateUserGradeById(Long userid, Integer afterUpgrade) {
 		return userDao.updateUserGradeById(userid,afterUpgrade);
 		
+	}
+
+	@Override
+	public int updateUser(UserDo tempSave) {
+		return userDao.updateUser(tempSave);
 	}
 
 }

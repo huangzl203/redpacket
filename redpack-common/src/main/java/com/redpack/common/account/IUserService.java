@@ -121,5 +121,17 @@ public interface IUserService {
 	 * @param afterUpgrade
 	 */
 	int updateUserGradeById(Long userid, Integer afterUpgrade);
+
+	/**
+	 * @Description 用户保存方法
+	 * @author huangzl QQ: 272950754
+	 * @date 2015-8-7 下午09:55:59
+	 * @Project redpack-common
+	 * @Package com.redpack.common.account
+	 * @File IUserService.java
+	 * @param tempSave
+	 * @return
+	*/
+	int updateUser(UserDo tempSave);
 	
 }

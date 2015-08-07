@@ -16,7 +16,7 @@
 			</span>
 		</a>
 		<c:if test="${pwdFlag == 'pay'}">
-			<p>重置支付密码</p>
+			<p>重置二级密码</p>
 		</c:if>
 		<c:if test="${pwdFlag != 'pay'}">
 			<p>重置登陆密码</p>
@@ -24,7 +24,7 @@
 	</header>
 	<nav class="nav-title">
 		<c:if test="${pwdFlag == 'pay'}">
-			<p>请重设您的支付密码</p>
+			<p>请重设您的二级密码</p>
 		</c:if>
 		<c:if test="${pwdFlag != 'pay'}">
 			<p>请重设您的登录密码</p>
@@ -50,7 +50,7 @@
 				<p class="tips-p"><span class="icon-tips"></span>密码长度6~20位，由数字、字母组成</p>
 			</c:if>
 			<div class="res-sub">
-				<input type="button" value="提交" id="updPwdBtn">
+				<input type="button" style="background: #894c8d;" value="提交" id="updPwdBtn">
 			</div>
 	</section>
 	<script>
