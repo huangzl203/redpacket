@@ -1,3 +1,4 @@
+
 /**  
  * @Project: deposit-biz-common
  * @Package com.hehenian.deposit.common.account
@@ -113,5 +114,12 @@ public interface IUserService {
 	 * @return
 	 */
 	public  List<UserDo> selectChildByParentId(Long parentId);
+
+	/**
+	 * 更新当前等级
+	 * @param userid
+	 * @param afterUpgrade
+	 */
+	int updateUserGradeById(Long userid, Integer afterUpgrade);
 	
 }

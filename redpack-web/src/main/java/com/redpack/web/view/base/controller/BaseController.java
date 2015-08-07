@@ -1,3 +1,4 @@
+
 /**  
  * @Project: hehenian-mobile
  * @Package com.hehenian.mobile.controller
@@ -20,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.redpack.common.account.model.UserInfoDo;
 import com.redpack.common.account.model.UserDo;
 import com.redpack.utils.CommonUtils;
+import comredpack.common.constant.WebConstants;
 
 /**
  * @Description 描述方法作用
@@ -50,7 +52,8 @@ public class BaseController {
 	}
 	
 	protected long getUserId() {
-		return CommonUtils.getLoginId() != null ? CommonUtils.getLoginId() : -1;
+		UserDo currentUser = (UserDo)  request.getSession().getAttribute(WebConstants.SESSION_USER);
+		return currentUser.getId();
 	}
 	
 	protected Long getCurrentUserId(){

@@ -18,10 +18,11 @@
 <body style="padding-bottom: 60px">
 	<header class="center_head">
 		<div class="head-inf">
-			<a href="<c:url value='/app/elend/tongzhi'/>" class="tongzhi"><c:if
-					test="${tzNum >0}">
+			<c:if test="${tzNum >0}">
+				<a href="<c:url value='/app/elend/tongzhi'/>" class="tongzhi">
 					<em>${tzNum} </em>
-				</c:if></a>
+				</a>
+			</c:if>
 			<h2>${userDo.userInfoDo.realName }</h2>
 			<p class="db_f">
 				<span class="bf1">${userDo.userInfoDo.mobileString }</span> <span

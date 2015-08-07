@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -22,7 +23,7 @@
 </style>
 <body>
     <form action="/upgrade/apply" method="post" >
-    <input type="hidden" name="userId" value="${currentUser.userid}"/>
+    <input type="hidden" name="userId" value="${currentUser.id}"/>
     <input type="hidden" name="id" value="${gradeFee.id}"/>
 	<section class="p1">
 		<article class="loan_inf">

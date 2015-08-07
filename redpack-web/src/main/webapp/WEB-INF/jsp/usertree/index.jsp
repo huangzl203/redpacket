@@ -14,7 +14,7 @@
 <script language="javascript" type="text/javascript" src="${fileServerUrl}/res/js/jit.js"></script>
 
 <!-- Example File -->
-<script language="javascript" type="text/javascript" src="${fileServerUrl}/res/js/example1.js"></script>
+<script language="javascript" type="text/javascript" src="${fileServerUrl}/res/js/userTree.js"></script>
 
 <title>团队结构树</title>
 </head>
@@ -27,6 +27,9 @@
 </div>
 	<!--弹出框-->
 	<%@ include file="../include/foot.jsp"%>
+	<c:if test="${message!= null}">
+		<script>alert(${message})</script>
+	</c:if>
 </body>
     <script  type="text/javascript">
 		$(function(){

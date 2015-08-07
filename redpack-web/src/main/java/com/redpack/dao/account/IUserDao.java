@@ -1,3 +1,4 @@
+
 /**  
  * @Project: deposit-biz-service
  * @Package com.hehenian.deposit.dal.account
@@ -13,6 +14,7 @@ package com.redpack.dao.account;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.redpack.common.account.model.UserDo;
@@ -53,4 +55,12 @@ public interface IUserDao {
 	 * @return
 	 */
 	List<UserDo> selectChildByParentId(Long parentId);
+
+	/**
+	 * 根据id 更新当前等级
+	 * @param userid
+	 * @param afterUpgrade
+	 * @return
+	 */
+	int updateUserGradeById(@Param("userId")Long userid, @Param("grade")Integer afterUpgrade);
 }

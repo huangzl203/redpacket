@@ -1,3 +1,4 @@
+
 /**  
  * @Project: deposit-web
  * @Package com.hehenian.deposit.web.view.account.controller
@@ -116,7 +117,7 @@ public class UserController {
 			userDo.setUserName(mobilePhone);
 			userDo.setPassword(pwdMd5);
 			userDo.setTwoLevelPwd(pwdMd5);
-			userDo.setGrade(0L);								//当前等级
+			userDo.setGrade(0);								//当前等级
 			userDo.setOrgan("");								//组织机构
 			userDo.setEnabled("");								//状态
 			userDo.setReferrerId(userId);				//推荐人ID

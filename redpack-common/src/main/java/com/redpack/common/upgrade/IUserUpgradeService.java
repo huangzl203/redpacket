@@ -1,3 +1,4 @@
+
 /*
  * Powered By zhangyunhua
  * Web Site: http://www.hehenian.com
@@ -24,7 +25,7 @@ public interface IUserUpgradeService{
 	 * 根据ID 查询
 	 * @parameter id
 	 */
-	public UserUpgradeDo getById(int id);
+	public UserUpgradeDo getById(Long id);
 	
 	/**
 	 *根据条件查询列表
@@ -45,4 +46,18 @@ public interface IUserUpgradeService{
 	 * 删除
 	 */
 	public int deleteById(int id);
+
+	/**
+	 * 申请升级
+	 * @param userId
+	 * @return
+	 */
+	public UserUpgradeDo applyUpgrade(long userId);
+
+	/**
+	 * 根据id 更改状态
+	 * @param upgradeId
+	 * @param newStatus
+	 */
+	public void updateUpgradeStatusById(String upgradeId, String newStatus);
 }

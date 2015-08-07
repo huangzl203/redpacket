@@ -96,7 +96,7 @@
 			</div>
 			<div class="form-group db_f">
 				<label for="" class="lab">财付通：</label>
-				<input type="text" id ="xm2" placeholder="请输入财付通帐号"   class="txt bf1 db"  name="cftNumber" value="${userDo.userInfoDo.cftNumber }"/>
+				<input type="text" id ="cftNumber" placeholder="请输入财付通帐号"   class="txt bf1 db"  name="cftNumber" value="${userDo.userInfoDo.cftNumber }"/>
 			</div>
 		</article>
 	</section>
@@ -106,11 +106,210 @@
 	</section>
 	</form>
 	<%@ include file="../include/foot.jsp"%>
+	<script type="text/javascript" src="${fileServerUrl }/res/js/idCard.js?v=${jsversion}"></script>
 	<script>
 	$(function(){
+		   var validateRealName = function(){
+				var temp = $("#realName");
+				if(temp.val()==0){
+					temp.parent().after('<em class="err bs" style="z-index:0;">请输入真实姓名</em>');
+					return false;
+				}else if (!/^[\u4e00-\u9fa5]+$/.test(temp.val())){
+					temp.parent().after('<em class="err bs" style="z-index:0;">请填写中文名字</em>');
+				}else{
+					return true;
+				}
+			};
+			var validateIdCardNo = function(){
+				var temp = $("#idCardNo");
+				if(temp.val()==0){
+					temp.parent().after('<em class="err bs" style="z-index:0;">请输入身份证号</em>');
+					return false;
+				}else if (!isIdCardNo(temp.val())) {
+					temp.parent().after('<em class="err bs" style="z-index:0;">身份证号格式有误</em>');
+					return false;
+				}else{
+					return true;
+				}
+			};
+			var validateMobile = function(){
+				var temp = $("#mobile");
+				if(temp.val()==0){
+					temp.parent().after('<em class="err bs" style="z-index:0;">请输入手机号码</em>');
+					return false;
+				}else if (!/^0{0,1}(13[0-9]|15[0-9]|18[0-9]|14[0-9]|17[0-9])[0-9]{8}$/.test(temp.val())){
+					temp.parent().after('<em class="err bs" style="z-index:0;">手机号码格式有误</em>');
+				}else{
+					return true;
+				}
+			};	
+			var validateQqNumber = function(){
+				var temp = $("#qqNumber");
+				if(temp.val()==0){
+					temp.parent().after('<em class="err bs" style="z-index:0;">请输入QQ号码</em>');
+					return false;
+				}else{
+					return true;
+				}
+			};			
+			var validateWeixiNumber = function(){
+				var temp = $("#weixiNumber");
+				if(temp.val()==0){
+					temp.parent().after('<em class="err bs" style="z-index:0;">请输入微信号码</em>');
+					return false;
+				}else{
+					return true;
+				}
+			};			
+			var validateEMail = function(){
+				var temp = $("#eMail");
+				if(temp.val()==0){
+					temp.parent().after('<em class="err bs" style="z-index:0;">请输入用户邮箱</em>');
+					return false;
+				}else if (!/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/.test(temp.val())){
+					temp.parent().after('<em class="err bs" style="z-index:0;">用户邮箱格式错误</em>');
+					return false;
+				}else{
+					return true;
+				}
+			};			
+			var validateContactAddress = function(){
+				var temp = $("#contactAddress");
+				if(temp.val()==0){
+					temp.parent().after('<em class="err bs" style="z-index:0;">请输入联系地址</em>');
+					return false;
+				}else{
+					return true;
+				}
+			};			
+			var validateBankName = function(){
+				var temp = $("#bankName");
+				if(temp.val()==0){
+					temp.parent().after('<em class="err bs" style="z-index:0;">请输入开户银行</em>');
+					return false;
+				}else if (!/^[\u4e00-\u9fa5]+$/.test(temp.val())){
+					temp.parent().after('<em class="err bs" style="z-index:0;">请填写中文</em>');
+					return false;
+				}else{
+					return true;
+				}
+			};			
+			var validateOpenAccount = function(){
+				var temp = $("#openAccount");
+				if(temp.val()==0){
+					temp.parent().after('<em class="err bs" style="z-index:0;">请输入开户姓名</em>');
+					return false;
+				}else if (!/^[\u4e00-\u9fa5]+$/.test(temp.val())){
+					temp.parent().after('<em class="err bs" style="z-index:0;">请填写中文名字</em>');
+				}else{
+					return true;
+				}
+			};
+			var validateBankAccount = function(){
+				var temp = $("#bankAccount");
+				if(temp.val()==0){
+					temp.parent().after('<em class="err bs" style="z-index:0;">请输入银行账号</em>');
+					return false;
+				}else if (!/^[1-9]\d*$/g.test(temp.val())){
+					temp.parent().after('<em class="err bs" style="z-index:0;">银行账号格式错误</em>');
+					return false;
+				}else{
+					return true;
+				}
+			};	
+			var validateProvince = function(){
+				var temp = $("#province");
+				if(temp.val()==0){
+					temp.parent().after('<em class="err bs" style="z-index:0;">请输入开户省份</em>');
+					return false;
+				}else if (!/^[\u4e00-\u9fa5]+$/.test(temp.val())){
+					temp.parent().after('<em class="err bs" style="z-index:0;">请填写中文</em>');
+					return false;
+				}else{
+					return true;
+				}
+			};
+			var validateCity = function(){
+				var temp = $("#city");
+				if(temp.val()==0){
+					temp.parent().after('<em class="err bs" style="z-index:0;">请输入开户市区</em>');
+					return false;
+				}else if (!/^[\u4e00-\u9fa5]+$/.test(temp.val())){
+					temp.parent().after('<em class="err bs" style="z-index:0;">请填写中文</em>');
+					return false;
+				}else{
+					return true;
+				}
+			};
+			var validateBankSubbranch = function(){
+				var temp = $("#bankSubbranch");
+				if(temp.val()==0){
+					temp.parent().after('<em class="err bs" style="z-index:0;">请输入银行支行</em>');
+					return false;
+				}else if (!/^[\u4e00-\u9fa5]+$/.test(temp.val())){
+					temp.parent().after('<em class="err bs" style="z-index:0;">请填写中文</em>');
+					return false;
+				}else{
+					return true;
+				}
+			};
+			var validateZfbNumber = function(){
+				var temp = $("#zfbNumber");
+				if(temp.val()==0){
+					temp.parent().after('<em class="err bs" style="z-index:0;">请输入支付宝</em>');
+					return false;
+				}else{
+					return true;
+				}
+			};
+			var validateCftNumber = function(){
+				var temp = $("#cftNumber");
+				if(temp.val()==0){
+					temp.parent().after('<em class="err bs" style="z-index:0;">请输入财付通</em>');
+					return false;
+				}else{
+					return true;
+				}
+			};
+			
+			$("#realName").blur(validateRealName);
+			$("#idCardNo").blur(validateIdCardNo);
+			$("#mobile").blur(validateMobile);
+			$("#qqNumber").blur(validateQqNumber);
+			$("#weixiNumber").blur(validateWeixiNumber);
+			$("#eMail").blur(validateEMail);
+			$("#contactAddress").blur(validateContactAddress);
+			$("#bankName").blur(validateBankName);
+			$("#openAccount").blur(validateOpenAccount);
+			$("#bankAccount").blur(validateBankAccount);
+			$("#province").blur(validateProvince);
+			$("#city").blur(validateCity);
+			$("#bankSubbranch").blur(validateBankSubbranch);
+			$("#zfbNumber").blur(validateZfbNumber);
+			$("#cftNumber").blur(validateCftNumber);
+			$(".txt,input,select").focus(function(){
+				$(this).parent().next('.err').remove();
+			});
+			
 		$("#apply").bind('touchstart', function(){
 			$(".err").remove();
-			document.forms[0].submit();
+			var a =0;
+			if(!validateRealName()) a++;
+			if(!validateIdCardNo()) a++;
+			if(!validateMobile()) a++;
+			if(!validateQqNumber()) a++;
+			if(!validateWeixiNumber()) a++;
+			if(!validateEMail()) a++;
+			if(!validateContactAddress()) a++;
+			if(!validateBankName()) a++;
+			if(!validateOpenAccount()) a++;
+			if(!validateBankAccount()) a++;
+			if(!validateProvince()) a++;
+			if(!validateCity()) a++;
+			if(!validateBankSubbranch()) a++;
+			if(!validateZfbNumber()) a++;
+			if(!validateCftNumber()) a++;
+			if(a==0) document.forms[0].submit();
 		})
 	})
 	</script>

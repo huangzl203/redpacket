@@ -533,7 +533,7 @@ p.tag_txt{ font-size:14px;}
     /*box-shadow: 10px 0px 0px #ccc;*/
 }
 .switch:before{
-	content: 'æœ‰';
+	content: 'æœ?;
 	width: 30px;
 	text-align: center;
 	height: 22px;
@@ -543,7 +543,7 @@ p.tag_txt{ font-size:14px;}
    margin: -1px 0 0 -1px;
 }
 .switch:after{
-	content: 'æ— ';
+	content: 'æ—?;
 	width: 30px;
 	text-align: center;
 	height: 22px;

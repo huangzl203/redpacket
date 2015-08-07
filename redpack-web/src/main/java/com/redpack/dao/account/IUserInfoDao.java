@@ -61,6 +61,6 @@ public interface IUserInfoDao {
 	 * @param id
 	 * @return
 	 */
-	public UserInfoDo updataUserInfo(UserInfoDo userInfoDo);
+	public int updataUserInfo(UserInfoDo userInfoDo);
 
 }

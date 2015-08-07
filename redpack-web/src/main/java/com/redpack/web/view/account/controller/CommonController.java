@@ -34,6 +34,7 @@ import com.redpack.utils.IDCardUtil;
 import com.redpack.utils.IdCardUtils;
 import com.redpack.utils.ResponseUtils;
 import com.redpack.web.view.base.controller.BaseController;
+import comredpack.common.constant.WebConstants;
 
 
 /**
@@ -286,6 +287,11 @@ public class CommonController extends BaseController{
 	public String modifyUpdata(@ModelAttribute UserInfoDo userInfoDo,Model model, HttpSession session, HttpServletRequest request) {
 		String idNo=userInfoDo.getIdCardNo();
 		userInfoDo.setSex(IdCardUtils.getGenderByIdCard(idNo).equals("M") ? "男" : "女");
+		userInfoService.updataUserInfo(userInfoDo);
+		UserDo user = (UserDo) session.getAttribute(WebConstants.SESSION_USER);
+		UserInfoDo userInfo = userInfoService.getById(userInfoDo.getId());
+		user.setUserInfoDo(userInfo);
+		session.setAttribute(WebConstants.SESSION_USER, user);
 		return "redirect:/redPack/personalCenter";
 	}
 	

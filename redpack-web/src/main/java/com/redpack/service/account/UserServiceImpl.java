@@ -1,3 +1,4 @@
+
 /**  
  * @Project: deposit-biz-service
  * @Package com.hehenian.deposit.service.account
@@ -268,6 +269,13 @@ public class UserServiceImpl implements IUserService {
 		if(user == null){return null;}
 		this.getAllParent(user, levelNum);
 		return user;		
+	}
+
+
+	@Override
+	public int updateUserGradeById(Long userid, Integer afterUpgrade) {
+		return userDao.updateUserGradeById(userid,afterUpgrade);
+		
 	}
 
 }
