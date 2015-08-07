@@ -5,7 +5,9 @@
 <%@ include file="../common/head.jsp" %>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>${channel_name}-重置密码</title>
+		<title>重置密码</title>
+		<%@ include file="../include/top.jsp"%>
+		<link href="${fileServerUrl }/res/css/main.min.css?v=${jsversion}" type="text/css" rel="stylesheet">
 	</head>
 	
 	<body class="bg-2">
@@ -16,18 +18,18 @@
 			</span>
 		</a>
 		<c:if test="${pwdFlag == 'pay'}">
-			<p>重置二级密码</p>
+			<span>重置二级密码</span>
 		</c:if>
 		<c:if test="${pwdFlag != 'pay'}">
-			<p>重置登陆密码</p>
+			<span>重置登陆密码</span>
 		</c:if>
 	</header>
 	<nav class="nav-title">
 		<c:if test="${pwdFlag == 'pay'}">
-			<p>请重设您的二级密码</p>
+			<span>请重设您的二级密码</span>
 		</c:if>
 		<c:if test="${pwdFlag != 'pay'}">
-			<p>请重设您的登录密码</p>
+			<span>请重设您的登录密码</span>
 		</c:if>
 	</nav>
 	<section>
@@ -53,6 +55,7 @@
 				<input type="button" style="background: #894c8d;" value="提交" id="updPwdBtn">
 			</div>
 	</section>
+	<%@ include file="../include/foot.jsp"%>
 	<script>
 		$(function(){
 			sbh();
