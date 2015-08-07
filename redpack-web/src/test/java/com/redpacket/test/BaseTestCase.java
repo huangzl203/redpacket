@@ -9,6 +9,6 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
         "classpath:/spring/redpack-support.xml" })
 public class BaseTestCase extends AbstractTransactionalJUnit4SpringContextTests {
 	static {
-		System.setProperty("catalina.home",	"E:/run_time/tomcat/apache-tomcat-7.0.62");
+		System.setProperty("catalina.home",	"D:\\soft\\apache-tomcat-7.0.63");
 	}
 }
