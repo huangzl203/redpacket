@@ -1,12 +1,5 @@
-/*
- * Powered By zhangyunhua
- * Web Site: http://www.hehenian.com
- * Since 2008 - 2015
- */
 
 package com.redpack.common.userTree;
-
-
 
 import java.util.List;
 

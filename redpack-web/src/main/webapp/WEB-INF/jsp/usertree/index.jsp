@@ -5,6 +5,7 @@
 <html>
 <head>
 <%@ include file="../include/top.jsp"%>
+<%@ include file="../common/head.jsp"%>
 <link type="text/css" href="${fileServerUrl}/res/css/base.css" rel="stylesheet" />
 <link type="text/css" href="${fileServerUrl}/res/css/Spacetree.css" rel="stylesheet" />
 
