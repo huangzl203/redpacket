@@ -23,17 +23,14 @@
 					<em>${tzNum} </em>
 				</a>
 			</c:if>
-			<h2>${userDo.userInfoDo.realName }</h2>
-			<p class="db_f">
-				<span class="bf1">${userDo.userInfoDo.mobileString }</span> <span
-					class="bf1">${userDo.userInfoDo.idCardNoString }</span>
-			</p>
+			<span class="bf1">${userDo.userInfoDo.realName }</span>
+			<span class="bf1">${userDo.userInfoDo.mobile}</span>
 		</div>
 		<div class="head-lend db_f">
-			<span><em>会员状态</em>正式会员</span> <span><em>会员级别</em>五级会员</span> <span><em>团队会员数</em>
+			<span><em>会员状态</em><c:if test="${userDo.grade>0}">正式会员</c:if><c:if test="${userDo.grade == 0}">临时式会员</c:if></span> <span><em>会员级别</em>${userDo.grade}级会员</span> <span><em>团队会员数</em>
 				<fmt:formatNumber
-					value="${settDetailDo.principal+settDetailDo.interest}"
-					pattern="##0" /></span>
+					value="${groupCount}"
+					pattern="###################" /></span>
 		</div>
 	</header>
 
@@ -44,15 +41,15 @@
 				</em>
 			</h2>
 			<div class="">
-				<p style="padding:0 10px;">当前等级：5</p>
-				<p style="padding:0 10px;">下一个付分等级：6级</p>
-				<p style="padding:0 10px;">付分金额：1200.00分</p>
+				<p style="padding:0 10px;">当前等级：${userDo.grade}级</p>
+				<p style="padding:0 10px;">下一个付分等级：${gradeFee.afterUpgrade}级</p>
+				<p style="padding:0 10px;">付分金额：${gradeFee.gradeAmount}分</p>
 			</div>
 		</section>
 		<section>
 			<div class="p1 db_f">
 				<div class="p1 bf1"><a href="<c:url value='/common/modifyInfo.html'/>" class="apply">修改资料</a></div>
-				<div class="p1 bf1"><a href="<c:url value=''/>" class="apply">我要升级</a></div>
+				<div class="p1 bf1"><a href="<c:url value='/upgrade/toApply.html'/>" class="apply">我要升级</a></div>
 			</div>
 		</section>
 		<section>
@@ -66,14 +63,12 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>3/3</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>8/9</td>
-							</tr>
+							<c:forEach items="${groupList}" var="row" varStatus="status">
+								<tr>
+									<td>${status.index + 1}</td>
+									<td>${row}</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table></li>
 				<li><span class="ld">团队付分情况</span><em></em>
@@ -86,26 +81,40 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td>
-								<td>240.00</td>
-								<td>3/3</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>800.00</td>
-								<td>5/9</td>
-							</tr>
+							<c:forEach items="${groupMoneyList}" var="row"  varStatus="status" >
+								<tr>
+									<td>${status.index + 1}</td>
+									<td>${ row.amount }</td>
+									<td>${ row.persons }</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table></li>
 			</ul>
 		</section>
+		</article>
+		
+		<article>
+				<section>
+					<ul class="personinf_img p1 bs">
+						<li class="bs psrimgli" data-img="<c:url value='${fileServerUrl }/res/img/red1.png'/>">
+								<img src="<c:url value='${fileServerUrl }/res/img/red1.png'/>" alt="" >
+						</li>
+						<li class="bs psrimgli" data-img="<c:url value='${fileServerUrl }/res/img/red2.png'/>">
+								<img src="<c:url value='${fileServerUrl }/res/img/red2.png'/>" alt="" >
+						</li>
+						<li class="bs psrimgli" data-img="<c:url value='${fileServerUrl }/res/img/red3.png'/>">
+								<img src="<c:url value='${fileServerUrl }/res/img/red3.png'/>" alt="" >
+						</li>
+					</ul>
+				</section>
+			</article>
 
 		<%@ include file="../include/foot.jsp"%>
 		<script type="text/javascript">
 			$(function() {
 				$(".center-list li span").bind(
-						'touchend',
+						'click',
 						function() {
 							var that = $(this);
 							if (that.next(".down").length) {

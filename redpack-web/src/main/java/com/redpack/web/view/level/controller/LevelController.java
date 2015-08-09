@@ -134,7 +134,8 @@ public class LevelController  extends BaseController {
 		Map<String,Object> parameterMap = new HashMap<String,Object>();
 		parameterMap.put("receiveUser", this.getUserId());
 		parameterMap.put("status", 0);
-		List<UserUpgradeDo> upgradeList = userUpgradeService.selectUserUpgrade(parameterMap);
+		List<UserUpgradeDo> upgradeList = userUpgradeService.selectUpgradeAuditList(parameterMap);
+		
 		map.put("upgradeList", upgradeList);
         return "upgrade/listAudit";
     }
@@ -144,14 +145,26 @@ public class LevelController  extends BaseController {
 	 * @param request
 	 * @param response
 	 */
-	@RequestMapping(value = "audit", method = RequestMethod.GET)
-	public void audit(HttpServletRequest request,HttpServletResponse response) {
+	@RequestMapping(value = "audit")
+	public void audit(HttpServletRequest request,ModelMap map,HttpServletResponse response) {
 		logger.debug("audit");
 		JSONObject jsonObject = new JSONObject();		
 		jsonObject.put("result", 1);
 		String upgradeId = request.getParameter("id");
-		String newStatus = "1";
-		userUpgradeService.updateUpgradeStatusById(upgradeId,newStatus);
+		String optType = request.getParameter("optType");
+		String newStatus = "0";
+		if("audit".equals(optType)){
+			newStatus = "1";
+		}
+		if("refused".equals(optType)){
+			newStatus = "2";
+		}
+		try{
+			userUpgradeService.updateUpgradeStatusById(upgradeId,newStatus);
+		}catch (Exception e) {
+			jsonObject.put("result", 0);
+			e.printStackTrace();
+		}
 		ResponseUtils.renderText(response, null, jsonObject.toString());
 		return;
 	}
@@ -161,34 +174,20 @@ public class LevelController  extends BaseController {
 	 * @param request
 	 * @param response
 	 */
-	@RequestMapping(value = "tookBack", method = RequestMethod.GET)
+	@RequestMapping(value = "tookBack")
 	public void tookBack(HttpServletRequest request,HttpServletResponse response) {
 		logger.debug("tookBack");
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", 1);
 		String upgradeId = request.getParameter("id");
 		String newStatus = "3";
-		userUpgradeService.updateUpgradeStatusById(upgradeId,newStatus);
+		try{
+			userUpgradeService.updateUpgradeStatusById(upgradeId,newStatus);
+		}catch (Exception e) {
+			jsonObject.put("result", 0);
+			e.printStackTrace();
+		}
 		ResponseUtils.renderText(response, null, jsonObject.toString());
 		return;
 	}
-	
-	/**
-	 * 拒绝
-	 * @param request
-	 * @param response
-	 */
-	@RequestMapping(value = "refused", method = RequestMethod.GET)
-	public void refused (HttpServletRequest request,HttpServletResponse response) {
-		logger.debug("refused");
-		JSONObject jsonObject = new JSONObject();
-		jsonObject.put("result", 1);
-		String upgradeId = request.getParameter("id");
-		String newStatus = "2";
-		userUpgradeService.updateUpgradeStatusById(upgradeId,newStatus);
-		ResponseUtils.renderText(response, null, jsonObject.toString());
-		return;
-	}
-	
-
 }

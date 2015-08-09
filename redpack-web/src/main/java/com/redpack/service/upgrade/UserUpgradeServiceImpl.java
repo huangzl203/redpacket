@@ -15,6 +15,8 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.redpack.common.account.IUserInfoService;
 import com.redpack.common.account.IUserService;
@@ -68,6 +70,7 @@ public class UserUpgradeServiceImpl implements IUserUpgradeService {
 	/**
 	 * 更新
 	 */
+	@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
 	public int  updateUserUpgradeById(UserUpgradeDo newUserUpgradeDo){
 		return userUpgradeDao.updateUserUpgradeById(newUserUpgradeDo);
 	}
@@ -75,6 +78,7 @@ public class UserUpgradeServiceImpl implements IUserUpgradeService {
 	/**
 	 * 新增
 	 */
+	@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
 	public int addUserUpgrade(UserUpgradeDo newUserUpgradeDo){
 		return userUpgradeDao.addUserUpgrade(newUserUpgradeDo);
 	}
@@ -82,6 +86,7 @@ public class UserUpgradeServiceImpl implements IUserUpgradeService {
 	/**
 	 * 删除
 	 */
+	@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
 	public int deleteById(int id){
 		return userUpgradeDao.deleteById(id);
 	}
@@ -113,7 +118,7 @@ public class UserUpgradeServiceImpl implements IUserUpgradeService {
 		
 	}
 	
-	
+	@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
 	@Override
 	public UserUpgradeDo applyUpgrade(long userId) {
 		
@@ -156,13 +161,14 @@ public class UserUpgradeServiceImpl implements IUserUpgradeService {
 		return newUserUpgradeDo;
 	}
 
+	@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
 	@Override
 	public void updateUpgradeStatusById(String upgradeId, String newStatus) {
 		UserUpgradeDo newUserUpgradeDo = new UserUpgradeDo();
 		Long upId = Long.parseLong(upgradeId);
 		newUserUpgradeDo.setId(upId);
 		newUserUpgradeDo.setStatus(newStatus);
-		int result = userUpgradeDao.updateUserUpgradeById(newUserUpgradeDo);
+		int result = userUpgradeDao.updateUpgradeStatus(newUserUpgradeDo);
 		
 		
 		UserUpgradeDo upgradeDo =  userUpgradeDao.getById(upId);
@@ -173,6 +179,18 @@ public class UserUpgradeServiceImpl implements IUserUpgradeService {
 			throw new RuntimeException("操作失败");
 		}
 		
+	}
+
+	@Override
+	public List<UserUpgradeDo> selectUpgradeAuditList(
+			Map<String, Object> parameterMap) {
+		return userUpgradeDao.selectUpgradeAuditList(parameterMap);
+	}
+
+	@Override
+	public Map<String, Object> selectLevelAmount(Long receiveUser, int level) {
+	    int status = 1;
+		return userUpgradeDao.selectLevelAmount(receiveUser, level,1);
 	}
 
 }

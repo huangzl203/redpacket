@@ -7,6 +7,7 @@
 <html>
 <head>
 <%@ include file="../include/top.jsp"%>
+<%@ include file="../common/head.jsp" %>
 	<title>申请记录</title>
 </head>
 	<style>
@@ -20,14 +21,29 @@
   margin-top: -18px;
 }
 </style>
-<body>
-    <form action="modifyUpdata" method="post" >
+<body class="bg-2">
+	<header class="top-bar">
+		<a href="javascript:history.go(-1);">
+			<span class="icon-back">
+			</span>
+		</a>
+		<p>申请记录</p>
+	</header>
+    <form action="tookBack" method="post" >
+    <input type="hidden" id="id" name="id" />
 	<section class="p1">
+		<c:if test="${empty upgradeList}">
+	    	没记录
+	    </c:if>
 		<c:forEach items="${upgradeList}" var="upgradeDo">
 		<article class="loan_inf">
 			收款人编号： ${upgradeDo.reciver.userId}   收款人姓名：${upgradeDo.reciver.realName} 手机号：${upgradeDo.reciver.mobile} 金额 ：${upgradeDo.upgradeAmount}   等级 ： ${upgradeDo.afterUpgrade}级  
 			    
 			    ${upgradeDo.statusName}
+			    
+			     <c:if test="${ upgradeDo.status eq '0' }">
+			    	操作: <a class="btn" upid="${upgradeDo.id}" optType="tookBack">撤回</a>
+			    </c:if>
 		</article>
 		</c:forEach>
 	</section>
@@ -36,11 +52,25 @@
 	<%@ include file="../include/foot.jsp"%>
 	<script>
 	$(function(){
-		$("#apply").bind('touchstart', function(){
-			$(".err").remove();
-			document.forms[0].submit();
+		$(".btn").bind('click', function(){
+			var that = this;
+			$("#id").val($(that).attr("upid"));
+			tookBack();
 		})
-	})
+	});
+
+	function tookBack(){
+		var id = $("#id").val();
+		var options = {type:"POST",url:"/upgrade/tookBack.html",data:{id:id}};
+		ajaxRequest(options,function(data){
+		    if(data.result==1){
+		    	popWindow("操作成功");
+				window.location.href="/upgrade/listApply.html";
+			}else{
+				popWindow("操作失败");
+			}
+		});
+	}
 	</script>
 </body>
 </html>

@@ -66,21 +66,6 @@
 			</div>
 		</form>
 	</section>
-	<article>
-		<section>
-			<ul class="personinf_img p1 bs">
-				<li class="bs psrimgli" data-img="<c:url value='${fileServerUrl }/res/img/red1.png'/>">
-						<img src="<c:url value='${fileServerUrl }/res/img/red1.png'/>" alt="" >
-				</li>
-				<li class="bs psrimgli" data-img="<c:url value='${fileServerUrl }/res/img/red2.png'/>">
-						<img src="<c:url value='${fileServerUrl }/res/img/red2.png'/>" alt="" >
-				</li>
-				<li class="bs psrimgli" data-img="<c:url value='${fileServerUrl }/res/img/red3.png'/>">
-						<img src="<c:url value='${fileServerUrl }/res/img/red3.png'/>" alt="" >
-				</li>
-			</ul>
-		</section>
-	</article>
 	<%@ include file="../include/foot.jsp"%>
 	<script src="${fileServerUrl }/res/js/main.min.js?v=${jsversion}"></script>
 	<script>

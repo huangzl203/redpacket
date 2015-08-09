@@ -60,4 +60,17 @@ public interface IUserUpgradeService{
 	 * @param newStatus
 	 */
 	public void updateUpgradeStatusById(String upgradeId, String newStatus);
+
+	/**
+	 * 查询审批列表
+	 * @param parameterMap
+	 * @return
+	 */
+	public List<UserUpgradeDo> selectUpgradeAuditList(
+			Map<String, Object> parameterMap);
+
+	/**
+	 * 获取每层的申请人数和金额
+	 */
+	public Map<String, Object> selectLevelAmount(Long id, int level);
 }

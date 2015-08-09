@@ -28,7 +28,7 @@ import com.redpack.common.account.model.UserInfoDo;
 public class UserUpgradeDo  implements java.io.Serializable{	
 	
 	//columns START
-	private Long id;   //����
+	private Long id;   //主键
 	private Long userid;
 	private java.lang.Integer beforeUpgrade;
 	private java.util.Date upgradeDate;
@@ -38,11 +38,22 @@ public class UserUpgradeDo  implements java.io.Serializable{
 	private java.lang.String accountReceive;
 	private java.lang.String accountExpend;
 	private java.lang.Integer afterUpgrade;
-	private String status;    //״̬  δ����:0 , ����ͨ�� :1, �ܾ� :2,���� : 3
+	private String status;    //状态  未审批:0 , 审批通过 :1, 拒绝 :2,撤回 : 3
 	private String statusName;
 	//columns END
 	
-	private UserInfoDo reciver;  //�����ߵĸ�����Ϣ
+	private UserInfoDo reciver;  //接受者的个人信息
+	
+	private UserInfoDo applyUser;//申请者
+	
+	public UserInfoDo getApplyUser() {
+		return applyUser;
+	}
+
+	public void setApplyUser(UserInfoDo applyUser) {
+		this.applyUser = applyUser;
+	}
+
 	public UserInfoDo getReciver() {
 		return reciver;
 	}
@@ -53,16 +64,16 @@ public class UserUpgradeDo  implements java.io.Serializable{
 
 	public String getStatusName() {
 		if("0".equals(status)){
-			return "δ����";
+			return "未审批";
 		}
 		if("1".equals(status)){
-			return "����ͨ��";
+			return "审批通过";
 		}
 		if("2".equals(status)){
-			return "�ܾ�";
+			return "拒绝";
 		}
 		if("3".equals(status)){
-			return "����";
+			return "撤回";
 		}
 		return "";
 	}

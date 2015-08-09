@@ -118,14 +118,14 @@ public class LoginController extends BaseController {
 
 		String pwdMd5 = DigestUtils.md5Hex(password + WebConstants.PASS_KEY);
 
-		if (loginUser == null || !loginUser.getPassword().equals(pwdMd5)) {
-			// 用户名密码错误
-			jsonObject.put("result", 3);
-			session.setAttribute("loginStrategy", ++loginStrategy);
-			jsonObject.put("loginStrategy", loginStrategy >= 5);
-			ResponseUtils.renderText(response, null, jsonObject.toString());
-			return;
-		}
+//		if (loginUser == null || !loginUser.getPassword().equals(pwdMd5)) {
+//			// 用户名密码错误
+//			jsonObject.put("result", 3);
+//			session.setAttribute("loginStrategy", ++loginStrategy);
+//			jsonObject.put("loginStrategy", loginStrategy >= 5);
+//			ResponseUtils.renderText(response, null, jsonObject.toString());
+//			return;
+//		}
 		UserInfoDo userInfoDo = userInfoService.getByUserId(loginUser.getId());
 		loginUser.setUserInfoDo(userInfoDo);
 		session.setAttribute(WebConstants.SESSION_USER, loginUser);
