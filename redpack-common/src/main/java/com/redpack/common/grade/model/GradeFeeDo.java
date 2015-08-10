@@ -27,7 +27,7 @@ public class GradeFeeDo  implements java.io.Serializable{
 	//columns START
 	private java.lang.Integer id;
 	private java.lang.Double gradeAmount;
-	private java.lang.Double beforeUpgrade;
+	private java.lang.Integer beforeUpgrade;
 	private java.lang.Integer afterUpgrade;
 	//columns END
 	public java.lang.Integer getId() {
@@ -44,13 +44,15 @@ public class GradeFeeDo  implements java.io.Serializable{
 	public void setGradeAmount(java.lang.Double value) {
 		this.gradeAmount = value;
 	}
-	public java.lang.Double getBeforeUpgrade() {
-		return this.beforeUpgrade;
-	}
 	
-	public void setBeforeUpgrade(java.lang.Double value) {
-		this.beforeUpgrade = value;
+	public java.lang.Integer getBeforeUpgrade() {
+		return beforeUpgrade;
 	}
+
+	public void setBeforeUpgrade(java.lang.Integer beforeUpgrade) {
+		this.beforeUpgrade = beforeUpgrade;
+	}
+
 	public java.lang.Integer getAfterUpgrade() {
 		return this.afterUpgrade;
 	}

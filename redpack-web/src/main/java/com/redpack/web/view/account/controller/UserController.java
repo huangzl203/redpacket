@@ -160,8 +160,17 @@ public class UserController {
 	 * @date 2015年8月2日 22:45:08
 	 */
 	@RequestMapping("regIndex")
-	public String regIndex() {
+	public String regIndex(HttpServletRequest request,Model model) {
+		String userId = request.getParameter("userid");
+		if(userId != null && !"".equals(userId)){
+			
+			UserDo recieverUser = userService.getById(Long.valueOf(userId));
+			
+			model.addAttribute("recieverUser",recieverUser);
+			
+		}
 		logger.info("----注册用户跳转页面----");
+		
 		return "redPack/register";
 	}
 
@@ -181,7 +190,8 @@ public class UserController {
 		if(user!=null&&user.getId()!=null&&user.getId()>0){
 			String loginInfo = request.getParameter("userName");
 			String mobilePhone = request.getParameter("mobilePhone");
-			String pwd =  request.getParameter("mobilePhone");
+			String pwd =  request.getParameter("pwd");
+			String recieveUserId =  request.getParameter("recieveUserId");
 			Map<String, Object> parameterMap = new HashMap<String, Object>();
 			parameterMap.put("mobile", mobilePhone);
 			UserInfoDo temp =userInfoService.getByUserInfoDo(parameterMap);
@@ -209,8 +219,9 @@ public class UserController {
 			userDo.setOrgan("");								//组织机构
 			userDo.setEnabled("");								//状态
 			userDo.setReferrerId(userId);				//推荐人ID
-			userDo.setParentId(userId);					//接点人ID
+			userDo.setParentId(Long.valueOf(recieveUserId));					//接点人ID
 			userDo.setTreeNode("");								//业务方向
+			userDo.setRealName(loginInfo);
 			UserInfoDo userInfoDo = new UserInfoDo();
 			userInfoDo.setRealName(loginInfo);
 			userInfoDo.setMobile(mobilePhone);

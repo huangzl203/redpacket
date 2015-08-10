@@ -65,7 +65,7 @@ function init() {
 				// nodes or edges
 				Node : {
 					height : 25,
-					width : 65,
+					width : 75,
 					type : 'rectangle',
 					color : '#aaa',
 					overridable : true
@@ -89,17 +89,20 @@ function init() {
 				// your node.
 				onCreateLabel : function(label, node) {
 					label.id = node.id;
-					label.innerHTML = node.name;
+					label.innerHTML = node.name ;
 					label.onclick = function() {
 						// if(normal.checked) {
 						st.onClick(node.id);
+//						popWindow(node.id);
+						$('#user_ref_id').val(node.id);
 							// } else {
 							// st.setRoot(node.id, 'animate');
 							// }
 					};
+				
 					// set label styles
 					var style = label.style;
-					style.width = 60 + 'px';
+					style.width = 80 + 'px';
 					style.height = 17 + 'px';
 					style.cursor = 'pointer';
 					style.color = '#333';

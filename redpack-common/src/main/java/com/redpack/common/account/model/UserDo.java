@@ -43,19 +43,28 @@ public class UserDo implements Serializable {
 	private String 	treeNode; 			// 业务方向
 	private Date 	createTime; 		// 帐号创建时间
 	private Date 	updateTime; 		// 帐号修改时间
+	private String  name;               //真实姓名
+	private String  realName;               //真实姓名
 	
 	private UserInfoDo userInfoDo;		// 用户基础信息表
 	private UserDo 	referrerDo; 		// 推荐人userDo
 	private UserDo 	parentDo; 			// 接受人userDo
+	
 
-	private List<UserDo> childList;     //所有下级
+	private List<UserDo> children;     //所有下级
 	
 	
 	public List<UserDo> getChildList() {
-		return childList;
+		return children;
+	}
+	public List<UserDo> getChildren() {
+		return children;
+	}
+	public void setChildren(List<UserDo> children) {
+		this.children = children;
 	}
 	public void setChildList(List<UserDo> childList) {
-		this.childList = childList;
+		this.children = childList;
 	}
 	public Long getId() {
 		return id;
@@ -152,6 +161,20 @@ public class UserDo implements Serializable {
 	}
 	public void setUpdateTime(Date updateTime) {
 		this.updateTime = updateTime;
+	}
+	public String getName() {
+		return realName + "(" + grade +")";
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+
+	public String getRealName() {
+		return realName;
+	}
+	public void setRealName(String realName) {
+		this.realName = realName;
 	}
 	
 }

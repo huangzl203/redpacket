@@ -61,6 +61,14 @@
 				<span class="sign-lable" style="color: #894c8d;">手机号码</span>
 				<input type="text" id="mobilePhone" name="mobilePhone" placeholder="请输入注册手机号码">
 			</div>
+			<div class="sign-style br-2">
+				<span class="sign-lable" style="color: #894c8d;">接受人</span>
+				<input type="text" readonly="readonly" id="recieveUserId" name="recieveUserId"  value="${recieverUser.id}">
+			</div>
+			<div class="sign-style br-2">
+				<span class="sign-lable" style="color: #894c8d;">初始密码</span>
+				<input type="text" id="pwd" name="pwd" placeholder="初始密码">
+			</div>
 			<div class="sign-sub">
 				<input style="background: #894c8d;"   type="button" id="regBtn" value="立即注册">
 			</div>
@@ -95,7 +103,9 @@
                 }
                 
 				$(this).attr('disabled',true);
-				var options = {type:"POST",url:"${loginServerUrl }/account/register.html",data:{userName:userName,mobilePhone:mobilePhone,referenceId:'${userDo.id}'}};
+				var recieveUserId = $("#recieveUserId").val();
+				var pwd = $("#pwd").val();
+				var options = {type:"POST",url:"${loginServerUrl }/account/register.html",data:{pwd:pwd,recieveUserId:recieveUserId,userName:userName,mobilePhone:mobilePhone,referenceId:'${userDo.id}'}};
 				ajaxRequest(options,function(data){
 					if(data.result=='注册成功'){
 						popWindow(data.result);

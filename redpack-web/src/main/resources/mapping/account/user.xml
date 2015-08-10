@@ -4,6 +4,7 @@
 	<resultMap type="userDo" id="userResultMap">
 		<result property="id" column="id" />
 		<result property="userName" column="userName" />
+		<result property="realName" column="name" />
 		<result property="password" column="password" />
 		<result property="twoLevelPwd" column="passwordTwo" />
 		<result property="grade" column="grade" />
@@ -79,12 +80,12 @@
         userName , password , passwordTwo ,
         grade , organ , remark , enabled ,
         referrerId , parentId , treeNode ,
-        creatorTime , updateTime )
+        creatorTime , updateTime,name )
         VALUES ( 
         #{userName},#{password},#{twoLevelPwd},
         #{grade},#{organ},#{remark},#{enabled},
         #{referrerId},#{parentId},#{treeNode},
-        NOW(),NOW() ) 
+        NOW(),NOW(),#{realName} ) 
     </insert>
     
     
@@ -125,8 +126,11 @@
 			<if test="treeNode != null">
 				treeNode = #{treeNode},
 			</if>
+			<if test="realName != null">
+				name = #{realName},
+			</if>
 			updateTime = NOW(),
 		</trim>
-		WHERE id = #{id};
+		WHERE id = #{id}
 	</update>
 </mapper>

@@ -288,7 +288,14 @@ public class CommonController extends BaseController{
 		String idNo=userInfoDo.getIdCardNo();
 		userInfoDo.setSex(IdCardUtils.getGenderByIdCard(idNo).equals("M") ? "男" : "女");
 		userInfoService.updataUserInfo(userInfoDo);
+		
 		UserDo user = (UserDo) session.getAttribute(WebConstants.SESSION_USER);
+		//更新用户表的name
+		UserDo tempSave = new UserDo();
+		tempSave.setId(user.getId());
+		tempSave.setRealName(userInfoDo.getRealName());
+		userService.updateUser(tempSave);
+		
 		UserInfoDo userInfo = userInfoService.getById(userInfoDo.getId());
 		user.setUserInfoDo(userInfo);
 		session.setAttribute(WebConstants.SESSION_USER, user);
