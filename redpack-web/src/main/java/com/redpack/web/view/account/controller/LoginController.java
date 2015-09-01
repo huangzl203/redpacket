@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.redpack.common.account.IUserService;
 import com.redpack.common.account.model.UserDo;
+import com.redpack.utils.CommonUtils;
 import com.redpack.utils.ResponseUtils;
 import com.redpack.web.view.base.controller.BaseController;
 import comredpack.common.constant.WebConstants;
+import comredpack.common.constant.WebThreadVariable;
 
 /**
  * @Description 描述方法作用
@@ -55,6 +57,19 @@ public class LoginController extends BaseController {
 		int loginStrategy = super.getSessionIntAttr("loginStrategy", 0);
 		request.setAttribute("loginStrategyInfo", loginStrategy >= 5);
 		return "login/login";
+	}
+	
+	/**
+	 * 登录入口
+	 * 
+	 * @return
+	 * @author:  zhangyunhua
+	 * @date 2015-3-29 上午3:36:11
+	 */
+	@RequestMapping(value = "main")
+	public String main(ModelMap map, HttpSession sessionS) {
+		logger.info("----loginInit(登录成功)----");
+		return "main";
 	}
 
 	/**
@@ -96,16 +111,18 @@ public class LoginController extends BaseController {
 		String pwdMd5 = DigestUtils.md5Hex(password + WebConstants.PASS_KEY);
 		
 		
-		if(loginUser == null || !loginUser.getPassword().equals(pwdMd5)) {
-			// 用户名密码错误
-			jsonObject.put("result", 3);
-			request.getSession().setAttribute("loginStrategy", ++loginStrategy);
-			jsonObject.put("loginStrategy", loginStrategy >= 5);
-			ResponseUtils.renderText(response, null,jsonObject.toString());
-			return;
-		}
+//		if(loginUser == null || !loginUser.getPassword().equals(pwdMd5)) {
+//			// 用户名密码错误
+//			jsonObject.put("result", 3);
+//			request.getSession().setAttribute("loginStrategy", ++loginStrategy);
+//			jsonObject.put("loginStrategy", loginStrategy >= 5);
+//			ResponseUtils.renderText(response, null,jsonObject.toString());
+//			return;
+//		}
 		
 		request.getSession().setAttribute(WebConstants.SESSION_USER, loginUser);
+		WebThreadVariable.setUserDo(loginUser);
+		
 		// 取缓存登录信息
 		String fromUrl = request.getHeader("referer");
 		jsonObject.put("result", 0);

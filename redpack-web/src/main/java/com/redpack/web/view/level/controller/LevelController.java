@@ -3,17 +3,13 @@ package com.redpack.web.view.level.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
 import net.sf.json.JSONObject;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.redpack.common.account.model.UserDo;
 import com.redpack.utils.ResponseUtils;
 import com.redpack.web.view.base.controller.BaseController;
 
@@ -27,14 +23,30 @@ import com.redpack.web.view.base.controller.BaseController;
 @RequestMapping("/upgrade")
 public class LevelController  extends BaseController {
 	
+	private static transient Logger logger = Logger.getLogger(LevelController.class);
+	
 	/**
-	 * 升级申请
+	 * 去升级申请页面
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping("/toApply")
+    public String toApply(HttpServletRequest request,HttpServletResponse response) {
+		logger.debug("toApply");
+		return "upgrade/toApply";
+    }
+	
+	
+	/**
+	 * 升级申请信息
 	 * @param request
 	 * @param response
 	 * @return
 	 */
 	@RequestMapping("/apply")
     public String apply(HttpServletRequest request,HttpServletResponse response) {
+		logger.debug("apply");
         return "upgrade/applyDetail";
     }
 	
@@ -46,12 +58,36 @@ public class LevelController  extends BaseController {
 	 */
 	@RequestMapping("/confirm")
     public void upgradeConfirm(HttpServletRequest request,HttpServletResponse response) {
+		logger.debug("confirm");
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", 1);
 		ResponseUtils.renderText(response, null, jsonObject.toString());
 		return;
     }
 	
+	/**
+	 * 申请列表
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping("/listApply")
+    public String listApply(HttpServletRequest request,HttpServletResponse response) {
+		logger.debug("listApply");
+        return "upgrade/listMyApply";
+    }
+	
+	/**
+	 * 审批列表
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping("/listAudit")
+    public String listAudit(HttpServletRequest request,HttpServletResponse response) {
+		logger.debug("listAudit");
+        return "upgrade/listAudit";
+    }
 	
 	/**
 	 * 申请审批
@@ -60,6 +96,7 @@ public class LevelController  extends BaseController {
 	 */
 	@RequestMapping(value = "audit", method = RequestMethod.GET)
 	public void audit(HttpServletRequest request,HttpServletResponse response) {
+		logger.debug("audit");
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", 1);
 		ResponseUtils.renderText(response, null, jsonObject.toString());
@@ -73,6 +110,7 @@ public class LevelController  extends BaseController {
 	 */
 	@RequestMapping(value = "tookBack", method = RequestMethod.GET)
 	public void tookBack(HttpServletRequest request,HttpServletResponse response) {
+		logger.debug("tookBack");
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", 1);
 		ResponseUtils.renderText(response, null, jsonObject.toString());
@@ -86,6 +124,7 @@ public class LevelController  extends BaseController {
 	 */
 	@RequestMapping(value = "refused", method = RequestMethod.GET)
 	public void refused (HttpServletRequest request,HttpServletResponse response) {
+		logger.debug("refused");
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("result", 1);
 		ResponseUtils.renderText(response, null, jsonObject.toString());

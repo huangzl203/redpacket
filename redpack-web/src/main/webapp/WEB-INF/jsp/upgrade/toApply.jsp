@@ -20,64 +20,65 @@
 }
 </style>
 <body>
-    <form action="listApply" method="post" >
+    <form action="/upgrade/apply" method="post" >
     <input type="hidden" name="loanId" value="${loanDo.loanPersonDo.loanId}"/>
     <input type="hidden" name="loanPersonId" value="${loanDo.loanPersonDo.loanPersonId}"/>
 	<section class="p1">
 		<article class="loan_inf">
+			<h3 class="inf_tip"><i class="t1"></i>升级说明</h3>
 			<div class="form-group db_f">
-				
-				祝贺您申请成功！</br>
-				   请你及时到银行给您的上家办理汇款或转账、支付宝、微信！
-				  您的上家只有在收到您的款项之后才能够给你升级！   
-								
-			</div>
+				<label for="" class="lab">您目前的级别为：</label>
+				<input type="text" id ="qqNumber" readonly="readonly" class="txt bf1 db"  name="loanRelationDoList[1].ralationName" value="${loanDo.loanPersonDo.loanRelationDoList[1].ralationName }"/>
 			
+				<label for="" class="lab">下一级将升级为:</label>
+				<input type="text"  id ="onePassword"  readonly="readonly"  class="txt bf1 db"  name="loanRelationDoList[1].ralationName" value="${loanDo.loanPersonDo.loanRelationDoList[1].ralationName }"/>
+			</div>
+			<div class="form-group db_f">
+				<label for="" class="lab">并需要向上层会员： 交升级款  元</label>
+			</div>
 		</article>
 		
 		
 		<article class="loan_inf">
-			<h3 class="inf_tip"><i class="t2"></i>上家信息</h3>
+			<h3 class="inf_tip"><i class="t2"></i>您的上层分别为：</h3>
 			<div class="form-group db_f">
-				<label for="" class="lab">接受人姓名：</label>
+				<label for="" class="lab">上1层：</label>
 				<input type="text" id="bank" readonly="readonly"  class="txt bf1 db" name="propertyDo.coveredArea"  value="${loanDo.loanPersonDo.propertyDo.coveredArea}" >
 			</div>
 			<div class="form-group db_f">
-				<label for="" class="lab">手机号码：</label>
+				<label for="" class="lab">上2层：</label>
 				<input type="text" id ="mobile"  readonly="readonly"   class="txt bf1 db"  name="loanRelationDoList[0].ralationName" value="${loanDo.loanPersonDo.loanRelationDoList[0].ralationName }"/>
 			</div>
 			<div class="form-group db_f">
-				<label for="" class="lab">当前级别：</label>
+				<label for="" class="lab">上3层：</label>
 				<input type="text" id ="qqNumber" readonly="readonly" class="txt bf1 db"  name="loanRelationDoList[1].ralationName" value="${loanDo.loanPersonDo.loanRelationDoList[1].ralationName }"/>
 			</div>
 			<div class="form-group db_f">
-				<label for="" class="lab">开户姓名：</label>
+				<label for="" class="lab">上4层：</label>
 				<input class="txt bf1 db" id="email" readonly="readonly" type="email"  name="email" value="${loanDo.loanPersonDo.email}"/>
 			</div>
 			<div class="form-group db_f">
-				<label for="" class="lab">银行账号:</label>
+				<label for="" class="lab">上5层:</label>
 				<input type="text" readonly="readonly" id ="xm2" class="txt bf1 db"  name="loanRelationDoList[1].ralationName" value="${loanDo.loanPersonDo.loanRelationDoList[1].ralationName }"/>
 			</div>
 			<div class="form-group db_f">
-				<label for="" class="lab">开户省份：</label>
+				<label for="" class="lab">上6层：</label>
 				<input type="text" id="area" readonly="readonly" class="txt bf1 db" name="propertyDo.coveredArea"  value="${loanDo.loanPersonDo.propertyDo.coveredArea}" >
 			</div>
 			<div class="form-group db_f">
-				<label for="" class="lab">开户城市：</label>
+				<label for="" class="lab">上7层：</label>
 				<input type="text" id="addr"  readonly="readonly" name="propertyDo.houseAddress" class="txt bf1 db" value="${loanDo.loanPersonDo.propertyDo.houseAddress}">
 			</div>
 			<div class="form-group db_f">
-				<label for="" class="lab">微信帐号：</label>
+				<label for="" class="lab">上8级：</label>
 				<input type="text" id="addr" readonly="readonly"  name="propertyDo.houseAddress" class="txt bf1 db" value="${loanDo.loanPersonDo.propertyDo.houseAddress}">
 			</div>
-			<div class="form-group db_f">
-				进入等待审核程序，您也可以电话或QQ联系您的上家予以确认				
-			</div>
+			
 		</article>
 	</section>
 	
 	<section class="p1" style="padding: 10px 10px 60px;">
-			<a href="javascript:void(0);" id="apply" class="apply">完成</a>
+			<a href="javascript:void(0);" id="apply" class="apply">我要升级</a>
 	</section>
 	</form>
 	<%@ include file="/include/foot.jsp"%>
