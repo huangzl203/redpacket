@@ -9,14 +9,14 @@
 	</head>
 <body class="bg-2">
 <header class="top-bar">
-		<a href="${loginServerUrl }/login/index.do">
+		<a href="${fileServerUrl }/login/index.do">
 		<span class="icon-back">
 			</span>
 		</a>
 		<p>注册账号</p>
 	</header>
 	<section class="sign-area">
-		<form action="${loginServerUrl }/account/register.do" id="regForm" method="post">
+		<form action="${fileServerUrl }/account/register.do" id="regForm" method="post">
 			<div class="sign-style br-3">
 				<span class="sign-lable pr75">真实姓名</span>
 				<input type="text" name="userName" id="userName" placeholder="请输入您的真实姓名">
@@ -101,10 +101,10 @@
                      return;
                 }
 				$(this).attr('disabled',true);
-				var options = {type:"POST",url:"${loginServerUrl }/account/register.html",data:{userName:userName,password:password,mobilePhone:mobilePhone,referenceMobile:referenceMobile}};
+				var options = {type:"POST",url:"${fileServerUrl }/account/register.html",data:{userName:userName,password:password,mobilePhone:mobilePhone,referenceMobile:referenceMobile}};
 				ajaxRequest(options,function(data){
 					if(data.result=='注册成功'){
-						window.location.href="${loginServerUrl }/redPack/modifyInfo.html";
+						window.location.href="${fileServerUrl }/redPack/modifyInfo.html";
 					}else{
 						popWindow(data.result);
 						$('#regBtn').removeAttr('disabled');

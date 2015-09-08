@@ -21,7 +21,7 @@
 			</div>
 			<c:if test="${requestScope.loginStrategyInfo }">
 				<div><input type="text" class="lis lis-check" id="code" name="code" placeholder="图片验证码">
-					<span><img src="${loginServerUrl }/common/imageCode.html?pageId=userlogin" title="点击更换验证码" id="codeNum" /></span>
+					<span><img src="${fileServerUrl }/common/imageCode.html?pageId=userlogin" title="点击更换验证码" id="codeNum" /></span>
 				</div>
 			</c:if>
 			<div>
@@ -35,7 +35,7 @@
 			login();
 		});
 		$("#codeNum").bind("click",function(){
-			$(this).attr("src", "${loginServerUrl }/common/imageCode.html?pageId=userlogin&d=" + new Date().getTime());
+			$(this).attr("src", "${fileServerUrl }/common/imageCode.html?pageId=userlogin&d=" + new Date().getTime());
 		});
 	});
 	document.onkeydown = function(e) {
@@ -60,7 +60,7 @@
 				return;
 			}
 		}
-		var options = {type:"POST",url:"${loginServerUrl }/login/login.html",data:{userName:userName,password:password,code:code}};
+		var options = {type:"POST",url:"${fileServerUrl }/login/login.html",data:{userName:userName,password:password,code:code}};
 		ajaxRequest(options,function(data){
 		    if(data.result==1){
 				popWindow("登录信息填写不完整");
@@ -69,17 +69,17 @@
 			}else if(data.result==3){
 				if(data.loginStrategy == true) {
 					loginDiv='<div><input type="text" class="lis lis-check" id="code" name="code" placeholder="图片验证码">';
-					loginDiv+='<span><img src="${loginServerUrl }/common/imageCode.html?pageId=userlogin" title="点击更换验证码" id="codeNum" /></span></div>';
+					loginDiv+='<span><img src="${fileServerUrl }/common/imageCode.html?pageId=userlogin" title="点击更换验证码" id="codeNum" /></span></div>';
 					if($("#code").length == 0 ) {
 						$('.log-area').find("div").eq(1).after(loginDiv);
 						$("#codeNum").bind("click",function(){
-							$(this).attr("src", "${loginServerUrl }/common/imageCode.html?pageId=userlogin&d=" + new Date().getTime());
+							$(this).attr("src", "${fileServerUrl }/common/imageCode.html?pageId=userlogin&d=" + new Date().getTime());
 						});
 					}
 				}
 				popWindow("用户名或密码错误");
 			}else{
-				window.location.href=data.fromUrl;
+				window.location.href="${fileServerUrl }"+data.fromUrl;
 			}
 		});
 	}

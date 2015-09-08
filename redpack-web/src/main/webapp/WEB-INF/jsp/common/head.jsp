@@ -8,7 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 		<meta content="yes" name="apple-mobile-web-app-capable">
 		<meta content="yes" name="apple-touch-fullscreen">
-		<script src="${loginServerUrl }/res/js/zepto.min.js"></script>
-		<script src="${loginServerUrl }/res/js/jquery-1.11.1.min.js"></script>
-		<script src="${loginServerUrl }/res/js/main.min.js"></script>
-		<link type="text/css" rel="stylesheet" href="${loginServerUrl }/res/css/main.min.css">
+		<script src="${fileServerUrl }/res/js/zepto.min.js"></script>
+		<script src="${fileServerUrl }/res/js/jquery-1.11.1.min.js"></script>
+		<script src="${fileServerUrl }/res/js/main.min.js"></script>
+		<link type="text/css" rel="stylesheet" href="${fileServerUrl }/res/css/main.min.css">
